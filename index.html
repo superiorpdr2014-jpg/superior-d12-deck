@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<!-- 線上版是給學員看的內部簡報，不要被搜尋引擎收錄（跟 ECHO 簡報、品牌手冊同一個做法）-->
+<meta name="robots" content="noindex, nofollow">
+<title>卓越的下一步｜D12 招募簡報</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07080b; --panel:#12141c; --panel2:#0c0e14; --line:#242833; --ink:#eef1f6; --muted:#c9d0da;
+    --gold:#e9b949; --red:#e5484d; --green:#10b981; --amber:#f59e0b; --blue:#3b82f6; --purple:#a855f7;
+    --bronze:#c77b3b; --silver:#b9c6d4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{background:#000;font-family:"Noto Sans TC",sans-serif;color:var(--ink);line-height:1.35;
+    height:100%;overflow:hidden}
+
+  /* ===== 播放舞台：1280×720 等比縮放置中 ===== */
+  #stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;
+    transform:translate(-50%,-50%) scale(var(--s,1));transform-origin:center center}
+
+  /* 16:9 投影片 */
+  .slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--bg);overflow:hidden;
+    padding:40px 56px;display:flex;flex-direction:column;
+    opacity:0;visibility:hidden;transition:opacity .38s ease}
+  .slide.on{opacity:1;visibility:visible}
+  @media (prefers-reduced-motion:reduce){.slide{transition:none}}
+
+  /* ===== 播放器介面 ===== */
+  .navzone{position:fixed;top:0;bottom:0;width:24%;z-index:40;cursor:pointer;background:transparent}
+  .navzone.l{left:0} .navzone.r{right:0}
+  .navzone:after{content:"";position:absolute;top:50%;transform:translateY(-50%);
+    width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);opacity:0;transition:opacity .2s}
+  .navzone:hover:after{opacity:1}
+  .navzone.l:after{left:22px} .navzone.r:after{right:22px}
+  .navzone:before{content:"";position:absolute;top:50%;width:11px;height:11px;
+    border-top:2px solid rgba(255,255,255,.75);border-right:2px solid rgba(255,255,255,.75);
+    opacity:0;transition:opacity .2s;z-index:1}
+  .navzone:hover:before{opacity:1}
+  .navzone.r:before{right:38px;transform:translateY(-50%) rotate(45deg)}
+  .navzone.l:before{left:38px;transform:translateY(-50%) rotate(-135deg)}
+
+  #bartrack{position:fixed;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.07);z-index:50}
+  #bar{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--red));transition:width .3s ease}
+  #hud{position:fixed;right:20px;bottom:16px;z-index:50;font-family:"Bebas Neue";letter-spacing:2px;
+    font-size:24px;color:var(--muted);user-select:none}
+  #hud b{color:var(--gold)}
+  #hint{position:fixed;left:20px;bottom:15px;z-index:50;font-size:21px;color:#5b6274;user-select:none}
+  #hint span{border:1px solid #2a2f3c;border-radius:4px;padding:1px 6px;margin:0 2px;color:#79808f}
+
+  .sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
+  .brand{font-family:"Bebas Neue";letter-spacing:2.5px;font-size:25px;color:#e8ecf2}
+  .brand b{color:var(--red)}
+  .pn{font-family:"Bebas Neue";letter-spacing:2px;font-size:23px;color:var(--muted)}
+  .kick{font-family:"Bebas Neue";letter-spacing:3px;color:var(--gold);font-size:24px;margin-bottom:2px}
+  h1.t{font-size:49px;font-weight:900;letter-spacing:1px;line-height:1.15}
+  h1.t em{color:var(--gold);font-style:normal}
+  h1.t .r{color:var(--red)}
+  .sub{color:#e3e8ef;font-size:24px;font-weight:500;margin-top:5px}
+  .body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
+  .foot{display:flex;justify-content:space-between;color:#c9d0da;font-size:17px;
+    border-top:1px solid var(--line);padding-top:6px;margin-top:8px}
+  .foot b{color:#e8ecf2}
+
+  /* 封面 */
+  .cover{justify-content:flex-end;padding:0}
+  .cover .bg{position:absolute;inset:0}
+  .cover .bg img{width:100%;height:100%;object-fit:cover;opacity:.5}
+  .cover .grad{position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(7,8,11,.55) 0%,rgba(7,8,11,.2) 35%,rgba(7,8,11,.96) 82%)}
+  .cover .inner{position:relative;padding:0 62px 54px}
+  .cover h1{font-size:67px;font-weight:900;letter-spacing:2px;line-height:1.1}
+  .cover h1 em{color:var(--gold);font-style:normal}
+  .cover .cs{font-size:29px;color:#d6dde8;margin-top:14px;font-weight:500}
+  .cover .meta{margin-top:20px;color:var(--muted);font-size:23px;letter-spacing:.5px}
+  .cover .meta b{color:#f4f6fa}
+
+  /* 圖片 */
+  .ph{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--panel2)}
+  .ph img{display:block;width:100%;height:100%;object-fit:cover}
+  .cap{font-size:21px;color:var(--muted);margin-top:5px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center;flex:1;min-height:0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+
+  /* 卡片 */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+  .card h3{font-size:28px;margin-bottom:7px;display:flex;align-items:center;gap:9px}
+  .card p{font-size:23px;color:#eaeef4;line-height:1.6}
+  .card p b{color:#fff}
+  .card.g{border-top:3px solid var(--gold)} .card.b{border-top:3px solid var(--blue)}
+  .card.e{border-top:3px solid var(--green)} .card.a{border-top:3px solid var(--amber)}
+  .card.p{border-top:3px solid var(--purple)} .card.r{border-top:3px solid var(--red)}
+
+  .num{font-family:"Bebas Neue";font-size:24px;letter-spacing:1px;color:#06121f;
+    background:var(--gold);width:30px;height:30px;border-radius:8px;
+    display:inline-flex;align-items:center;justify-content:center;flex:none}
+
+  ul.li{padding-left:0;list-style:none}
+  ul.li li{font-size:23px;color:#eaeef4;margin-bottom:9px;padding-left:28px;position:relative;line-height:1.42}
+  ul.li li:before{content:"";position:absolute;left:6px;top:9px;width:7px;height:7px;
+    border-radius:50%;background:var(--gold)}
+  ul.li li b{color:#fff}
+  ul.li.rd li:before{background:var(--red)}
+
+  /* 站點 */
+  .stations{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;min-height:0}
+  .st{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    display:flex;flex-direction:column}
+  .st .im{height:268px;background:var(--panel2)}
+  .st .im img{width:100%;height:100%;object-fit:cover}
+  .st .tx{padding:16px 18px;flex:1;display:flex;flex-direction:column;justify-content:center}
+  .st .tg{font-family:"Bebas Neue";letter-spacing:1.5px;font-size:23px;color:var(--gold)}
+  .st h3{font-size:29px;font-weight:900;margin:2px 0 7px}
+  .st p{font-size:23px;color:#e3e8ef;line-height:1.55}
+
+  /* 獎狀 */
+  .medals{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .md{border-radius:16px;padding:22px 24px;border:1px solid var(--line);background:var(--panel);border-top:4px solid}
+  .md.s{border-top-color:var(--silver)} .md.b{border-top-color:var(--bronze)}
+  .md .mi{font-size:42px}
+  .md h3{font-size:34px;font-weight:900;margin:4px 0 3px}
+  .md.s h3{color:var(--silver)} .md.b h3{color:var(--bronze)}
+  .md .mm{font-size:23.5px;color:#eaeef4;line-height:1.6;margin-bottom:12px}
+  .md .mq{font-size:23px;color:var(--muted);border-top:1px dashed var(--line);padding-top:11px;line-height:1.6}
+  .md .mq b{color:var(--gold)}
+
+
+  /* 獎狀頁 */
+  .certrow{display:grid;grid-template-columns:1fr 1fr;gap:30px;flex:1;min-height:0}
+  .certcol{display:flex;flex-direction:column;gap:10px}
+  .certhead{display:flex;align-items:center;gap:10px;font-size:29px;font-weight:900}
+  .certhead .ci{font-size:34px}
+  .certhead.s b{color:var(--silver)} .certhead.b b{color:var(--bronze)}
+  .certhead .cd{margin-left:auto;font-size:22px;font-weight:700;color:var(--muted);
+    border:1px solid var(--line);border-radius:20px;padding:3px 13px}
+  .certimg{display:flex;justify-content:center}
+  .certimg img{display:block;height:var(--h,300px);width:auto;border-radius:9px;
+    border:1px solid var(--line);box-shadow:0 12px 34px rgba(0,0,0,.55)}
+  .certnote{font-size:22px;color:#eaeef4;line-height:1.6;border-left:3px solid var(--line);padding-left:12px}
+  .certnote b{color:#fff}
+  .certnote.s{border-left-color:var(--silver)} .certnote.b{border-left-color:var(--bronze)}
+
+
+  /* 課後筆記 */
+  .notes{display:flex;flex-direction:column;gap:9px;flex:1;min-height:0;justify-content:center}
+  .nrow{display:flex;align-items:center;gap:16px;background:var(--panel);border:1px solid var(--line);
+    border-left:4px solid var(--gold);border-radius:12px;padding:11px 20px}
+  .nrow .nn{font-family:"Bebas Neue";font-size:34px;letter-spacing:1px;color:var(--gold);
+    width:40px;flex:none;text-align:center;line-height:1}
+  .nrow .nt{font-size:28px;font-weight:700;color:#eef1f6;line-height:1.45}
+  .nrow .nt em{color:var(--gold);font-style:normal}
+
+
+
+  /* 頒獎：大獎狀＋得獎者照片 */
+  /* 標題與英文標同一行，把垂直空間留給獎狀 */
+  .awhead{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:2px}
+  .awhead .kick{margin:0}
+  .awgrid{display:flex;gap:24px;align-items:center;justify-content:center;
+    height:100%;min-height:0}
+  .awphoto{height:100%;aspect-ratio:1080/1616;flex:none;
+    border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--panel2)}
+  .awphoto img{width:100%;height:100%;object-fit:cover;object-position:50% 16%}
+  .awcert{height:100%;flex:none;border-radius:8px;overflow:hidden;
+    border:1px solid #3d4250;box-shadow:0 20px 54px rgba(0,0,0,.7)}
+  .awcert img{display:block;height:100%;width:auto}
+  /* 銅質：四人過關對照 ＋ 銅質獎狀 */
+  .bzwrap{display:grid;grid-template-columns:1fr 466px;gap:20px;height:100%;min-height:0}
+  .bz{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px;min-height:0}
+  .bzc{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    border-top:3px solid #a3673a;padding:12px;display:flex;gap:13px;align-items:center;min-width:0}
+  .bzf{width:104px;height:104px;flex:none;border-radius:12px;overflow:hidden;
+    border:1px solid var(--line);background:#000}
+  .bzf img{width:100%;height:100%;object-fit:cover;display:block}
+  .bzi{flex:1;min-width:0}
+  .bzi .bn{font-size:29px;font-weight:900;color:#fff;letter-spacing:1px;line-height:1.1}
+  .bzi .br{display:flex;align-items:center;gap:6px;margin-top:8px;
+    background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:5px 9px}
+  .bzi .br .p{font-size:19px;font-weight:900;color:#eef1f6;flex:1;white-space:nowrap}
+  .bzi .br .m{font-size:18px;font-weight:900;letter-spacing:1px;white-space:nowrap}
+  .bzi .br.ok{border-color:rgba(16,185,129,.6);background:rgba(16,185,129,.16)}
+  .bzi .br.ok .m{color:#34d399}
+  .bzi .br.no .m{color:#8b93a1}
+  .bzcert{display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:0}
+  .bzcert .im{border-radius:8px;overflow:hidden;border:1px solid #3d4250;
+    box-shadow:0 16px 44px rgba(0,0,0,.7)}
+  .bzcert .im img{display:block;width:100%}
+  .bzcert .cap{text-align:center;font-size:21px;color:#e3e8ef;font-weight:700}
+  .bzcert .cap b{color:#c98a4b}
+  /* 學員考試結果：整頁滿版影片 */
+  .fullvid{padding:0;justify-content:flex-end;background:#000}
+  .fullvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+  .fullvid .scrim{position:absolute;left:0;right:0;bottom:0;height:300px;
+    background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.72) 32%,rgba(0,0,0,0) 100%)}
+  .fullvid .topbar{position:absolute;left:0;right:0;top:0;height:130px;
+    background:linear-gradient(to bottom,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,0) 100%);
+    display:flex;justify-content:space-between;align-items:flex-start;padding:26px 40px}
+  .fullvid .topbar .brand,.fullvid .topbar .pn{color:#fff;
+    text-shadow:0 2px 4px #000,0 3px 16px rgba(0,0,0,.95)}
+  .namecard{position:absolute;left:48px;bottom:46px;border-left:7px solid var(--gold);padding-left:22px}
+  .namecard .who{font-size:82px;font-weight:900;line-height:1;color:#fff;
+    letter-spacing:3px;text-shadow:0 4px 22px rgba(0,0,0,.95)}
+  .namecard .part{margin-top:12px;display:flex;align-items:center;gap:12px}
+  .namecard .part .tag{font-size:33px;font-weight:900;color:#06121f;background:var(--gold);
+    padding:5px 20px;border-radius:8px;letter-spacing:1px}
+  .namecard .part .skill{font-size:31px;font-weight:700;color:#fff;
+    text-shadow:0 3px 14px rgba(0,0,0,.95)}
+  .namecard .part .try{font-size:24px;font-weight:900;color:#fff;
+    border:2px solid var(--red);background:rgba(229,72,77,.28);
+    padding:3px 14px;border-radius:8px;letter-spacing:1px;
+    text-shadow:0 2px 10px rgba(0,0,0,.9)}
+  .fullvid .exlab{position:absolute;right:48px;bottom:52px;text-align:right;
+    font-family:"Bebas Neue";letter-spacing:3px;font-size:30px;color:var(--gold);
+    text-shadow:0 3px 16px rgba(0,0,0,.95)}
+  .fullvid .exlab s{display:block;text-decoration:none;font-family:"Noto Sans TC";
+    font-size:20px;letter-spacing:0;color:#dfe4ec;font-weight:500;margin-top:4px}
+
+  /* 考後檢討：影片並排 */
+  .vids{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .vid{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000;position:relative}
+  .vid{height:250px}
+  .vid video{display:block;width:100%;height:100%;object-fit:cover}
+  .vid .vlab{position:absolute;left:0;top:0;background:rgba(7,8,11,.82);color:#fff;
+    font-size:19px;font-weight:900;padding:6px 14px;border-bottom-right-radius:10px}
+  .price{display:flex;align-items:baseline;gap:10px;font-family:"Bebas Neue";letter-spacing:1px}
+  .price .v{font-size:52px;color:var(--gold);line-height:1}
+  .price .u{font-size:20px;color:#e3e8ef;font-family:"Noto Sans TC"}
+
+  /* 價格 */
+  .price{display:flex;align-items:baseline;gap:8px;font-family:"Bebas Neue";letter-spacing:1px}
+  .price .v{font-size:51px;color:var(--gold);line-height:1}
+  .price .u{font-size:24px;color:var(--muted);font-family:"Noto Sans TC"}
+  .strike{text-decoration:line-through;color:var(--muted);font-size:34px}
+
+  .big{background:linear-gradient(135deg,rgba(233,185,73,.16),rgba(59,130,246,.08));
+    border:1px solid var(--gold);border-radius:16px;padding:15px 22px}
+  .big .bh{color:var(--gold);font-weight:900;font-size:29px;margin-bottom:8px}
+  .big p{font-size:24.5px;color:#f4f6fa;line-height:1.65}
+  .big p b{color:#fff}
+
+  .warnbox{background:rgba(229,72,77,.14);border:1px solid var(--red);border-radius:14px;padding:12px 18px}
+  .warnbox .wh{color:var(--red);font-weight:900;font-size:25px;margin-bottom:5px}
+  .warnbox p{font-size:23px;color:#f4f6fa;line-height:1.6}
+
+  .okbox{background:rgba(16,185,129,.14);border:1px solid var(--green);border-radius:14px;padding:12px 18px}
+  .okbox .wh{color:var(--green);font-weight:900;font-size:25px;margin-bottom:5px}
+  .okbox p{font-size:23px;color:#f4f6fa;line-height:1.6}
+
+  /* 時間軸 */
+  .tl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .tn{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:12px 15px;position:relative}
+  .tn.now{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+  .tn .d{font-family:"Bebas Neue";font-size:30px;letter-spacing:1px;color:var(--gold);line-height:1}
+  .tn .l{font-size:23.5px;color:#eaeef4;margin-top:6px;line-height:1.5}
+  .tn .l b{color:#fff}
+  .tn .badge{position:absolute;top:-9px;right:12px;font-size:20px;font-weight:700;
+    background:var(--gold);color:#06121f;padding:2px 9px;border-radius:20px}
+
+  /* 課程章節 */
+  .chs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .ch{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;border-left:3px solid var(--purple)}
+  .ch .cn{font-family:"Bebas Neue";font-size:23px;letter-spacing:1.5px;color:var(--purple)}
+  .ch h3{font-size:26.5px;font-weight:900;margin:3px 0 9px;line-height:1.3}
+  .ch li{font-size:22.5px;color:#e3e8ef;margin-bottom:5px;padding-left:14px;position:relative;line-height:1.45}
+  .ch li:before{content:"›";position:absolute;left:2px;color:var(--purple);font-weight:900}
+  .ch ul{list-style:none}
+
+  .qr{display:flex;align-items:center;gap:14px;background:var(--panel2);border:1px solid var(--line);
+    border-radius:12px;padding:13px 18px;font-size:23px;color:#eaeef4}
+  .qr b{color:var(--gold);font-family:"Bebas Neue";letter-spacing:1px;font-size:27px}
+
+  @page{size:1280px 720px;margin:0}
+  @media print{
+    html,body{height:auto;overflow:visible}
+    #stage{position:static;transform:none;width:auto;height:auto}
+    .slide{position:relative;inset:auto;opacity:1 !important;visibility:visible !important;
+      transition:none;page-break-after:always;margin:0}
+    .slide:last-child{page-break-after:auto}
+    .navzone,#bartrack,#hud,#hint{display:none !important}
+  }
+
+
+  /* ===== D12 結業簡報專用 ===== */
+  .secnum{font-family:"Bebas Neue";font-size:150px;line-height:.85;color:#1d2230;letter-spacing:4px}
+  .sectitle{position:absolute;left:56px;bottom:86px}
+  .sectitle .n{font-family:"Bebas Neue";font-size:26px;letter-spacing:4px;color:var(--gold)}
+  .sectitle h2{font-size:60px;font-weight:900;letter-spacing:1px;margin-top:2px}
+  .sectitle p{font-size:25px;color:#d6dde8;margin-top:10px;max-width:760px;line-height:1.5}
+
+  .agenda{display:flex;flex-direction:column;gap:9px;margin-top:2px}
+  .ag{display:flex;align-items:center;gap:16px;background:var(--panel);border:1px solid var(--line);
+      border-left:4px solid var(--gold);border-radius:12px;padding:10px 18px}
+  .ag .no{font-family:"Bebas Neue";font-size:31px;color:var(--gold);letter-spacing:2px;min-width:42px}
+  .ag .tx{font-size:23px;font-weight:700}
+  .ag .tx small{display:block;font-size:17.5px;font-weight:400;color:var(--muted);margin-top:2px}
+
+  .bigbox{background:linear-gradient(135deg,#171b26,#0e1118);border:1px solid var(--line);
+     border-radius:18px;padding:22px 26px;text-align:center}
+  .bigbox .lb{font-size:20px;color:var(--muted);letter-spacing:1px}
+  .bigbox .vl{font-family:"Bebas Neue";font-size:66px;letter-spacing:2px;color:var(--gold);line-height:1;margin-top:6px}
+  .bigbox .vl.sm{font-size:44px}
+  .bigbox .nt{font-size:19px;color:#d6dde8;margin-top:7px}
+  .bigbox.red{border-color:var(--red)} .bigbox.red .vl{color:var(--red)}
+
+  .quota{display:inline-flex;align-items:center;gap:12px;background:rgba(229,72,77,.12);
+    border:2px solid var(--red);border-radius:999px;padding:9px 26px;margin-top:14px}
+  .quota b{font-family:"Bebas Neue";font-size:44px;color:var(--red);letter-spacing:2px;line-height:1}
+  .quota span{font-size:24px;font-weight:700;color:#ffd9da}
+
+  .stage4{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:6px}
+  .st4{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px 15px;border-top:3px solid}
+  .st4:nth-child(1){border-top-color:var(--green)} .st4:nth-child(2){border-top-color:var(--amber)}
+  .st4:nth-child(3){border-top-color:var(--blue)}  .st4:nth-child(4){border-top-color:var(--purple)}
+  .st4 .dd{font-family:"Bebas Neue";font-size:27px;letter-spacing:2px;color:var(--gold)}
+  .st4 h4{font-size:21px;margin:2px 0 7px}
+  .st4 p{font-size:17.5px;color:var(--muted);line-height:1.55}
+
+  .lvl{display:flex;flex-direction:column;gap:14px;margin-top:2px}
+  .lv{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 20px}
+  .lv .top{display:flex;justify-content:space-between;align-items:baseline}
+  .lv .nm{font-size:27px;font-weight:900}
+  .lv .nm em{font-style:normal;color:var(--muted);font-size:19px;font-weight:500;margin-left:10px}
+  .lv .pc{font-family:"Bebas Neue";font-size:37px;letter-spacing:1px}
+  .lv .track{height:11px;border-radius:99px;background:#1b1f2a;margin:9px 0 7px;overflow:hidden}
+  .lv .fill{height:100%;border-radius:99px}
+  .lv p{font-size:18.5px;color:var(--muted);line-height:1.5}
+  .lv.a .pc{color:var(--amber)} .lv.a .fill{background:var(--amber);width:50%}
+  .lv.b .pc{color:var(--blue)}  .lv.b .fill{background:var(--blue);width:80%}
+  .lv.c .pc{color:var(--gold)}  .lv.c .fill{background:linear-gradient(90deg,var(--gold),#fff3cf);width:98%}
+
+  .bul{display:flex;flex-direction:column;gap:11px}
+  .bul li{list-style:none;position:relative;padding-left:27px;font-size:23px;line-height:1.5;color:#e3e8ef}
+  .bul li:before{content:"▸";position:absolute;left:0;top:0;color:var(--gold);font-weight:900}
+  .bul li b{color:#fff}
+  .bul.sm li{font-size:20.5px}
+
+  .quotebig{font-size:35px;font-weight:900;line-height:1.5;color:var(--gold);text-align:center}
+  .quotebig small{display:block;font-size:22px;font-weight:500;color:var(--muted);margin-top:14px}
+
+  .tag{display:inline-block;background:#1b1f2a;border:1px solid var(--line);border-radius:7px;
+    padding:3px 11px;font-size:18px;color:#d6dde8;margin:3px 5px 0 0}
+  .tag.g{border-color:var(--green);color:#8ef0c8}
+  .tag.r{border-color:var(--red);color:#ffb3b5}
+
+  .cmplb{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .cmplb .n{font-family:"Bebas Neue";font-size:26px;letter-spacing:2px;color:var(--muted)}
+  .cmplb .t{font-size:24px;font-weight:900;color:#e3e8ef}
+  .cmplb.now .n,.cmplb.now .t{color:var(--gold)}
+  .cmpvid{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000}
+  .cmpvid.now{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+  .cmpvid video{width:100%;height:100%;object-fit:cover;display:block}
+
+  .medal3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .md{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:center}
+  .md img{width:100%;aspect-ratio:1500/1069;object-fit:contain;display:block;background:#0c0e14}
+  .md .mt{font-size:23px;font-weight:900;margin-top:5px}
+  .md .mm{font-size:17.5px;color:var(--muted);padding:2px 13px 9px;line-height:1.48}
+  .md.mbz .mt{color:var(--bronze)} .md.msv .mt{color:var(--silver)} .md.mau .mt{color:var(--gold)}
+
+
+
+  /* ===== D12 招募簡報專用（都加 rc- 前綴，不跟既有樣式打架） ===== */
+  .rc-trend{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;flex:1;align-content:center}
+  .rc-tr{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:15px 16px;border-top:3px solid var(--gold);display:flex;flex-direction:column}
+  .rc-tr .no{font-family:"Bebas Neue";font-size:20px;letter-spacing:3px;color:var(--gold)}
+  .rc-tr h3{font-size:21px;font-weight:900;margin-top:4px;line-height:1.25}
+  .rc-tr .big{font-family:"Bebas Neue";font-size:40px;letter-spacing:1px;color:#fff;margin-top:9px;line-height:1}
+  .rc-tr .big em{font-style:normal;font-size:24px;color:var(--muted)}
+  .rc-tr .nt{font-size:16.5px;color:#c9d0da;margin-top:8px;line-height:1.5}
+
+  .rc-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .rc-k{background:linear-gradient(135deg,#171b26,#0e1118);border:1px solid var(--line);
+    border-radius:16px;padding:16px 16px;text-align:center}
+  .rc-k .vl{font-family:"Bebas Neue";font-size:52px;letter-spacing:1px;color:var(--gold);line-height:1}
+  .rc-k .lb{font-size:17px;color:#d6dde8;margin-top:7px;line-height:1.45}
+
+  .rc-cmp{width:100%;border-collapse:collapse;font-size:18.5px}
+  .rc-cmp th{background:#11151e;color:#fff;font-size:18px;font-weight:900;
+    padding:9px 14px;text-align:left;border:1px solid var(--line)}
+  .rc-cmp th.a{color:var(--muted)} .rc-cmp th.b{color:var(--gold)}
+  .rc-cmp td{padding:8px 14px;border:1px solid var(--line);vertical-align:top;line-height:1.4}
+  .rc-cmp td.k{font-weight:700;width:118px;color:#e3e8ef;background:#11151e}
+  .rc-cmp td.a{color:#9aa4b2;width:400px}
+  .rc-cmp td.b{color:#fff}
+
+  .rc-sup{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;flex:1;align-content:center}
+  .rc-s{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);
+    border-radius:12px;padding:12px 15px}
+  .rc-s b{font-size:19.5px;display:block}
+  .rc-s span{font-size:16.5px;color:#c9d0da;display:block;margin-top:5px;line-height:1.45}
+
+  .rc-tl{display:flex;flex-direction:column;gap:9px}
+  .rc-t{display:flex;gap:15px;align-items:flex-start;background:var(--panel);
+    border:1px solid var(--line);border-radius:12px;padding:10px 16px}
+  .rc-t .yr{font-family:"Bebas Neue";font-size:27px;color:var(--gold);letter-spacing:1px;min-width:92px}
+  .rc-t .tx{font-size:19px;font-weight:700;line-height:1.35}
+  .rc-t .tx small{display:block;font-size:16.5px;font-weight:400;color:var(--muted);margin-top:3px;line-height:1.45}
+
+  .rc-road{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex:1;align-content:center}
+  .rc-r{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 18px;border-top:4px solid}
+  .rc-r:nth-child(1){border-top-color:var(--green)}
+  .rc-r:nth-child(2){border-top-color:var(--amber)}
+  .rc-r:nth-child(3){border-top-color:var(--blue)}
+  .rc-r .tag{font-family:"Bebas Neue";font-size:19px;letter-spacing:3px;color:var(--muted)}
+  .rc-r h3{font-size:25px;font-weight:900;margin-top:4px}
+  .rc-r p{font-size:17.5px;color:#c9d0da;margin-top:9px;line-height:1.55}
+  .rc-r .path{font-size:17px;color:var(--gold);font-weight:700;margin-top:11px;line-height:1.5}
+
+  .rc-note{background:rgba(233,185,73,.08);border:1px solid var(--gold);border-radius:12px;
+    padding:11px 18px;font-size:17.5px;color:#f0e2bd;line-height:1.5}
+  .rc-warn{background:rgba(229,72,77,.1);border:1px solid var(--red);border-radius:12px;
+    padding:11px 18px;font-size:18px;color:#ffd9da;line-height:1.5}
+
+  /* ===== 圖表 =====
+     規矩：單一數列＝單一顏色（不做「越大越深」的漸層，那是把長度重複編碼成顏色）；
+     不是每根都標數字，只標端點與極值；格線是比底色淺一階的實線髮絲線；
+     長條之間留 2px 底色縫，不畫外框線；推估值用斜線紋區分，不換顏色。 */
+  .rc-chart{display:flex;flex-direction:column;gap:7px}
+  .rc-plot{position:relative;display:flex;align-items:flex-end;gap:2px;padding-top:4px}
+  .rc-plot .gl{position:absolute;left:0;right:0;height:1px;background:#262c38}
+  .rc-plot .gl span{position:absolute;left:0;top:-9px;font-size:13px;color:#6f7a8a}
+  .rc-base{height:1px;background:#39414f}
+  /* ⚠️ align-self:stretch 不能拿掉。rc-plot 是 align-items:flex-end，
+     欄位會縮成內容高度，裡面 <i> 的 height:xx% 就沒有可參照的高度 → 整排長條變 0（踩過一次，圖全空）。*/
+  .rc-col{flex:1;align-self:stretch;display:flex;flex-direction:column;justify-content:flex-end;
+    align-items:center;position:relative}
+  /* ⚠️ 靜止狀態就是「畫好的樣子」。動畫只是從 0 長上來的過場 ——
+     如果把靜止狀態寫成 scaleY(0)，JS 沒跑到（列印、匯 PDF、直接開某一頁）就整張圖空白。踩過一次。 */
+  .rc-col i{display:block;width:100%;background:var(--gold);border-radius:4px 4px 0 0;
+    transform-origin:bottom}
+  .rc-col.est i{background:repeating-linear-gradient(135deg,var(--gold) 0 5px,#8a6b1d 5px 10px)}
+  /* 標在長條正上方：靠 flex 排在 <i> 前面即可，不要用 absolute top，
+     不然會跑到整張圖的頂端（跟標題打架）。*/
+  .rc-col b{font-family:"Bebas Neue";font-size:21px;color:#fff;
+    letter-spacing:1px;white-space:nowrap;margin-bottom:3px;line-height:1}
+  .rc-col.est b{color:var(--gold)}
+  .rc-xax{display:flex;gap:2px;margin-top:5px}
+  .rc-xax span{flex:1;text-align:center;font-size:13px;color:#8d96a5;white-space:nowrap;line-height:1.35}
+  .rc-xax span.hi{color:#e3e8ef;font-weight:700}
+  .rc-cap{font-size:15.5px;color:#8d96a5}
+
+  /* 橫條（排名比較用） */
+  .rc-hbar{display:flex;flex-direction:column;gap:9px}
+  .rc-hb{display:grid;grid-template-columns:116px 1fr 104px;align-items:center;gap:12px}
+  .rc-hb .nm{font-size:17px;color:#d6dde8}
+  .rc-hb .tr{height:15px;background:#1b2130;border-radius:4px;overflow:hidden}
+  .rc-hb .tr i{display:block;height:100%;background:var(--gold);border-radius:4px;
+    transform-origin:left}
+  .rc-hb .vl{font-family:"Bebas Neue";font-size:23px;color:#fff;letter-spacing:1px;text-align:right}
+
+  /* 前後對照（兩個狀態，用標籤區分身分，不只靠顏色） */
+  .rc-ba{display:flex;flex-direction:column;gap:7px}
+  .rc-ba .rw{display:grid;grid-template-columns:80px 1fr 96px;align-items:center;gap:11px}
+  .rc-ba .yr{font-size:15px;color:#8d96a5;white-space:nowrap}
+  .rc-ba .tr{height:17px;background:#1b2130;border-radius:4px;overflow:hidden}
+  .rc-ba .tr i{display:block;height:100%;border-radius:4px;transform-origin:left}
+  .rc-ba .rw.was .tr i{background:#5b6675}
+  .rc-ba .rw.now .tr i{background:var(--gold)}
+  .rc-ba .vl{font-family:"Bebas Neue";font-size:24px;letter-spacing:1px;text-align:right;color:#8d96a5}
+  .rc-ba .rw.now .vl{color:#fff}
+
+  /* ===== 進場動畫（每次切到該頁重跑一次） ===== */
+  @keyframes rcGrowY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  @keyframes rcGrowX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @keyframes rcFadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  /* backwards：延遲期間停在 from（0），跑完回到靜止值（完整）—— 兩頭都安全 */
+  .slide.anim .rc-col i{animation:rcGrowY .75s cubic-bezier(.22,.9,.3,1) backwards;animation-delay:var(--d,0s)}
+  .slide.anim .rc-col b{animation:rcFadeUp .45s ease-out backwards;animation-delay:calc(var(--d,0s) + .5s)}
+  .slide.anim .rc-hb .tr i,
+  .slide.anim .rc-ba .tr i{animation:rcGrowX .8s cubic-bezier(.22,.9,.3,1) backwards;animation-delay:var(--d,0s)}
+  .slide.anim .rc-tr,.slide.anim .rc-k,.slide.anim .rc-s,.slide.anim .rc-r,.slide.anim .rc-t{
+    animation:rcFadeUp .5s ease-out backwards;animation-delay:var(--d,0s)}
+  @media (prefers-reduced-motion:reduce),print{
+    .slide.anim *{animation:none!important}
+  }
+
+  /* ===== 影片頁（ECHO → MOC → DENT FIXO 系統動畫）=====
+     影片本身就是滿版的一張投影片（它自己有品牌列和進度條），
+     所以這一頁不放標題也不放頁首，疊上去會跟影片裡的東西打架。
+     ⚠️ z-index 要比 .navzone（40）高，不然播放控制列按不到。*/
+  .slide.vidfull{padding:0;background:#000}
+  .rc-vid{position:absolute;inset:0;z-index:60}
+  .rc-vid video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+  .rc-vbtn{position:absolute;right:18px;bottom:16px;z-index:70;
+    background:rgba(10,12,18,.78);border:1px solid var(--line);border-radius:999px;
+    padding:7px 16px;font-family:inherit;font-size:15px;color:#d6dde8;cursor:pointer;
+    backdrop-filter:blur(6px);transition:opacity .2s,border-color .2s}
+  .rc-vbtn:hover{border-color:var(--gold);color:#fff}
+  .rc-vbtn.hide{opacity:0;pointer-events:none}
+  .rc-vhint{position:absolute;left:18px;bottom:18px;z-index:70;font-size:14px;color:#6c7684}
+
+</style>
+</head>
+<body>
+<div id="stage">
+<section class="slide cover">
+  <div class="bg"><img src="images/fr-hero.jpg" alt=""></div>
+  <div class="grad"></div>
+  <div class="inner">
+    <h1>畢業了，<em>然後呢？</em></h1>
+    <div class="cs">卓越的下一步　·　拓展理念與全球冰雹計畫</div>
+    <div class="meta">凹痕職人初階養成班　｜　<b>第十二堂</b>　｜　給走完 84 小時的你</div>
+  </div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">00 / 開場</div></div>
+  <div class="kick">先把話說在前面</div>
+  <h1 class="t">技術與基礎只是門票，<em>今天講門票之後的路</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul">
+          <li>這 12 堂課，你們拿到的是<b>進這個行業的門票</b>。</li>
+          <li>但門票不等於位子 —— <b style="color:#fff">位子要自己去坐</b>。</li>
+          <li>今天我要講的是：<b>卓越接下來要往哪走</b>，以及<b style="color:#fff">這條路上哪幾個位子是留給你們的</b>。</li>
+          <li>我不怕教出競爭者。市場還沒飽和，<b>我親手教出來的人是朋友，不是敵人</b>。</li>
+        </ul>
+        <div class="quotebig" style="margin-top:24px;font-size:31px;text-align:left">
+          給你一張地圖，路還是要你自己走<small style="text-align:left">但地圖我會畫到最清楚</small></div>
+      </div>
+      <div class="ph" style="height:420px"><img src="images/fr-founder.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="foot"><span>馬成傑 Jay Ma · 卓越 SUPERIOR PDR 創辦人</span><span>00 / 開場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">00 / 開場</div></div>
+  <div class="kick">AGENDA</div>
+  <h1 class="t">今天講<em>五件事</em></h1>
+  <div class="body">
+    <div class="agenda">
+      <div class="ag"><div class="no">01</div><div class="tx">為什麼是現在<small>四個正在發生的市場轉變 —— 用 DENT FIXO 系統裡的真實維修單</small></div></div>
+      <div class="ag"><div class="no">02</div><div class="tx">卓越這十二年<small>成長、品質、流量池，數字攤開給你看</small></div></div>
+      <div class="ag"><div class="no">03</div><div class="tx">拓展理念<small>為什麼卓越只跟自己教出來的人一起開店</small></div></div>
+      <div class="ag"><div class="no">04</div><div class="tx">全球冰雹修復計畫<small>加拿大・Dented・2027 試做季</small></div></div>
+      <div class="ag"><div class="no">05</div><div class="tx">你的下一步<small>三條路，你可以選哪一條</small></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>凹痕職人初階養成班 · 第十二堂</span><span>00 / 開場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 市場</div></div>
+  <div class="body" style="justify-content:center"><div class="secnum">01</div></div>
+  <div class="sectitle"><div class="n">MARKET TRENDS</div><h2>為什麼是現在</h2><p>以下數字不是產業報告抄來的，是卓越自己 11 年、<b style="color:#fff">3 萬多張維修單</b>跑出來的真實趨勢。</p></div>
+  <div class="foot"><span>重點 01</span><span>01 / 市場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 市場</div></div>
+  <div class="kick">四個正在發生的轉變</div>
+  <h1 class="t">市場正在<em>往我們這邊靠過來</em></h1>
+  <div class="body">
+    <div class="rc-trend">
+      <div class="rc-tr"><div class="no">TREND 01</div><h3>車越來越貴</h3>
+        <div class="big">36% <em>→</em> 53%</div>
+        <div class="nt">進口與豪華車占比（2015→2026）。車價越高，車主越在意原廠漆與原板件。特斯拉已經是卓越營收最高的品牌。</div></div>
+      <div class="rc-tr"><div class="no">TREND 02</div><h3>願意為技術付錢</h3>
+        <div class="big">2,697 <em>→</em> 8,391</div>
+        <div class="nt">平均客單價（元／單），11 年成長 3.1 倍。4,000 元以下小傷從 70% 降到 34%。</div></div>
+      <div class="rc-tr"><div class="no">TREND 03</div><h3>傳統鈑金缺工</h3>
+        <div class="big">省 30–60%</div>
+        <div class="nt">相較鈑金烤漆的維修費用。老師傅退休、新人不進來 —— PDR 是取代傳統鈑金的方向，不是附屬品。</div></div>
+      <div class="rc-tr"><div class="no">TREND 04</div><h3>還在教育期</h3>
+        <div class="big">約 4 成</div>
+        <div class="nt">估計還有四成車主不知道 PDR。全台 700 萬輛自用車，專業 PDR 店家仍然稀少 —— 還在卡位期。</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>數據來源：DENT FIXO 維修管理系統（板橋・士林・中和・台中，2015/04–2026/08）</span><span>01 / 市場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 數據</div></div>
+  <div class="body" style="justify-content:center"><div class="secnum">02</div></div>
+  <div class="sectitle"><div class="n">GROWTH DATA</div><h2>卓越這十二年</h2><p>大部分品牌只會說「生意很好」。我們直接給你曲線 —— <b style="color:#fff">營收用成長倍數呈現，其他全部是實際數字</b>。</p></div>
+  <div class="foot"><span>重點 02</span><span>02 / 數據</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 數據</div></div>
+  <div class="kick">成長曲線　·　以 2014 年為基準（＝1）</div>
+  <h1 class="t">12 年，<em>年營收成長 26 倍</em></h1>
+  <div class="body">
+    <div class="rc-chart"><div class="rc-plot" style="height:300px"><div class="gl" style="bottom:20.5%"><span>10</span></div><div class="gl" style="bottom:41.0%"><span>20</span></div><div class="gl" style="bottom:61.5%"><span>30</span></div><div class="gl" style="bottom:82.0%"><span>40</span></div><div class="rc-col" style="--d:0.00s"><b>×1</b><i style="height:2.1%"></i></div><div class="rc-col" style="--d:0.04s"><i style="height:2.9%"></i></div><div class="rc-col" style="--d:0.09s"><i style="height:6.6%"></i></div><div class="rc-col" style="--d:0.14s"><i style="height:6.8%"></i></div><div class="rc-col" style="--d:0.18s"><i style="height:15.6%"></i></div><div class="rc-col" style="--d:0.22s"><i style="height:22.6%"></i></div><div class="rc-col" style="--d:0.27s"><i style="height:28.7%"></i></div><div class="rc-col" style="--d:0.32s"><i style="height:26.7%"></i></div><div class="rc-col" style="--d:0.36s"><i style="height:30.8%"></i></div><div class="rc-col" style="--d:0.40s"><i style="height:39.0%"></i></div><div class="rc-col" style="--d:0.45s"><i style="height:49.2%"></i></div><div class="rc-col" style="--d:0.49s"><b>×26</b><i style="height:53.3%"></i></div><div class="rc-col est" style="--d:0.54s"><b>×46</b><i style="height:94.3%"></i></div></div><div class="rc-base"></div><div class="rc-xax"><span class="hi">2014</span><span class="">15</span><span class="">16</span><span class="">17</span><span class="">18</span><span class="">19</span><span class="">20</span><span class="">21</span><span class="">22</span><span class="">23</span><span class="">24</span><span class="hi">2025</span><span class="hi">2026 推估</span></div><div class="rc-cap">年營收倍數　·　最後一根為 2026 年依前五個月推估（斜線）</div></div>
+    <div class="grid2" style="margin-top:14px;align-items:start">
+      <div class="rc-note">這裡只給<b>倍數</b>，不放金額 —— 我要你看的是<b style="color:#fff">趨勢與速度</b>，
+        不是拿一個數字來說嘴。</div>
+      <div class="rc-note">2021 那一根是<b style="color:#fff">掉下來的</b> ——
+        做生意不會每年都往上，但方向要對。</div>
+    </div>
+  </div>
+  <div class="foot"><span>營收以倍數呈現，不揭露金額</span><span>02 / 數據</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 數據</div></div>
+  <div class="kick">今年還在加速</div>
+  <h1 class="t">十個月，<em>就超過去年一整年</em></h1>
+  <div class="body">
+    <div class="grid2" style="align-items:start">
+      <div>
+        <div class="cmplb"><b style="font-size:21px">全台修復台數</b></div>
+        <div class="rc-ba"><div class="rw was" style="--d:0s"><div class="yr">2025 全年</div><div class="tr"><i style="width:85.3%"></i></div><div class="vl">4,272 台</div></div><div class="rw now" style="--d:.18s"><div class="yr">2026 1–10月</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">5,006 台</div></div></div><div class="rc-cap" style="margin-top:6px">十個月就超越 2025 全年　·　月均 500 台以上</div>
+        <div class="cmplb" style="margin-top:22px"><b style="font-size:21px">到店評估次數</b></div>
+        <div class="rc-ba"><div class="rw was" style="--d:0s"><div class="yr">2020 全年</div><div class="tr"><i style="width:55.5%"></i></div><div class="vl">7,584 次</div></div><div class="rw now" style="--d:.18s"><div class="yr">2026 1–10月</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">13,673 次</div></div></div><div class="rc-cap" style="margin-top:6px">成長 +80%</div>
+        <div class="cmplb" style="margin-top:22px"><b style="font-size:21px">全台門市數</b></div>
+        <div class="rc-ba"><div class="rw was" style="--d:0s"><div class="yr">2014</div><div class="tr"><i style="width:12.5%"></i></div><div class="vl">1 間</div></div><div class="rw now" style="--d:.18s"><div class="yr">2026</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">8 間</div></div></div><div class="rc-cap" style="margin-top:6px">十二年開到 8 間　·　店長全部是自己教出來的人</div>
+      </div>
+      <div>
+        <div class="rc-kpi" style="grid-template-columns:1fr 1fr">
+          <div class="rc-k"><div class="vl" data-count="1099">1,099</div><div class="lb">單月 LINE 線上估價派單<br>2026 年 8 月</div></div>
+          <div class="rc-k"><div class="vl">× 3.9</div><div class="lb">官網每日訪客年增倍數<br>2026/10 平均每天 782 位</div></div>
+        </div>
+        <div class="rc-note" style="margin-top:16px">
+          全台 <b style="color:#fff">8 間門市</b> —— 板橋、士林、台中、中和、竹北、高雄、台北濱江、桃園。</div>
+        <div class="ph" style="height:196px;margin-top:16px"><img src="images/d8-work.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>統計至 2026 年 10 月</span><span>02 / 數據</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 數據</div></div>
+  <div class="kick">品質實證</div>
+  <h1 class="t">客人不是因為<em>便宜</em>選我們</h1>
+  <div class="body">
+    <div class="grid2" style="align-items:start">
+      <div>
+        <div class="cmplb"><b style="font-size:21px">30 天內返修率</b></div>
+        <div class="rc-ba"><div class="rw was" style="--d:0s"><div class="yr">2015</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">2.9%</div></div><div class="rw now" style="--d:.18s"><div class="yr">2026</div><div class="tr"><i style="width:37.9%"></i></div><div class="vl">1.1%</div></div></div><div class="rc-cap" style="margin-top:6px">交車後 30 天內回來重修的比例</div>
+        <div class="cmplb" style="margin-top:20px"><b style="font-size:21px">修不成率</b></div>
+        <div class="rc-ba"><div class="rw was" style="--d:0s"><div class="yr">2015</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">5.8%</div></div><div class="rw now" style="--d:.18s"><div class="yr">2026</div><div class="tr"><i style="width:8.6%"></i></div><div class="vl">0.5%</div></div></div><div class="rc-cap" style="margin-top:6px">從每 17 台 1 台，降到每 200 台 1 台</div>
+        <div class="rc-note" style="margin-top:18px">
+          量變大、單價變高，<b style="color:#fff">這兩條線反而一路往下</b> —— 這才是真的做得起來。</div>
+      </div>
+      <div>
+        <div class="cmplb"><b style="font-size:21px">客人選擇卓越的原因</b>
+          <span style="font-size:15.5px;color:#8d96a5">累計填答次數</span></div>
+        <div class="rc-hbar"><div class="rc-hb" style="--d:0.00s"><div class="nm">技術品質</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">4,779</div></div><div class="rc-hb" style="--d:0.08s"><div class="nm">價格</div><div class="tr"><i style="width:1.1%"></i></div><div class="vl">54</div></div></div><div class="rc-cap" style="margin-top:7px">因為價格選卓越的，只有 54 次 —— 你不需要靠削價搶客</div>
+        <div class="quotebig" style="margin-top:62px;font-size:29px">
+          技術不會說謊<small>但你要有本事把最後那 20% 做出來</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>數據來源：DENT FIXO 維修管理系統 2015–2026</span><span>02 / 數據</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 數據</div></div>
+  <div class="kick">流量池</div>
+  <h1 class="t">開店第一天，<em>就接上 40 萬人的流量池</em></h1>
+  <div class="body">
+    <div class="grid2" style="align-items:center">
+      <div>
+        <div class="rc-hbar"><div class="rc-hb" style="--d:0.00s"><div class="nm">Facebook</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">127,766</div></div><div class="rc-hb" style="--d:0.08s"><div class="nm">Instagram</div><div class="tr"><i style="width:73.9%"></i></div><div class="vl">94,365</div></div><div class="rc-hb" style="--d:0.16s"><div class="nm">TikTok</div><div class="tr"><i style="width:53.1%"></i></div><div class="vl">67,900</div></div><div class="rc-hb" style="--d:0.24s"><div class="nm">LINE 官方帳號</div><div class="tr"><i style="width:48.0%"></i></div><div class="vl">61,337</div></div><div class="rc-hb" style="--d:0.32s"><div class="nm">YouTube</div><div class="tr"><i style="width:43.5%"></i></div><div class="vl">55,563</div></div></div><div class="rc-cap" style="margin-top:7px">五大平台追蹤數　·　2026 年 10–11 月各平台後台</div>
+        <div class="bigbox" style="margin-top:18px;padding:14px 20px">
+          <div class="lb">合計</div><div class="vl sm" data-count="406931" data-suf=" 人">406,931 人</div></div>
+      </div>
+      <div>
+        <ul class="bul sm">
+          <li>一個人開店最難的是「<b>客人從哪裡來</b>」—— 這是卓越花<b style="color:#fff">十二年</b>養出來的。</li>
+          <li>IG 28 天觸及 <b>42.8 萬</b>個帳號、YouTube 累計 <b>2,232 萬</b>次觀看、TikTok <b>50 萬＋</b>按讚。</li>
+          <li>LINE 好友 2026 Q3 單季新增 <b style="color:#fff">4,397</b>，創新高。</li>
+          <li>總部的<b>每一支影片、每一篇文章</b>都在幫門市導客。</li>
+          <li>詢問進來後，由 <b style="color:#fff">ECHO AI 依地區自動派單</b>到最近的門市。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>社群數據：2026 年 10–11 月各平台後台</span><span>02 / 數據</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">03 / 理念</div></div>
+  <div class="body" style="justify-content:center"><div class="secnum">03</div></div>
+  <div class="sectitle"><div class="n">WHY SUPERIOR</div><h2>拓展理念</h2><p>為什麼卓越<b style="color:#fff">只跟自己教出來的人</b>一起開店。</p></div>
+  <div class="foot"><span>重點 03</span><span>03 / 理念</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">03 / 理念</div></div>
+  <div class="kick">一個原則</div>
+  <h1 class="t">只跟<em>自己教出來的人</em>一起開店</h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul">
+          <li>所有加盟主都必須<b>完成卓越培訓、通過結業評比、取得認證</b>。</li>
+          <li>這不是為了收學費 —— 是<b style="color:#fff">確保每一間掛卓越招牌的店，品質都一樣</b>。</li>
+          <li>我們寧可<b>篩選有共識、有熱忱的人</b>，也不靠收加盟金衝店數。</li>
+          <li><b style="color:var(--red)">品質是紅線</b> —— 一間店做壞，傷的是所有門市。</li>
+        </ul>
+        <div class="rc-note" style="margin-top:20px">
+          所以今天坐在這裡的你們，<b style="color:#fff">已經站在這條路的起點上</b>了。</div>
+      </div>
+      <div class="rc-road" style="grid-template-columns:1fr">
+        <div class="rc-r"><div class="tag">零基礎</div><h3>想創業的新手</h3>
+          <div class="path">體驗課 → 職人養成班 → 認證 → 儲備加盟實習 → 開店</div></div>
+        <div class="rc-r"><div class="tag">有底子</div><h3>現職鈑金・汽車美容</h3>
+          <div class="path">技術評估 → 職人班或進階班 → 認證 → 開店</div></div>
+        <div class="rc-r"><div class="tag">自己人</div><h3>卓越結業學員與員工</h3>
+          <div class="path">加盟評估 → 選址 → 開店陪跑<br><b style="color:#fff">優先取得加盟資格與開店區域</b></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不論從哪裡出發，拿到的品牌、系統與支援都一樣</span><span>03 / 理念</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">03 / 理念</div></div>
+  <div class="kick">為什麼要一起做</div>
+  <h1 class="t">自己開店 <em>vs</em> 加盟卓越</h1>
+  <div class="body">
+    <table class="rc-cmp">
+      <tr><th style="width:118px">項目</th><th class="a">單打獨鬥</th><th class="b">加盟卓越</th></tr>
+      <tr><td class="k">客源</td><td class="a">自己買廣告、等口碑慢慢累積</td><td class="b">40 萬＋流量池，LINE 估價自動派單到你的門市</td></tr>
+      <tr><td class="k">估價</td><td class="a">憑感覺報價，怕報高跑單、報低虧錢</td><td class="b">3 萬多筆維修單累積的估價邏輯與定價標準</td></tr>
+      <tr><td class="k">客服</td><td class="a">一邊修車一邊回訊息，晚回就跑單</td><td class="b">ECHO AI 24 小時接待、判讀、預約，真人可隨時接手</td></tr>
+      <tr><td class="k">技術</td><td class="a">遇到難傷只能自己摸索</td><td class="b">總部技術支援、進階課程、國際研討會資源</td></tr>
+      <tr><td class="k">品牌信任</td><td class="a">客人不認識你，第一次很難成交</td><td class="b">12 年品牌、國際賽事與認證、3.4 萬台修復實績</td></tr>
+      <tr><td class="k">工具</td><td class="a">零散採購、價格高、踩雷成本大</td><td class="b">卓越工具部統一規劃開店工具與耗材</td></tr>
+      <tr><td class="k">管理</td><td class="a">報表、請款、人事全部自己來</td><td class="b">CRM、DENT FIXO 維修管理系統、行政管理中心一套到位</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>技術與基礎只是門票 —— 讓一間店活下去的是客源、定價、管理與品牌信任</span><span>03 / 理念</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">03 / 理念</div></div>
+  <div class="kick">HQ SUPPORT</div>
+  <h1 class="t">總部給你的<em>九大支援</em></h1>
+  <div class="body">
+    <div class="rc-sup">
+      <div class="rc-s"><b>品牌授權與店面形象</b><span>招牌與店面 CI、官網門市頁與 Google 商家建置，享區域經營保障</span></div>
+      <div class="rc-s"><b>ECHO AI 客服與派單</b><span>LINE／FB／IG 全接進 ECHO，依地區自動派單，店長 Telegram 即時通知</span></div>
+      <div class="rc-s"><b>CRM 與 DENT FIXO</b><span>DENT FIXO 維修管理系統：詢問到結案全程追蹤，維修單 QR 綁 LINE，交車自動送修復前後照片</span></div>
+      <div class="rc-s"><b>估價系統與定價標準</b><span>依傷況、深度、板件、材質給建議價格區間，新店也報得準</span></div>
+      <div class="rc-s"><b>技術培訓與認證</b><span>職人班、進階班、一對一；CAC 編號證書可線上查證</span></div>
+      <div class="rc-s"><b>工具與耗材供應</b><span>工具部協助規劃開店工具清單，代理品牌與團購資源</span></div>
+      <div class="rc-s"><b>行銷與內容</b><span>總部製作影片與文章，加盟店作品也能上品牌頻道曝光</span></div>
+      <div class="rc-s"><b>保險理賠通路</b><span>與產險公司、保代洽談理賠合作，案件依地區分流到合作門市</span></div>
+      <div class="rc-s"><b>行政與營運管理</b><span>線上申請簽核、出差里程系統、營運 SOP 與店長月度數據回饋</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>除了理賠通路仍在洽談擴大，其餘都是 8 間門市每天正在用的</span><span>03 / 理念</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">03 / 理念</div></div>
+  <div class="kick">SYSTEM IN ACTION</div>
+  <h1 class="t">這三套系統，<em>每天在 8 間門市跑</em></h1>
+  <div class="body">
+    <div class="rc-road">
+      <div class="rc-r"><div class="tag">ECHO</div><h3>線上接客</h3>
+        <p>LINE 官方帳號 24 小時自動回覆，問貴姓、車款、照片、分店，照片先用 AI 判斷修不修得了，再依地區自動派給最近的門市，店長 Telegram 即時收到。</p></div>
+      <div class="rc-r"><div class="tag">MOC</div><h3>店長操作中心</h3>
+        <p>店長在面板直接接手回話，真人一接手 ECHO 自動靜音 10 分鐘。一鍵開報價、轉分店，每一通的首次回覆時間都被記錄，月底變成 KPI。</p></div>
+      <div class="rc-r"><div class="tag">DENT FIXO</div><h3>門市管理系統</h3>
+        <p>車到店，客戶與車輛資料從 ECHO 直接帶過來開維修單。修復前後照片、進度、金額掛在同一張單底下，完工自動通知取車並送出前後對比。</p></div>
+    </div>
+    <div class="rc-note" style="margin-top:18px">
+      下一頁用 <b style="color:#fff">74 秒</b>把這條線從客人傳第一句話，一路跑到交車後的五星評價 ——
+      <b style="color:#fff">加盟卓越，這整套開店第一天就能用</b>。</div>
+  </div>
+  <div class="foot"><span>ECHO 導入後：同一批人力，每月接住的客人從 1,113 成長到 1,539（+38%）</span><span>03 / 理念</span></div>
+</section>
+<section class="slide vidfull">
+  <div class="rc-vid">
+    <video id="vsys" src="media/dentfixo-74s.mp4" poster="media/dentfixo-poster.jpg"
+           data-short="media/dentfixo-74s.mp4" data-full="media/dentfixo-full.mp4"
+           muted playsinline preload="auto" controls controlslist="nodownload"></video>
+  </div>
+  <div class="rc-vhint">翻到這頁自動播放　·　按影片可暫停</div>
+  <button class="rc-vbtn" id="vsysbtn" type="button">看完整版 2:27</button>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 冰雹</div></div>
+  <div class="body" style="justify-content:center"><div class="secnum">04</div></div>
+  <div class="sectitle"><div class="n">GLOBAL HAIL</div><h2>全球冰雹修復計畫</h2><p>台灣市場總有一天會飽和。<b style="color:#fff">我們要先幫技師找到第二個舞台。</b></p></div>
+  <div class="foot"><span>重點 04</span><span>04 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 冰雹</div></div>
+  <div class="kick">為什麼要往外走</div>
+  <h1 class="t">台灣總有一天會飽和，<em>出口要先準備好</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul">
+          <li>PDR 是<b>少數可以「一個人、一套工具」就出國工作</b>的技術。</li>
+          <li>語言不是最大門檻 —— <b style="color:#fff">板件上的結果才是條件</b>。</li>
+          <li>卓越要做的是<b>帶隊走出國門</b>，替大家爭取與創造市場，<b style="color:#fff">不是讓大家各自摸索</b>。</li>
+          <li>技術是護照，<b>能修到什麼程度，決定你能站在哪個市場</b>。</li>
+        </ul>
+        <div class="rc-note" style="margin-top:20px">
+          加拿大冰雹季約 <b style="color:#fff">6 月到 9 月中</b> —— 剛好跟台灣的淡旺季錯開。</div>
+      </div>
+      <div class="grid2" style="gap:12px">
+        <div class="ph" style="height:200px"><img src="images/adv-4w.jpg" alt=""></div>
+        <div class="ph" style="height:200px"><img src="images/adv-group.jpg" alt=""></div>
+        <div class="ph" style="height:200px"><img src="images/adv-detail.jpg" alt=""></div>
+        <div class="ph" style="height:200px"><img src="images/adv-toolwall.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>隻身前往也能在海外拿到高收入 —— 但一起去，走得更穩</span><span>04 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 冰雹</div></div>
+  <div class="kick">加拿大亞伯達省 · 冰雹走廊 Hailstorm Alley</div>
+  <h1 class="t">那裡每年都在<em>下冰雹</em></h1>
+  <div class="body">
+    <div class="grid2" style="align-items:start">
+      <div style="margin-top:30px">
+        <div class="rc-chart"><div class="rc-plot" style="height:236px"><div class="gl" style="bottom:28.7%"><span>10</span></div><div class="gl" style="bottom:57.3%"><span>20</span></div><div class="gl" style="bottom:86.0%"><span>30</span></div><div class="rc-col" style="--d:0.00s"><b>12 億</b><i style="height:34.4%"></i></div><div class="rc-col" style="--d:0.04s"><b>32.9 億</b><i style="height:94.3%"></i></div><div class="rc-col" style="--d:0.09s"><b>1.64 億</b><i style="height:4.7%"></i></div><div class="rc-col" style="--d:0.14s"><b>2.3 億</b><i style="height:6.6%"></i></div></div><div class="rc-base"></div><div class="rc-xax"><span class="hi">2020/06<br>卡加利</span><span class="hi">2024/08<br>卡加利</span><span class="hi">2025/07<br>卡加利</span><span class="hi">2026/05<br>愛德蒙頓</span></div><div class="rc-cap">單場冰雹保險理賠（加幣）　·　資料來源：加拿大保險局 IBC</div></div>
+      </div>
+      <div>
+        <div class="rc-kpi" style="grid-template-columns:1fr 1fr">
+          <div class="rc-k"><div class="vl">13 萬＋</div><div class="lb">2024/08 那場的<br>保險索賠件數</div></div>
+          <div class="rc-k"><div class="vl">20 年</div><div class="lb">亞伯達省連續 20 年<br>每年至少一場重大冰雹</div></div>
+        </div>
+        <ul class="bul sm" style="margin-top:14px">
+          <li>加拿大史上損失最大的 10 場災害，<b style="color:#fff">有 5 場在亞伯達省</b>，全部發生在 2016 年之後。</li>
+          <li>大災之後，<b>當地技師人力嚴重不足</b> —— 這就是缺口。</li>
+        </ul>
+        <div class="rc-warn" style="margin-top:12px">
+          <b>這是有大小年的生意。</b>看左邊：2024 和 2025 差了 <b>20 倍</b>。
+          所以第一階段刻意壓低投入、先試做一季，不先成立公司。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>資料來源：加拿大保險局（IBC）· 卓越加拿大冰雹專案評估報告</span><span>04 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 冰雹</div></div>
+  <div class="kick">冰雹市場</div>
+  <h1 class="t">你考的那顆深酒窩，<em>就是冰雹</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="ph" style="height:430px"><img src="images/hail-1.jpg" alt=""></div>
+        <div class="ph" style="height:430px"><img src="images/hail-2.jpg" alt=""></div>
+      </div>
+      <div>
+        <ul class="bul">
+          <li>冰雹修復要處理的，就是<b>深的酒窩</b> —— <b style="color:#fff">大小與深度，跟你這次考試的題目一樣</b>。</li>
+          <li>所以考試不是為了發獎狀，是<b>先幫你對準未來的市場</b>。</li>
+          <li>冰雹季一來就是整批車、整片板 —— <b>量大、集中、講求速度與穩定度</b>。</li>
+          <li>能不能吃到這塊，看的是<b>你手上的穩定度</b>，不是運氣。</li>
+        </ul>
+        <div class="bigbox" style="margin-top:18px;text-align:left">
+          <div class="lb">考試題目＝市場需求</div>
+          <div class="nt" style="font-size:23px;color:#fff;font-weight:700;margin-top:6px">
+            車門 × 1　＋　ABC 柱 × 1　—— 深度與大小，對準的就是冰雹</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>冰雹要能修深酒窩 —— 這就是為什麼考題是這樣出的</span><span>04 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 冰雹</div></div>
+  <div class="kick">2026 年 9 月 · 加拿大卡加利</div>
+  <h1 class="t">這不是願景，<em>是已經談成的事</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <p class="sub" style="margin:0 0 14px">我 2026 年 9 月去了一趟加拿大，
+        <b style="color:#fff">正式跟當地冰雹修復公司 Dented 取得共識</b> —— 台灣的技師，可以合法到加拿大做冰雹季。</p>
+        <ul class="bul sm">
+          <li><b>Dented 是誰</b>：2005 年成立，加拿大最早投入冰雹修復的公司之一，
+            <b style="color:#fff">4 個自有廠</b>（卡加利、Red Deer、愛德蒙頓、Saskatoon）。</li>
+          <li><b>他們有通路</b>：保險公司轉介、Body shop 連鎖（CSN、Assured）、多家原廠車商。</li>
+          <li><b>他們缺人手</b>：冰雹季一來，當地熟練技師永遠不夠。</li>
+          <li><b style="color:#fff">我們有人，也有教室</b> —— 而且雙方理念一致：不烤漆、不補土、保留原漆原板件。</li>
+          <li><b>雙向的</b>：Dented 也會派技師和學生來卓越受訓。</li>
+        </ul>
+      </div>
+      <div>
+        <div class="rc-warn"><b>第一條共識就是合法。</b><br>
+          沒有工作許可<b>不能</b>在加拿大修車 —— 就算薪水由台灣付也一樣。
+          被查到會遣返並留下紀錄，影響以後入境。<b style="color:#fff">寧可不做，也不違規。</b></div>
+        <div class="ph" style="height:300px;margin-top:16px"><img src="images/d8-team.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>合作對象：Dented（加拿大亞伯達省，2005 年成立）</span><span>04 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 冰雹</div></div>
+  <div class="kick">怎麼走</div>
+  <h1 class="t">先試做一季，<em>再談後面</em></h1>
+  <div class="body">
+    <div class="rc-tl">
+      <div class="rc-t"><div class="yr">2027 Q1</div><div class="tx">送件與集訓
+        <small>1–3 月確定當季技師、送工作許可申請 —— 冰雹不會等簽證。出發前做冰雹專門集訓。</small></div></div>
+      <div class="rc-t"><div class="yr">2027 夏</div><div class="tx">第一階段：試做季
+        <small>1 到 3 名卓越技師＋1 位會說英文的隊長，冰雹季（約 6–9 月）赴加停留 1 到 4 個月。</small></div></div>
+      <div class="rc-t"><div class="yr">季末</div><div class="tx">一起檢討
+        <small>看每人每天修復台數、重修率、客戶與合作夥伴回饋，雙方一起決定要不要進下一階段。</small></div></div>
+      <div class="rc-t"><div class="yr">2028 起</div><div class="tx">擴大
+        <small>若試做季數字站得住，再擴大到 5、6 人，並討論更進一步的合作架構。</small></div></div>
+    </div>
+    <div class="grid2" style="margin-top:16px;align-items:start">
+      <div class="rc-note">第一階段<b style="color:#fff">由 Dented 當雇主</b>，卓越負責技師招募、行前訓練、隊長帶隊與品質把關。</div>
+      <div class="rc-note">我們會維持一份<b style="color:#fff">「簽證已辦好的待命名單」</b> —— 冰雹一下，幾天內就能出發。</div>
+    </div>
+  </div>
+  <div class="foot"><span>第一階段刻意壓低投入，把固定成本降到最小</span><span>04 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 冰雹</div></div>
+  <div class="kick">加拿大冰雹市場 · Jay 在現場問到的實際行情</div>
+  <h1 class="t">剛上完課的人，<em>一天就有 1,000 加幣</em></h1>
+  <div class="body">
+    <div class="grid3" style="margin-top:2px">
+      <div class="bigbox"><div class="lb">基礎水準（技術還不純熟）</div><div class="vl sm" data-count="1000" data-suf=" 加幣">1,000 加幣</div><div class="nt">／天　·　修基本凹痕就能達到</div></div>
+      <div class="bigbox"><div class="lb">一個月以 24 天計</div><div class="vl sm">約 24,000</div><div class="nt">加幣 / 月　·　約新台幣 55 萬</div></div>
+      <div class="bigbox red"><div class="lb">熟練技師（手要快）</div><div class="vl sm">5,000–6,000</div><div class="nt">加幣 / 天　·　差距就在速度</div></div>
+    </div>
+    <ul class="bul sm" style="margin-top:16px">
+      <li><b style="color:#fff">冰雹修復是論件計酬</b> —— 修得越快、修得越多，收入直接往上跳。</li>
+      <li><b>1,000 跟 6,000 中間差的不是運氣，是手速跟穩定度</b> —— 而手速是練出來的。</li>
+      <li>這就是為什麼要辦<b style="color:#fff">出發前的冰雹集訓</b>：同樣的人，快與慢可以差好幾倍。</li>
+    </ul>
+    <div class="rc-note" style="margin-top:14px">
+      ※ 以上是<b style="color:#fff">技師端的產值</b>，不是入袋淨收 —— 還要扣機票、住宿、保險與當地成本。台幣以 1 加幣 ≈ 23 元估算。</div>
+  </div>
+  <div class="foot"><span>數字來源：Jay 2026/09 在加拿大現場向當地業者取得</span><span>04 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 下一步</div></div>
+  <div class="body" style="justify-content:center"><div class="secnum">05</div></div>
+  <div class="sectitle"><div class="n">YOUR NEXT STEP</div><h2>你的下一步</h2><p>三條路，<b style="color:#fff">你可以選哪一條</b> —— 也可以一條一條走。</p></div>
+  <div class="foot"><span>重點 05</span><span>05 / 下一步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 下一步</div></div>
+  <div class="kick">三條路</div>
+  <h1 class="t">從今天起，<em>你可以往這三個方向走</em></h1>
+  <div class="body">
+    <div class="rc-road">
+      <div class="rc-r"><div class="tag">ROUTE 01</div><h3>繼續把技術練深</h3>
+        <p>進階班、一對一課程、國際研討會。先把手練穩，後面每一條路才打得開。</p>
+        <div class="path">初階結業 → 進階班 → 國際認證</div></div>
+      <div class="rc-r"><div class="tag">ROUTE 02</div><h3>進門市，走到開店</h3>
+        <p>儲備加盟實習：進卓越門市實戰接待、估價、修復、交車，熟悉 ECHO 與門市 SOP。</p>
+        <div class="path">儲備實習 → 區域評估 → 簽約 → 開店陪跑<br><b style="color:#fff">零基礎約 6–12 個月</b></div></div>
+      <div class="rc-r"><div class="tag">ROUTE 03</div><h3>跟隊伍出國</h3>
+        <p>加拿大冰雹季。技術夠穩、簽證辦得下來，就有機會被排進待命名單。</p>
+        <div class="path">冰雹集訓 → 工作許可 → 跟隊出發<br><b style="color:#fff">2027 年第一季名額很少</b></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>三條路不互斥 —— 練技術是所有路的共同起點</span><span>05 / 下一步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 下一步</div></div>
+  <div class="kick">INCOME REFERENCE</div>
+  <h1 class="t">技術走到哪，<em>收入就到哪</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <div class="bigbox"><div class="lb">LEVEL 01　技術員</div><div class="vl sm">5–8 萬 / 月</div>
+          <div class="nt">完成職人班、能獨立處理一般小凹痕，在門市累積實車經驗</div></div>
+        <div class="bigbox" style="margin-top:14px"><div class="lb">LEVEL 02　資深技師</div><div class="vl sm">10–18 萬 / 月</div>
+          <div class="nt">能處理大面積、稜線、鋁合金等高單價案件，取得國際認證</div></div>
+        <div class="rc-warn" style="margin-top:14px">
+          ※ 以上為卓越體系內技師的<b>參考區間</b>，實際收入依個人技術、所在區域、營業時間與經營狀況而異，
+          <b style="color:#fff">不構成任何收入保證</b>。</div>
+      </div>
+      <div>
+        <div class="quotebig" style="font-size:30px">PDR 是看手藝吃飯的行業<small>沒有人能幫你修那最後 20%</small></div>
+        <div class="ph" style="height:290px;margin-top:20px"><img src="images/ph-fine.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>收入區間取自卓越體系內實際狀況</span><span>05 / 下一步</span></div>
+</section>
+<section class="slide cover">
+  <div class="bg"><img src="images/fr-cta.jpg" alt=""></div>
+  <div class="grad"></div>
+  <div class="inner">
+    <h1>下一間卓越，<em>也許就在你的城市</em></h1>
+    <div class="cs">我不怕教出競爭者 —— 體系夠大，市場才會穩</div>
+    <div class="meta">想走哪一條路，<b>今天課後直接跟我說</b>　｜　馬成傑 Jay Ma</div>
+  </div>
+</section>
+</div>
+<div class="navzone l" id="pz"></div>
+<div class="navzone r" id="nz"></div>
+<div id="bartrack"><div id="bar"></div></div>
+<div id="hud"><b id="cur">01</b> / <span id="tot">00</span></div>
+<div id="hint"><span>←</span><span>→</span> 翻頁　<span>F</span> 全螢幕</div>
+<script>
+
+
+  const stage=document.getElementById('stage');
+  const slides=[...document.querySelectorAll('.slide')];
+  const bar=document.getElementById('bar'), cur=document.getElementById('cur');
+  document.getElementById('tot').textContent=String(slides.length).padStart(2,'0');
+  let i=0;
+  function fit(){
+    const s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    stage.style.setProperty('--s', s);
+  }
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,x)=>s.classList.toggle('on',x===i));
+    // 影片：切到該頁自動從頭循環播放，離開就暫停歸零（不佔資源、下次回來重播）
+    slides.forEach((s,x)=>s.querySelectorAll('video').forEach((v)=>{
+      if(x===i){ v.currentTime=0; const p=v.play(); if(p&&p.catch) p.catch(()=>{}); }
+      else { v.pause(); v.currentTime=0; }
+    }));
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    cur.textContent=String(i+1).padStart(2,'0');
+    location.hash=(i+1);
+  }
+  const next=()=>show(i+1), prev=()=>show(i-1);
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' ','PageDown','Enter'].includes(e.key)){e.preventDefault();next()}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();show(0)}
+    else if(e.key==='End'){e.preventDefault();show(slides.length-1)}
+    else if(e.key==='f'||e.key==='F'){
+      if(document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    }
+  });
+  document.getElementById('nz').onclick=next;
+  document.getElementById('pz').onclick=prev;
+  // 觸控滑動
+  let tx=null;
+  addEventListener('touchstart',e=>{tx=e.changedTouches[0].clientX},{passive:true});
+  addEventListener('touchend',e=>{
+    if(tx===null)return; const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>50){dx<0?next():prev()} tx=null;
+  },{passive:true});
+  addEventListener('resize',fit);
+  fit();
+  show(Math.max(0,(parseInt(location.hash.slice(1))||1)-1));
+
+
+</script>
+<script>
+// ===== 進場動畫 =====
+// 原本的播放器只負責切 .on。這裡再掛一層：切到某頁時，重跑那頁的長條動畫，
+// 並把帶 data-count 的數字從 0 跑上去。離開那頁就重設，下次翻回來會再跑一次。
+(function(){
+  const ease = t => 1 - Math.pow(1 - t, 3);
+
+  function countUp(el){
+    const to = parseFloat(el.dataset.count);
+    const dec = parseInt(el.dataset.dec || 0);
+    const pre = el.dataset.pre || '', suf = el.dataset.suf || '';
+    const dur = 900, t0 = performance.now();
+    (function step(now){
+      const k = Math.min(1, (now - t0) / dur);
+      const v = to * ease(k);
+      el.textContent = pre + v.toLocaleString('en-US',
+        {minimumFractionDigits: dec, maximumFractionDigits: dec}) + suf;
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+
+  function play(s){
+    s.classList.remove('anim');
+    void s.offsetWidth;                 // 強制重排，動畫才會重跑
+    // 卡片依序淡入：只設延遲，實際動畫在 CSS（JS 掛了也不會影響靜止版面）
+    s.querySelectorAll('.rc-tr,.rc-k,.rc-s,.rc-r,.rc-t').forEach((el, i) => {
+      el.style.setProperty('--d', (i * 0.06).toFixed(2) + 's');
+    });
+    s.classList.add('anim');
+    s.querySelectorAll('[data-count]').forEach(el => {
+      el.textContent = (el.dataset.pre || '') + '0' + (el.dataset.suf || '');
+      setTimeout(() => countUp(el), 120);
+    });
+  }
+
+  // ⚠️ 不要用 MutationObserver 監看 class：play() 本身會改 class，
+  //    等於自己觸發自己，會變成無限迴圈（踩過一次，Chrome 直接卡死）。
+  //    播放器每次換頁都會寫 location.hash，所以聽 hashchange 就好。
+  // 截圖／匯 PDF 用：網址加 ?still=1 就完全不跑動畫，直接呈現最終狀態。
+  // （headless 截圖會在動畫跑到一半時按下快門，長條只長一半、數字只數到一半。）
+  const STILL = /(^|[?&])still=1/.test(location.search);
+
+  // 影片頁：翻到就從頭播、翻走就停。muted 是必要的 ——
+  // 瀏覽器只允許靜音影片自動播放（這幾支本來就沒有聲音軌）。
+  function syncVideo(){
+    document.querySelectorAll('video').forEach(v => {
+      const on = v.closest('.slide').classList.contains('on');
+      if (on && !STILL) { try { v.currentTime = 0; } catch(e) {} v.play().catch(() => {}); }
+      else v.pause();
+    });
+  }
+
+  // 短版／完整版切換（給 Q&A 用，平常不會按到）
+  (function(){
+    const v = document.getElementById('vsys'), b = document.getElementById('vsysbtn');
+    if (!v || !b) return;
+    let full = false;
+    b.addEventListener('click', e => {
+      e.stopPropagation();
+      full = !full;
+      v.src = full ? v.dataset.full : v.dataset.short;
+      b.textContent = full ? '回到短版 1:14' : '看完整版 2:27';
+      v.play().catch(() => {});
+    });
+    // 點影片本身＝暫停／繼續（翻頁熱區在左右兩側，中間是影片）
+    v.addEventListener('click', () => { v.paused ? v.play() : v.pause(); });
+  })();
+
+  function run(){
+    syncVideo();
+    if (STILL) return;
+    document.querySelectorAll('.slide.anim').forEach(x => x.classList.remove('anim'));
+    const s = document.querySelector('.slide.on');
+    if (s) play(s);
+  }
+  addEventListener('hashchange', run);
+  // 播放器可能在 load 時才決定第一頁，所以 load 再跑一次（run 本身冪等）
+  addEventListener('load', run);
+  run();
+})();
+</script>
+</body>
+</html>
