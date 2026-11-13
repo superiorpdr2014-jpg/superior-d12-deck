@@ -327,6 +327,17 @@
 
 
   /* ===== D12 結業簡報專用 ===== */
+  /* ── 結果頁：按一下才揭曉（Jay 2026-11-13）──
+     標題跟補考／FINAL／獎牌一起藏，不然按之前答案就寫在標題上了。
+     用 opacity 不用 display，版面位置先佔好，揭曉時不會整頁跳動。 */
+  .rv{opacity:0;transition:opacity .45s ease}
+  .slide.revealed .rv{opacity:1}
+  h1.t.rvt{position:relative}
+  h1.t .rv-hold{position:absolute;left:0;top:0;white-space:nowrap;color:#4e5768;
+    transition:opacity .3s ease}
+  .slide.revealed h1.t .rv-hold{opacity:0}
+  @media print{.rv{opacity:1!important}h1.t .rv-hold{opacity:0!important}}
+
   .secnum{font-family:"Bebas Neue";font-size:150px;line-height:.85;color:#1d2230;letter-spacing:4px}
   .sectitle{position:absolute;left:56px;bottom:86px}
   .sectitle .n{font-family:"Bebas Neue";font-size:26px;letter-spacing:4px;color:var(--gold)}
@@ -911,7 +922,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">陳威錞　·　結業評比</div>
-  <h1 class="t"><em>兩項全過</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv"><em>兩項全過</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div class="ph" style="height:430px"><img src="images/stu-e212f38f.jpg" alt=""></div>
@@ -921,15 +932,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc ok">通過<i>補</i></span>
+            <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc ok">通過<i>補</i></span>
-          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
       </div>
     </div>
   </div>
@@ -938,7 +951,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">張竣凱　·　結業評比</div>
-  <h1 class="t"><em>兩項全過</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv"><em>兩項全過</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div class="ph" style="height:430px"><img src="images/stu-bae3acb3.jpg" alt=""></div>
@@ -948,15 +961,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+            <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
-          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
       </div>
     </div>
   </div>
@@ -965,7 +980,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">許凱堯　·　結業評比</div>
-  <h1 class="t"><em>兩項全過</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv"><em>兩項全過</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div class="ph" style="height:430px"><img src="images/stu-7634c58b.jpg" alt=""></div>
@@ -975,15 +990,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+            <span class="pt2">車門</span><span class="rc ok">通過<i>補</i></span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
-          <span class="pt2">車門</span><span class="rc ok">通過<i>補</i></span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
       </div>
     </div>
   </div>
@@ -992,7 +1009,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">余奕欣　·　結業評比</div>
-  <h1 class="t">過了一半，<em>銅質</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv">過了一半，<em>銅質</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div class="ph" style="height:430px"><img src="images/stu-90600678.jpg" alt=""></div>
@@ -1002,15 +1019,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc no">未過<i>補</i></span>
+            <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal bronze">🥉　銅質獎狀</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc no">未過<i>補</i></span>
-          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal bronze">🥉　銅質獎狀</div></div>
       </div>
     </div>
   </div>
@@ -1019,7 +1038,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">許書豪　·　結業評比</div>
-  <h1 class="t">過了一半，<em>銅質</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv">過了一半，<em>銅質</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div class="ph" style="height:430px"><img src="images/stu-798f8deb.jpg" alt=""></div>
@@ -1029,15 +1048,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc ok">通過<i>補</i></span>
+            <span class="pt2">車門</span><span class="rc no">未過<i>補</i></span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal bronze">🥉　銅質獎狀</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc ok">通過<i>補</i></span>
-          <span class="pt2">車門</span><span class="rc no">未過<i>補</i></span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal bronze">🥉　銅質獎狀</div></div>
       </div>
     </div>
   </div>
@@ -1046,7 +1067,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">周聖凱　·　結業評比</div>
-  <h1 class="t"><em>兩項全過</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv"><em>兩項全過</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div class="ph" style="height:430px"><img src="images/stu-ae28dd65.jpg" alt=""></div>
@@ -1056,15 +1077,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+            <span class="pt2">車門</span><span class="rc ok">通過<i>補</i></span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
-          <span class="pt2">車門</span><span class="rc ok">通過<i>補</i></span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
       </div>
     </div>
   </div>
@@ -1073,7 +1096,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">劉貞泓　·　結業評比</div>
-  <h1 class="t"><em>兩項全過</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv"><em>兩項全過</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div class="ph" style="height:430px"><img src="images/stu-cd632278.jpg" alt=""></div>
@@ -1083,15 +1106,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+            <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
-          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
       </div>
     </div>
   </div>
@@ -1100,7 +1125,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">簡群　·　結業評比</div>
-  <h1 class="t">過了一半，<em>銅質</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv">過了一半，<em>銅質</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div class="ph" style="height:430px"><img src="images/stu-fe487719.jpg" alt=""></div>
@@ -1110,15 +1135,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc ok">通過<i>補</i></span>
+            <span class="pt2">車門</span><span class="rc no">未過<i>補</i></span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal bronze">🥉　銅質獎狀</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc ok">通過<i>補</i></span>
-          <span class="pt2">車門</span><span class="rc no">未過<i>補</i></span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal bronze">🥉　銅質獎狀</div></div>
       </div>
     </div>
   </div>
@@ -1127,7 +1154,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">王宏偉　·　結業評比</div>
-  <h1 class="t"><em>兩項全過</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv"><em>兩項全過</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div class="ph" style="height:430px"><img src="images/stu-b5cc06b7.jpg" alt=""></div>
@@ -1137,15 +1164,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+            <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
-          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
       </div>
     </div>
   </div>
@@ -1154,7 +1183,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">簡志豪　·　結業評比</div>
-  <h1 class="t"><em>兩項全過</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv"><em>兩項全過</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div class="ph" style="height:430px"><img src="images/stu-6ca222e3.jpg" alt=""></div>
@@ -1164,15 +1193,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+            <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
-          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
       </div>
     </div>
   </div>
@@ -1181,7 +1212,7 @@
 <section class="slide">
   <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 公布</div></div>
   <div class="kick">鍾丞凱　·　結業評比</div>
-  <h1 class="t">車門這一關，<em>我們再磨一次</em></h1>
+  <h1 class="t rvt"><span class="rv-hold">結果是⋯</span><span class="rv">車門這一關，<em>我們再磨一次</em></span></h1>
   <div class="body">
     <div class="grid2" style="gap:26px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:14px"><div class="ph" style="height:276px"><img src="images/stu-d1a48114.jpg" alt=""></div><div class="card" style="padding:13px 17px;border-color:var(--gold);background:rgba(233,185,73,.06)"><div style="font-size:17px;line-height:1.62;color:#d6dde8"><b style="color:#fff">車門這一項，今天定案沒過。</b><br>但你今天帶走的不只是這個結果：<b style="color:var(--gold)">ABC 柱的補考照常考</b>，線上影片無限次回看，卡住的案子拍給我們看，想回來練就回來找我們。<br><b style="color:#fff">同一個部位多修幾顆，手就會記得。差的是次數，不是資格。</b></div></div></div>
@@ -1191,15 +1222,17 @@
           <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span><span class="sm2">膠拉修復</span></div>
           <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span><span class="sm2">凹痕修復</span></div>
         </div>
-        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
-        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
-          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span></div>
-          <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span></div>
+        <div class="rv">
+          <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+          <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+            <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span></div>
+            <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span></div>
+          </div>
+          <div class="fin"><span class="fl">FINAL</span>
+            <span class="pt2">ABC 柱</span><span class="rc no">未過<i>補</i></span>
+            <span class="pt2">車門</span><span class="rc no">未過<i>補</i></span></div>
+          <div style="text-align:center;margin-top:6px"><div class="medal">兩項都還要再補一次</div></div>
         </div>
-        <div class="fin"><span class="fl">FINAL</span>
-          <span class="pt2">ABC 柱</span><span class="rc no">未過<i>補</i></span>
-          <span class="pt2">車門</span><span class="rc no">未過<i>補</i></span></div>
-        <div style="text-align:center;margin-top:6px"><div class="medal">兩項都還要再補一次</div></div>
       </div>
     </div>
   </div>
@@ -2319,6 +2352,39 @@
   // 播放器可能在 load 時才決定第一頁，所以 load 再跑一次（run 本身冪等）
   addEventListener('load', run);
   run();
+})();
+
+</script>
+<script>
+
+(function(){
+  // 截圖／匯 PDF（?still=1）直接全部揭曉，不然印出來是空的
+  if (/(^|[?&])still=1/.test(location.search)) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.add('revealed'));
+    return;
+  }
+  function pending(){
+    const s = document.querySelector('.slide.on');
+    return (s && !s.classList.contains('revealed') && s.querySelector('.rv')) ? s : null;
+  }
+  function reveal(e){
+    const s = pending();
+    if (!s) return;
+    s.classList.add('revealed');
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight','ArrowDown',' ','PageDown','Enter'].includes(e.key)) reveal(e);
+  }, true);
+  const nz = document.getElementById('nz');
+  if (nz) nz.addEventListener('click', reveal, true);
+  // 翻走再翻回來要重新藏起來（同一班講兩次也不會爆雷）
+  addEventListener('hashchange', () => {
+    document.querySelectorAll('.slide.revealed').forEach(s => {
+      if (!s.classList.contains('on')) s.classList.remove('revealed');
+    });
+  });
 })();
 
 </script>
