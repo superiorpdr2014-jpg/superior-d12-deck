@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>凹痕職人初階養成班 第2期｜第十二堂 結業・完整版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07080b; --panel:#12141c; --panel2:#0c0e14; --line:#242833; --ink:#eef1f6; --muted:#c9d0da;
+    --gold:#e9b949; --red:#e5484d; --green:#10b981; --amber:#f59e0b; --blue:#3b82f6; --purple:#a855f7;
+    --bronze:#c77b3b; --silver:#b9c6d4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{background:#000;font-family:"Noto Sans TC",sans-serif;color:var(--ink);line-height:1.35;
+    height:100%;overflow:hidden}
+
+  /* ===== 播放舞台：1280×720 等比縮放置中 ===== */
+  #stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;
+    transform:translate(-50%,-50%) scale(var(--s,1));transform-origin:center center}
+
+  /* 16:9 投影片 */
+  .slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--bg);overflow:hidden;
+    padding:40px 56px;display:flex;flex-direction:column;
+    opacity:0;visibility:hidden;transition:opacity .38s ease}
+  .slide.on{opacity:1;visibility:visible}
+  @media (prefers-reduced-motion:reduce){.slide{transition:none}}
+
+  /* ===== 播放器介面 ===== */
+  .navzone{position:fixed;top:0;bottom:0;width:24%;z-index:40;cursor:pointer;background:transparent}
+  .navzone.l{left:0} .navzone.r{right:0}
+  .navzone:after{content:"";position:absolute;top:50%;transform:translateY(-50%);
+    width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);opacity:0;transition:opacity .2s}
+  .navzone:hover:after{opacity:1}
+  .navzone.l:after{left:22px} .navzone.r:after{right:22px}
+  .navzone:before{content:"";position:absolute;top:50%;width:11px;height:11px;
+    border-top:2px solid rgba(255,255,255,.75);border-right:2px solid rgba(255,255,255,.75);
+    opacity:0;transition:opacity .2s;z-index:1}
+  .navzone:hover:before{opacity:1}
+  .navzone.r:before{right:38px;transform:translateY(-50%) rotate(45deg)}
+  .navzone.l:before{left:38px;transform:translateY(-50%) rotate(-135deg)}
+
+  #bartrack{position:fixed;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.07);z-index:50}
+  #bar{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--red));transition:width .3s ease}
+  #hud{position:fixed;right:20px;bottom:16px;z-index:50;font-family:"Bebas Neue";letter-spacing:2px;
+    font-size:24px;color:var(--muted);user-select:none}
+  #hud b{color:var(--gold)}
+  #hint{position:fixed;left:20px;bottom:15px;z-index:50;font-size:21px;color:#5b6274;user-select:none}
+  #hint span{border:1px solid #2a2f3c;border-radius:4px;padding:1px 6px;margin:0 2px;color:#79808f}
+
+  .sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
+  .brand{font-family:"Bebas Neue";letter-spacing:2.5px;font-size:25px;color:#e8ecf2}
+  .brand b{color:var(--red)}
+  .pn{font-family:"Bebas Neue";letter-spacing:2px;font-size:23px;color:var(--muted)}
+  .kick{font-family:"Bebas Neue";letter-spacing:3px;color:var(--gold);font-size:24px;margin-bottom:2px}
+  h1.t{font-size:49px;font-weight:900;letter-spacing:1px;line-height:1.15}
+  h1.t em{color:var(--gold);font-style:normal}
+  h1.t .r{color:var(--red)}
+  .sub{color:#e3e8ef;font-size:24px;font-weight:500;margin-top:5px}
+  .body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
+  .foot{display:flex;justify-content:space-between;color:#c9d0da;font-size:17px;
+    border-top:1px solid var(--line);padding-top:6px;margin-top:8px}
+  .foot b{color:#e8ecf2}
+
+  /* 封面 */
+  .cover{justify-content:flex-end;padding:0}
+  .cover .bg{position:absolute;inset:0}
+  .cover .bg img{width:100%;height:100%;object-fit:cover;opacity:.5}
+  .cover .grad{position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(7,8,11,.55) 0%,rgba(7,8,11,.2) 35%,rgba(7,8,11,.96) 82%)}
+  .cover .inner{position:relative;padding:0 62px 54px}
+  .cover h1{font-size:67px;font-weight:900;letter-spacing:2px;line-height:1.1}
+  .cover h1 em{color:var(--gold);font-style:normal}
+  .cover .cs{font-size:29px;color:#d6dde8;margin-top:14px;font-weight:500}
+  .cover .meta{margin-top:20px;color:var(--muted);font-size:23px;letter-spacing:.5px}
+  .cover .meta b{color:#f4f6fa}
+
+  /* 圖片 */
+  .ph{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--panel2)}
+  .ph img{display:block;width:100%;height:100%;object-fit:cover}
+  .cap{font-size:21px;color:var(--muted);margin-top:5px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center;flex:1;min-height:0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+
+  /* 卡片 */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+  .card h3{font-size:28px;margin-bottom:7px;display:flex;align-items:center;gap:9px}
+  .card p{font-size:23px;color:#eaeef4;line-height:1.6}
+  .card p b{color:#fff}
+  .card.g{border-top:3px solid var(--gold)} .card.b{border-top:3px solid var(--blue)}
+  .card.e{border-top:3px solid var(--green)} .card.a{border-top:3px solid var(--amber)}
+  .card.p{border-top:3px solid var(--purple)} .card.r{border-top:3px solid var(--red)}
+
+  .num{font-family:"Bebas Neue";font-size:24px;letter-spacing:1px;color:#06121f;
+    background:var(--gold);width:30px;height:30px;border-radius:8px;
+    display:inline-flex;align-items:center;justify-content:center;flex:none}
+
+  ul.li{padding-left:0;list-style:none}
+  ul.li li{font-size:23px;color:#eaeef4;margin-bottom:9px;padding-left:28px;position:relative;line-height:1.42}
+  ul.li li:before{content:"";position:absolute;left:6px;top:9px;width:7px;height:7px;
+    border-radius:50%;background:var(--gold)}
+  ul.li li b{color:#fff}
+  ul.li.rd li:before{background:var(--red)}
+
+  /* 站點 */
+  .stations{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;min-height:0}
+  .st{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    display:flex;flex-direction:column}
+  .st .im{height:268px;background:var(--panel2)}
+  .st .im img{width:100%;height:100%;object-fit:cover}
+  .st .tx{padding:16px 18px;flex:1;display:flex;flex-direction:column;justify-content:center}
+  .st .tg{font-family:"Bebas Neue";letter-spacing:1.5px;font-size:23px;color:var(--gold)}
+  .st h3{font-size:29px;font-weight:900;margin:2px 0 7px}
+  .st p{font-size:23px;color:#e3e8ef;line-height:1.55}
+
+  /* 獎狀 */
+  .medals{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .md{border-radius:16px;padding:22px 24px;border:1px solid var(--line);background:var(--panel);border-top:4px solid}
+  .md.s{border-top-color:var(--silver)} .md.b{border-top-color:var(--bronze)}
+  .md .mi{font-size:42px}
+  .md h3{font-size:34px;font-weight:900;margin:4px 0 3px}
+  .md.s h3{color:var(--silver)} .md.b h3{color:var(--bronze)}
+  .md .mm{font-size:23.5px;color:#eaeef4;line-height:1.6;margin-bottom:12px}
+  .md .mq{font-size:23px;color:var(--muted);border-top:1px dashed var(--line);padding-top:11px;line-height:1.6}
+  .md .mq b{color:var(--gold)}
+
+
+  /* 獎狀頁 */
+  .certrow{display:grid;grid-template-columns:1fr 1fr;gap:30px;flex:1;min-height:0}
+  .certcol{display:flex;flex-direction:column;gap:10px}
+  .certhead{display:flex;align-items:center;gap:10px;font-size:29px;font-weight:900}
+  .certhead .ci{font-size:34px}
+  .certhead.s b{color:var(--silver)} .certhead.b b{color:var(--bronze)}
+  .certhead .cd{margin-left:auto;font-size:22px;font-weight:700;color:var(--muted);
+    border:1px solid var(--line);border-radius:20px;padding:3px 13px}
+  .certimg{display:flex;justify-content:center}
+  .certimg img{display:block;height:var(--h,300px);width:auto;border-radius:9px;
+    border:1px solid var(--line);box-shadow:0 12px 34px rgba(0,0,0,.55)}
+  .certnote{font-size:22px;color:#eaeef4;line-height:1.6;border-left:3px solid var(--line);padding-left:12px}
+  .certnote b{color:#fff}
+  .certnote.s{border-left-color:var(--silver)} .certnote.b{border-left-color:var(--bronze)}
+
+
+  /* 課後筆記 */
+  .notes{display:flex;flex-direction:column;gap:9px;flex:1;min-height:0;justify-content:center}
+  .nrow{display:flex;align-items:center;gap:16px;background:var(--panel);border:1px solid var(--line);
+    border-left:4px solid var(--gold);border-radius:12px;padding:11px 20px}
+  .nrow .nn{font-family:"Bebas Neue";font-size:34px;letter-spacing:1px;color:var(--gold);
+    width:40px;flex:none;text-align:center;line-height:1}
+  .nrow .nt{font-size:28px;font-weight:700;color:#eef1f6;line-height:1.45}
+  .nrow .nt em{color:var(--gold);font-style:normal}
+
+
+
+  /* 頒獎：大獎狀＋得獎者照片 */
+  /* 標題與英文標同一行，把垂直空間留給獎狀 */
+  .awhead{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:2px}
+  .awhead .kick{margin:0}
+  .awgrid{display:flex;gap:24px;align-items:center;justify-content:center;
+    height:100%;min-height:0}
+  .awphoto{height:100%;aspect-ratio:1080/1616;flex:none;
+    border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--panel2)}
+  .awphoto img{width:100%;height:100%;object-fit:cover;object-position:50% 16%}
+  .awcert{height:100%;flex:none;border-radius:8px;overflow:hidden;
+    border:1px solid #3d4250;box-shadow:0 20px 54px rgba(0,0,0,.7)}
+  .awcert img{display:block;height:100%;width:auto}
+  /* 銅質：四人過關對照 ＋ 銅質獎狀 */
+  .bzwrap{display:grid;grid-template-columns:1fr 466px;gap:20px;height:100%;min-height:0}
+  .bz{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px;min-height:0}
+  .bzc{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    border-top:3px solid #a3673a;padding:12px;display:flex;gap:13px;align-items:center;min-width:0}
+  .bzf{width:104px;height:104px;flex:none;border-radius:12px;overflow:hidden;
+    border:1px solid var(--line);background:#000}
+  .bzf img{width:100%;height:100%;object-fit:cover;display:block}
+  .bzi{flex:1;min-width:0}
+  .bzi .bn{font-size:29px;font-weight:900;color:#fff;letter-spacing:1px;line-height:1.1}
+  .bzi .br{display:flex;align-items:center;gap:6px;margin-top:8px;
+    background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:5px 9px}
+  .bzi .br .p{font-size:19px;font-weight:900;color:#eef1f6;flex:1;white-space:nowrap}
+  .bzi .br .m{font-size:18px;font-weight:900;letter-spacing:1px;white-space:nowrap}
+  .bzi .br.ok{border-color:rgba(16,185,129,.6);background:rgba(16,185,129,.16)}
+  .bzi .br.ok .m{color:#34d399}
+  .bzi .br.no .m{color:#8b93a1}
+  .bzcert{display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:0}
+  .bzcert .im{border-radius:8px;overflow:hidden;border:1px solid #3d4250;
+    box-shadow:0 16px 44px rgba(0,0,0,.7)}
+  .bzcert .im img{display:block;width:100%}
+  .bzcert .cap{text-align:center;font-size:21px;color:#e3e8ef;font-weight:700}
+  .bzcert .cap b{color:#c98a4b}
+  /* 學員考試結果：整頁滿版影片 */
+  .fullvid{padding:0;justify-content:flex-end;background:#000}
+  .fullvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+  .fullvid .scrim{position:absolute;left:0;right:0;bottom:0;height:300px;
+    background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.72) 32%,rgba(0,0,0,0) 100%)}
+  .fullvid .topbar{position:absolute;left:0;right:0;top:0;height:130px;
+    background:linear-gradient(to bottom,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,0) 100%);
+    display:flex;justify-content:space-between;align-items:flex-start;padding:26px 40px}
+  .fullvid .topbar .brand,.fullvid .topbar .pn{color:#fff;
+    text-shadow:0 2px 4px #000,0 3px 16px rgba(0,0,0,.95)}
+  .namecard{position:absolute;left:48px;bottom:46px;border-left:7px solid var(--gold);padding-left:22px}
+  .namecard .who{font-size:82px;font-weight:900;line-height:1;color:#fff;
+    letter-spacing:3px;text-shadow:0 4px 22px rgba(0,0,0,.95)}
+  .namecard .part{margin-top:12px;display:flex;align-items:center;gap:12px}
+  .namecard .part .tag{font-size:33px;font-weight:900;color:#06121f;background:var(--gold);
+    padding:5px 20px;border-radius:8px;letter-spacing:1px}
+  .namecard .part .skill{font-size:31px;font-weight:700;color:#fff;
+    text-shadow:0 3px 14px rgba(0,0,0,.95)}
+  .namecard .part .try{font-size:24px;font-weight:900;color:#fff;
+    border:2px solid var(--red);background:rgba(229,72,77,.28);
+    padding:3px 14px;border-radius:8px;letter-spacing:1px;
+    text-shadow:0 2px 10px rgba(0,0,0,.9)}
+  .fullvid .exlab{position:absolute;right:48px;bottom:52px;text-align:right;
+    font-family:"Bebas Neue";letter-spacing:3px;font-size:30px;color:var(--gold);
+    text-shadow:0 3px 16px rgba(0,0,0,.95)}
+  .fullvid .exlab s{display:block;text-decoration:none;font-family:"Noto Sans TC";
+    font-size:20px;letter-spacing:0;color:#dfe4ec;font-weight:500;margin-top:4px}
+
+  /* 考後檢討：影片並排 */
+  .vids{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .vid{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000;position:relative}
+  .vid{height:250px}
+  .vid video{display:block;width:100%;height:100%;object-fit:cover}
+  .vid .vlab{position:absolute;left:0;top:0;background:rgba(7,8,11,.82);color:#fff;
+    font-size:19px;font-weight:900;padding:6px 14px;border-bottom-right-radius:10px}
+  .price{display:flex;align-items:baseline;gap:10px;font-family:"Bebas Neue";letter-spacing:1px}
+  .price .v{font-size:52px;color:var(--gold);line-height:1}
+  .price .u{font-size:20px;color:#e3e8ef;font-family:"Noto Sans TC"}
+
+  /* 價格 */
+  .price{display:flex;align-items:baseline;gap:8px;font-family:"Bebas Neue";letter-spacing:1px}
+  .price .v{font-size:51px;color:var(--gold);line-height:1}
+  .price .u{font-size:24px;color:var(--muted);font-family:"Noto Sans TC"}
+  .strike{text-decoration:line-through;color:var(--muted);font-size:34px}
+
+  .big{background:linear-gradient(135deg,rgba(233,185,73,.16),rgba(59,130,246,.08));
+    border:1px solid var(--gold);border-radius:16px;padding:15px 22px}
+  .big .bh{color:var(--gold);font-weight:900;font-size:29px;margin-bottom:8px}
+  .big p{font-size:24.5px;color:#f4f6fa;line-height:1.65}
+  .big p b{color:#fff}
+
+  .warnbox{background:rgba(229,72,77,.14);border:1px solid var(--red);border-radius:14px;padding:12px 18px}
+  .warnbox .wh{color:var(--red);font-weight:900;font-size:25px;margin-bottom:5px}
+  .warnbox p{font-size:23px;color:#f4f6fa;line-height:1.6}
+
+  .okbox{background:rgba(16,185,129,.14);border:1px solid var(--green);border-radius:14px;padding:12px 18px}
+  .okbox .wh{color:var(--green);font-weight:900;font-size:25px;margin-bottom:5px}
+  .okbox p{font-size:23px;color:#f4f6fa;line-height:1.6}
+
+  /* 時間軸 */
+  .tl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .tn{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:12px 15px;position:relative}
+  .tn.now{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+  .tn .d{font-family:"Bebas Neue";font-size:30px;letter-spacing:1px;color:var(--gold);line-height:1}
+  .tn .l{font-size:23.5px;color:#eaeef4;margin-top:6px;line-height:1.5}
+  .tn .l b{color:#fff}
+  .tn .badge{position:absolute;top:-9px;right:12px;font-size:20px;font-weight:700;
+    background:var(--gold);color:#06121f;padding:2px 9px;border-radius:20px}
+
+  /* 課程章節 */
+  .chs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .ch{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;border-left:3px solid var(--purple)}
+  .ch .cn{font-family:"Bebas Neue";font-size:23px;letter-spacing:1.5px;color:var(--purple)}
+  .ch h3{font-size:26.5px;font-weight:900;margin:3px 0 9px;line-height:1.3}
+  .ch li{font-size:22.5px;color:#e3e8ef;margin-bottom:5px;padding-left:14px;position:relative;line-height:1.45}
+  .ch li:before{content:"›";position:absolute;left:2px;color:var(--purple);font-weight:900}
+  .ch ul{list-style:none}
+
+  .qr{display:flex;align-items:center;gap:14px;background:var(--panel2);border:1px solid var(--line);
+    border-radius:12px;padding:13px 18px;font-size:23px;color:#eaeef4}
+  .qr b{color:var(--gold);font-family:"Bebas Neue";letter-spacing:1px;font-size:27px}
+
+  @page{size:1280px 720px;margin:0}
+  @media print{
+    html,body{height:auto;overflow:visible}
+    #stage{position:static;transform:none;width:auto;height:auto}
+    .slide{position:relative;inset:auto;opacity:1 !important;visibility:visible !important;
+      transition:none;page-break-after:always;margin:0}
+    .slide:last-child{page-break-after:auto}
+    .navzone,#bartrack,#hud,#hint{display:none !important}
+  }
+
+
+
+.part{gap:14px;flex-wrap:wrap}
+.exi{display:inline-flex;align-items:center;gap:10px;font-size:27px;font-weight:800;
+     padding:6px 18px;border-radius:9px;letter-spacing:1px;
+     text-shadow:none;background:rgba(255,255,255,.14);color:#fff;
+     border:2px solid rgba(255,255,255,.3)}
+.exi b{font-weight:900;opacity:.8;font-size:24px}
+.exi.ok{background:var(--gold);color:#06121f;border-color:var(--gold)}
+.exi.no{background:rgba(192,57,43,.9);border-color:rgba(192,57,43,.9)}
+.exi.tbd{background:rgba(255,255,255,.10);color:#d8dce1;border-style:dashed}
+
+.part{gap:14px;flex-wrap:wrap}
+.exi{display:inline-flex;align-items:center;gap:10px;font-size:27px;font-weight:800;
+     padding:6px 18px;border-radius:9px;letter-spacing:1px;
+     text-shadow:none;background:rgba(255,255,255,.14);color:#fff;
+     border:2px solid rgba(255,255,255,.3)}
+.exi b{font-weight:900;opacity:.8;font-size:24px}
+.exi.ok{background:var(--gold);color:#06121f;border-color:var(--gold)}
+.exi.no{background:rgba(192,57,43,.9);border-color:rgba(192,57,43,.9)}
+.exi.tbd{background:rgba(255,255,255,.10);color:#d8dce1;border-style:dashed}
+.fullvid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.awardsub{font-size:19px;color:#aab3c0;margin-top:5px}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;height:100%;
+       align-content:start;min-height:0}
+.rc{background:var(--panel);border:1px solid var(--line);border-radius:11px;
+    border-top:3px solid #a3673a;padding:7px 9px;display:flex;gap:9px;align-items:center;min-width:0}
+.rcf{width:58px;height:58px;flex:none;border-radius:10px;overflow:hidden;
+     border:1px solid var(--line);background:#000}
+.rcf img{width:100%;height:100%;object-fit:cover}
+.rci{flex:1;min-width:0}
+.rcn{font-size:20px;font-weight:900;color:#fff;display:flex;align-items:center;
+     gap:8px;margin-bottom:2px}
+.rcb{font-size:13px;font-weight:700;color:var(--gold);background:rgba(200,162,74,.14);
+     border:1px solid rgba(200,162,74,.4);border-radius:6px;padding:1px 8px}
+.rcr{display:flex;align-items:center;gap:7px;font-size:14.5px;color:#c3cad4;line-height:1.5}
+.rcr span{width:50px;flex:none}
+.rcr i{font-style:normal;font-weight:800}
+.rcr i.ok{color:#45c17a}.rcr i.no{color:#e06a5c}.rcr i.tbd{color:#8d97a4}
+
+
+  /* ===== D12 結業簡報專用 ===== */
+  .secnum{font-family:"Bebas Neue";font-size:150px;line-height:.85;color:#1d2230;letter-spacing:4px}
+  .sectitle{position:absolute;left:56px;bottom:86px}
+  .sectitle .n{font-family:"Bebas Neue";font-size:26px;letter-spacing:4px;color:var(--gold)}
+  .sectitle h2{font-size:60px;font-weight:900;letter-spacing:1px;margin-top:2px}
+  .sectitle p{font-size:25px;color:#d6dde8;margin-top:10px;max-width:760px;line-height:1.5}
+
+  .agenda{display:flex;flex-direction:column;gap:9px;margin-top:2px}
+  .ag{display:flex;align-items:center;gap:16px;background:var(--panel);border:1px solid var(--line);
+      border-left:4px solid var(--gold);border-radius:12px;padding:10px 18px}
+  .ag .no{font-family:"Bebas Neue";font-size:31px;color:var(--gold);letter-spacing:2px;min-width:42px}
+  .ag .tx{font-size:23px;font-weight:700}
+  .ag .tx small{display:block;font-size:17.5px;font-weight:400;color:var(--muted);margin-top:2px}
+
+  .bigbox{background:linear-gradient(135deg,#171b26,#0e1118);border:1px solid var(--line);
+     border-radius:18px;padding:22px 26px;text-align:center}
+  .bigbox .lb{font-size:20px;color:var(--muted);letter-spacing:1px}
+  .bigbox .vl{font-family:"Bebas Neue";font-size:66px;letter-spacing:2px;color:var(--gold);line-height:1;margin-top:6px}
+  .bigbox .vl.sm{font-size:44px}
+  .bigbox .nt{font-size:19px;color:#d6dde8;margin-top:7px}
+  .bigbox.red{border-color:var(--red)} .bigbox.red .vl{color:var(--red)}
+
+  .quota{display:inline-flex;align-items:center;gap:12px;background:rgba(229,72,77,.12);
+    border:2px solid var(--red);border-radius:999px;padding:9px 26px;margin-top:14px}
+  .quota b{font-family:"Bebas Neue";font-size:44px;color:var(--red);letter-spacing:2px;line-height:1}
+  .quota span{font-size:24px;font-weight:700;color:#ffd9da}
+
+  .stage4{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:6px}
+  .st4{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px 15px;border-top:3px solid}
+  .st4:nth-child(1){border-top-color:var(--green)} .st4:nth-child(2){border-top-color:var(--amber)}
+  .st4:nth-child(3){border-top-color:var(--blue)}  .st4:nth-child(4){border-top-color:var(--purple)}
+  .st4 .dd{font-family:"Bebas Neue";font-size:27px;letter-spacing:2px;color:var(--gold)}
+  .st4 h4{font-size:21px;margin:2px 0 7px}
+  .st4 p{font-size:17.5px;color:var(--muted);line-height:1.55}
+
+  /* 第 2 期：考試結果標籤與學員頁 */
+  .rc{display:inline-block;font-size:19px;font-weight:900;border-radius:999px;padding:3px 16px;letter-spacing:1px}
+  .rc.ok{background:rgba(16,185,129,.15);border:1.5px solid var(--green);color:#6ee7b7}
+  .rc.no{background:rgba(229,72,77,.13);border:1.5px solid var(--red);color:#ffb4b6}
+  .rc.wait{background:rgba(139,147,163,.12);border:1.5px solid #39404f;color:var(--muted)}
+  .rc.done{background:transparent;border:1.5px dashed #39404f;color:#6f7787;font-weight:700;font-size:17px}
+  .rc i{font-style:normal;font-size:14px;opacity:.7;margin-left:5px;vertical-align:2px}
+  .fin{display:flex;align-items:center;gap:10px;margin-top:16px;padding:9px 16px;border-radius:12px;
+     background:rgba(233,185,73,.08);border:1.5px solid rgba(233,185,73,.4);flex-wrap:wrap}
+  .fin .fl{font-family:"Bebas Neue";font-size:25px;letter-spacing:2px;color:var(--gold)}
+  .fin .pt2{font-size:17px;color:var(--muted)}
+  .rost .r .vi{font-size:15px;color:var(--muted)}
+  .rrow{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .rrow:last-child{border-bottom:0}
+  .rrow .pt{font-size:21px;font-weight:700;min-width:118px}
+  .rrow .sm2{font-size:16px;color:var(--muted)}
+  .medal{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:7px 22px;margin-top:4px;
+     font-size:24px;font-weight:900;border:2px solid var(--muted);color:var(--muted)}
+  .medal.silver{border-color:#c9d1dc;color:#e8eef6;background:rgba(201,209,220,.1)}
+  .medal.bronze{border-color:#c98a4b;color:#f0c69a;background:rgba(201,138,75,.12)}
+  .rost{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 26px;margin-top:4px}
+  .rost .r{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);
+     border-radius:10px;padding:7px 14px}
+  .rost .r .nm{font-size:20px;font-weight:700;min-width:92px}
+
+  .lvl{display:flex;flex-direction:column;gap:14px;margin-top:2px}
+  .lv{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 20px}
+  .lv .top{display:flex;justify-content:space-between;align-items:baseline}
+  .lv .nm{font-size:27px;font-weight:900}
+  .lv .nm em{font-style:normal;color:var(--muted);font-size:19px;font-weight:500;margin-left:10px}
+  .lv .pc{font-family:"Bebas Neue";font-size:37px;letter-spacing:1px}
+  .lv .track{height:11px;border-radius:99px;background:#1b1f2a;margin:9px 0 7px;overflow:hidden}
+  .lv .fill{height:100%;border-radius:99px}
+  .lv p{font-size:18.5px;color:var(--muted);line-height:1.5}
+  .lv.a .pc{color:var(--amber)} .lv.a .fill{background:var(--amber);width:50%}
+  .lv.b .pc{color:var(--blue)}  .lv.b .fill{background:var(--blue);width:80%}
+  .lv.c .pc{color:var(--gold)}  .lv.c .fill{background:linear-gradient(90deg,var(--gold),#fff3cf);width:98%}
+
+  .bul{display:flex;flex-direction:column;gap:11px}
+  .bul li{list-style:none;position:relative;padding-left:27px;font-size:23px;line-height:1.5;color:#e3e8ef}
+  .bul li:before{content:"▸";position:absolute;left:0;top:0;color:var(--gold);font-weight:900}
+  .bul li b{color:#fff}
+  .bul.sm li{font-size:20.5px}
+
+  .quotebig{font-size:35px;font-weight:900;line-height:1.5;color:var(--gold);text-align:center}
+  .quotebig small{display:block;font-size:22px;font-weight:500;color:var(--muted);margin-top:14px}
+
+  .tag{display:inline-block;background:#1b1f2a;border:1px solid var(--line);border-radius:7px;
+    padding:3px 11px;font-size:18px;color:#d6dde8;margin:3px 5px 0 0}
+  .tag.g{border-color:var(--green);color:#8ef0c8}
+  .tag.r{border-color:var(--red);color:#ffb3b5}
+
+  .cmplb{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .cmplb .n{font-family:"Bebas Neue";font-size:26px;letter-spacing:2px;color:var(--muted)}
+  .cmplb .t{font-size:24px;font-weight:900;color:#e3e8ef}
+  .cmplb.now .n,.cmplb.now .t{color:var(--gold)}
+  .cmpvid{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000}
+  .cmpvid.now{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+  .cmpvid video{width:100%;height:100%;object-fit:cover;display:block}
+
+  .medal3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .md{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:center}
+  .md img{width:100%;aspect-ratio:1500/1069;object-fit:contain;display:block;background:#0c0e14}
+  .md .mt{font-size:23px;font-weight:900;margin-top:5px}
+  .md .mm{font-size:17.5px;color:var(--muted);padding:2px 13px 9px;line-height:1.48}
+  .md.mbz .mt{color:var(--bronze)} .md.msv .mt{color:var(--silver)} .md.mau .mt{color:var(--gold)}
+
+
+  /* ===== D12 招募簡報專用（都加 rc- 前綴，不跟既有樣式打架） ===== */
+  .rc-trend{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;flex:1;align-content:center}
+  .rc-tr{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:15px 16px;border-top:3px solid var(--gold);display:flex;flex-direction:column}
+  .rc-tr .no{font-family:"Bebas Neue";font-size:20px;letter-spacing:3px;color:var(--gold)}
+  .rc-tr h3{font-size:21px;font-weight:900;margin-top:4px;line-height:1.25}
+  .rc-tr .big{font-family:"Bebas Neue";font-size:40px;letter-spacing:1px;color:#fff;margin-top:9px;line-height:1}
+  .rc-tr .big em{font-style:normal;font-size:24px;color:var(--muted)}
+  .rc-tr .nt{font-size:16.5px;color:#c9d0da;margin-top:8px;line-height:1.5}
+
+  .rc-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .rc-k{background:linear-gradient(135deg,#171b26,#0e1118);border:1px solid var(--line);
+    border-radius:16px;padding:16px 16px;text-align:center}
+  .rc-k .vl{font-family:"Bebas Neue";font-size:52px;letter-spacing:1px;color:var(--gold);line-height:1}
+  .rc-k .lb{font-size:17px;color:#d6dde8;margin-top:7px;line-height:1.45}
+
+  .rc-cmp{width:100%;border-collapse:collapse;font-size:18.5px}
+  .rc-cmp th{background:#11151e;color:#fff;font-size:18px;font-weight:900;
+    padding:9px 14px;text-align:left;border:1px solid var(--line)}
+  .rc-cmp th.a{color:var(--muted)} .rc-cmp th.b{color:var(--gold)}
+  .rc-cmp td{padding:8px 14px;border:1px solid var(--line);vertical-align:top;line-height:1.4}
+  .rc-cmp td.k{font-weight:700;width:118px;color:#e3e8ef;background:#11151e}
+  .rc-cmp td.a{color:#9aa4b2;width:400px}
+  .rc-cmp td.b{color:#fff}
+
+  .rc-sup{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;flex:1;align-content:center}
+  .rc-s{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);
+    border-radius:12px;padding:12px 15px}
+  .rc-s b{font-size:19.5px;display:block}
+  .rc-s span{font-size:16.5px;color:#c9d0da;display:block;margin-top:5px;line-height:1.45}
+
+  .rc-tl{display:flex;flex-direction:column;gap:9px}
+  .rc-t{display:flex;gap:15px;align-items:flex-start;background:var(--panel);
+    border:1px solid var(--line);border-radius:12px;padding:10px 16px}
+  .rc-t .yr{font-family:"Bebas Neue";font-size:27px;color:var(--gold);letter-spacing:1px;min-width:92px}
+  .rc-t .tx{font-size:19px;font-weight:700;line-height:1.35}
+  .rc-t .tx small{display:block;font-size:16.5px;font-weight:400;color:var(--muted);margin-top:3px;line-height:1.45}
+
+  .rc-road{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex:1;align-content:center}
+  .rc-r{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 18px;border-top:4px solid}
+  .rc-r:nth-child(1){border-top-color:var(--green)}
+  .rc-r:nth-child(2){border-top-color:var(--amber)}
+  .rc-r:nth-child(3){border-top-color:var(--blue)}
+  .rc-r .tag{font-family:"Bebas Neue";font-size:19px;letter-spacing:3px;color:var(--muted)}
+  .rc-r h3{font-size:25px;font-weight:900;margin-top:4px}
+  .rc-r p{font-size:17.5px;color:#c9d0da;margin-top:9px;line-height:1.55}
+  .rc-r .path{font-size:17px;color:var(--gold);font-weight:700;margin-top:11px;line-height:1.5}
+
+  .rc-note{background:rgba(233,185,73,.08);border:1px solid var(--gold);border-radius:12px;
+    padding:11px 18px;font-size:17.5px;color:#f0e2bd;line-height:1.5}
+  .rc-warn{background:rgba(229,72,77,.1);border:1px solid var(--red);border-radius:12px;
+    padding:11px 18px;font-size:18px;color:#ffd9da;line-height:1.5}
+
+  /* ===== 圖表 =====
+     規矩：單一數列＝單一顏色（不做「越大越深」的漸層，那是把長度重複編碼成顏色）；
+     不是每根都標數字，只標端點與極值；格線是比底色淺一階的實線髮絲線；
+     長條之間留 2px 底色縫，不畫外框線；推估值用斜線紋區分，不換顏色。 */
+  .rc-chart{display:flex;flex-direction:column;gap:7px}
+  .rc-plot{position:relative;display:flex;align-items:flex-end;gap:2px;padding-top:4px}
+  .rc-plot .gl{position:absolute;left:0;right:0;height:1px;background:#262c38}
+  .rc-plot .gl span{position:absolute;left:0;top:-9px;font-size:13px;color:#6f7a8a}
+  .rc-base{height:1px;background:#39414f}
+  /* ⚠️ align-self:stretch 不能拿掉。rc-plot 是 align-items:flex-end，
+     欄位會縮成內容高度，裡面 <i> 的 height:xx% 就沒有可參照的高度 → 整排長條變 0（踩過一次，圖全空）。*/
+  .rc-col{flex:1;align-self:stretch;display:flex;flex-direction:column;justify-content:flex-end;
+    align-items:center;position:relative}
+  /* ⚠️ 靜止狀態就是「畫好的樣子」。動畫只是從 0 長上來的過場 ——
+     如果把靜止狀態寫成 scaleY(0)，JS 沒跑到（列印、匯 PDF、直接開某一頁）就整張圖空白。踩過一次。 */
+  .rc-col i{display:block;width:100%;background:var(--gold);border-radius:4px 4px 0 0;
+    transform-origin:bottom}
+  .rc-col.est i{background:repeating-linear-gradient(135deg,var(--gold) 0 5px,#8a6b1d 5px 10px)}
+  /* 標在長條正上方：靠 flex 排在 <i> 前面即可，不要用 absolute top，
+     不然會跑到整張圖的頂端（跟標題打架）。*/
+  .rc-col b{font-family:"Bebas Neue";font-size:21px;color:#fff;
+    letter-spacing:1px;white-space:nowrap;margin-bottom:3px;line-height:1}
+  .rc-col.est b{color:var(--gold)}
+  .rc-xax{display:flex;gap:2px;margin-top:5px}
+  .rc-xax span{flex:1;text-align:center;font-size:13px;color:#8d96a5;white-space:nowrap;line-height:1.35}
+  .rc-xax span.hi{color:#e3e8ef;font-weight:700}
+  .rc-cap{font-size:15.5px;color:#8d96a5}
+
+  /* 橫條（排名比較用） */
+  .rc-hbar{display:flex;flex-direction:column;gap:9px}
+  .rc-hb{display:grid;grid-template-columns:116px 1fr 104px;align-items:center;gap:12px}
+  .rc-hb .nm{font-size:17px;color:#d6dde8}
+  .rc-hb .tr{height:15px;background:#1b2130;border-radius:4px;overflow:hidden}
+  .rc-hb .tr i{display:block;height:100%;background:var(--gold);border-radius:4px;
+    transform-origin:left}
+  .rc-hb .vl{font-family:"Bebas Neue";font-size:23px;color:#fff;letter-spacing:1px;text-align:right}
+
+  /* 前後對照（兩個狀態，用標籤區分身分，不只靠顏色） */
+  .rc-ba{display:flex;flex-direction:column;gap:7px}
+  .rc-ba .rw{display:grid;grid-template-columns:80px 1fr 96px;align-items:center;gap:11px}
+  .rc-ba .yr{font-size:15px;color:#8d96a5;white-space:nowrap}
+  .rc-ba .tr{height:17px;background:#1b2130;border-radius:4px;overflow:hidden}
+  .rc-ba .tr i{display:block;height:100%;border-radius:4px;transform-origin:left}
+  .rc-ba .rw.was .tr i{background:#5b6675}
+  .rc-ba .rw.now .tr i{background:var(--gold)}
+  .rc-ba .vl{font-family:"Bebas Neue";font-size:24px;letter-spacing:1px;text-align:right;color:#8d96a5}
+  .rc-ba .rw.now .vl{color:#fff}
+
+  /* ===== 進場動畫（每次切到該頁重跑一次） ===== */
+  @keyframes rcGrowY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  @keyframes rcGrowX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @keyframes rcFadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  /* backwards：延遲期間停在 from（0），跑完回到靜止值（完整）—— 兩頭都安全 */
+  .slide.anim .rc-col i{animation:rcGrowY .75s cubic-bezier(.22,.9,.3,1) backwards;animation-delay:var(--d,0s)}
+  .slide.anim .rc-col b{animation:rcFadeUp .45s ease-out backwards;animation-delay:calc(var(--d,0s) + .5s)}
+  .slide.anim .rc-hb .tr i,
+  .slide.anim .rc-ba .tr i{animation:rcGrowX .8s cubic-bezier(.22,.9,.3,1) backwards;animation-delay:var(--d,0s)}
+  .slide.anim .rc-tr,.slide.anim .rc-k,.slide.anim .rc-s,.slide.anim .rc-r,.slide.anim .rc-t{
+    animation:rcFadeUp .5s ease-out backwards;animation-delay:var(--d,0s)}
+  @media (prefers-reduced-motion:reduce),print{
+    .slide.anim *{animation:none!important}
+  }
+
+  /* ===== 影片頁（ECHO → MOC → DENT FIXO 系統動畫）=====
+     影片本身就是滿版的一張投影片（它自己有品牌列和進度條），
+     所以這一頁不放標題也不放頁首，疊上去會跟影片裡的東西打架。
+     ⚠️ z-index 要比 .navzone（40）高，不然播放控制列按不到。*/
+  .slide.vidfull{padding:0;background:#000}
+  .rc-vid{position:absolute;inset:0;z-index:60}
+  .rc-vid video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+  .rc-vbtn{position:absolute;right:18px;bottom:16px;z-index:70;
+    background:rgba(10,12,18,.78);border:1px solid var(--line);border-radius:999px;
+    padding:7px 16px;font-family:inherit;font-size:15px;color:#d6dde8;cursor:pointer;
+    backdrop-filter:blur(6px);transition:opacity .2s,border-color .2s}
+  .rc-vbtn:hover{border-color:var(--gold);color:#fff}
+  .rc-vbtn.hide{opacity:0;pointer-events:none}
+  .rc-vhint{position:absolute;left:18px;bottom:18px;z-index:70;font-size:14px;color:#6c7684}
+
+</style>
+</head>
+<body>
+<div id="stage">
+<section class="slide cover">
+  <div class="bg"><img src="images/d8-team.jpg" alt=""></div>
+  <div class="grad"></div>
+  <div class="inner">
+    <h1>第十二堂<em>　結業</em></h1>
+    <div class="cs">凹痕職人初階養成班　第 2 期・平日班</div>
+    <div class="meta">2026 / 11 / 13（五）　｜　<b>結訓・頒獎</b>　｜　接下來要往哪裡走</div>
+  </div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">00 / 今天</div></div>
+  <div class="kick">2026.10.01　→　2026.11.13</div>
+  <h1 class="t">一個月前，<em>你們還在找點</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul">
+          <li>12 堂課、84 小時、六週的每個週四與週五。</li>
+          <li>你們之中有人<b>完全沒碰過板金</b>，有人做了十幾年，<b>第一次自己拿起 PDR 工具修凹痕</b>。</li>
+          <li>今天，你們手上有一張<b style="color:#fff">自己練出來的獎狀</b>。</li>
+          <li>但我今天想講的不是你們完成了什麼 —— 是<b style="color:#fff">接下來我們一起要走去哪</b>。</li>
+        </ul>
+        <div class="quotebig" style="margin-top:26px;font-size:30px;text-align:left">
+          我們親自教出來的，不是競爭者，是朋友<small style="text-align:left">所以從今天起，你們的發展也是我的事</small></div>
+      </div>
+      <div class="ph" style="height:430px"><img src="images/d4-focus.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="foot"><span>凹痕職人初階養成班 第2期 · 結訓日</span><span>00 / 今天</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">00 / 今天</div></div>
+  <div class="kick">AGENDA</div>
+  <h1 class="t">走完 12 堂，<em>今天講五件事</em></h1>
+  <div class="body">
+    <div class="agenda">
+      <div class="ag"><div class="no">01</div><div class="tx">公布結業評比結果<small>11 位學員，一個一個講 —— 先把今天最重要的事做完</small></div></div>
+      <div class="ag"><div class="no">02</div><div class="tx">你們走了多遠<small>第八堂與今天的同一個部位，前後對比</small></div></div>
+      <div class="ag"><div class="no">03</div><div class="tx">接下來的路<small>進階班・台灣 PDR 市場・冰雹與海外・畢業後總部還在</small></div></div>
+      <div class="ag"><div class="no">04</div><div class="tx">卓越這十二年<small>成長、品質、流量池、三套系統 —— 數字攤開給你看</small></div></div>
+      <div class="ag"><div class="no">05</div><div class="tx">你的下一步<small>三條路，你可以選哪一條</small></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>凹痕職人初階養成班 第2期 · 2026/11/13</span><span>00 / 今天</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="body" style="justify-content:center">
+    <div class="secnum">01</div>
+  </div>
+  <div class="sectitle">
+    <div class="n">THE RESULT</div>
+    <h2>好，現在來公布結果</h2>
+    <p>一個一個來。<b style="color:#fff">不打分數，只有過跟沒過</b> —— 標準全班一樣，<br>第八堂過的那一項不重考，沒過的那一項今天補考。</p>
+  </div>
+  <div class="foot"><span>等很久了吧</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">陳威錞　·　結業評比</div>
+  <h1 class="t"><em>兩項全過</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div class="ph" style="height:430px"><img src="images/stu-e212f38f.jpg" alt=""></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc ok">通過<i>補</i></span>
+          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">張竣凱　·　結業評比</div>
+  <h1 class="t"><em>兩項全過</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div class="ph" style="height:430px"><img src="images/stu-bae3acb3.jpg" alt=""></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">許凱堯　·　結業評比</div>
+  <h1 class="t">還有一項，<em>要再補一次</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div class="ph" style="height:430px"><img src="images/stu-7634c58b.jpg" alt=""></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc wait">待補考</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+          <span class="pt2">車門</span><span class="rc wait">待補考</span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal">還有一項補考沒考</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">余奕欣　·　結業評比</div>
+  <h1 class="t">還有一項，<em>要再補一次</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div class="ph" style="height:430px"><img src="images/stu-90600678.jpg" alt=""></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc wait">待補考</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc wait">待補考</span>
+          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal">還有一項補考沒考</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">許書豪　·　結業評比</div>
+  <h1 class="t">還有一項，<em>要再補一次</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div class="ph" style="height:430px"><img src="images/stu-798f8deb.jpg" alt=""></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc wait">待補考</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc ok">通過<i>補</i></span>
+          <span class="pt2">車門</span><span class="rc wait">待補考</span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal">還有一項補考沒考</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">周聖凱　·　結業評比</div>
+  <h1 class="t">還有一項，<em>要再補一次</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div class="ph" style="height:430px"><img src="images/stu-ae28dd65.jpg" alt=""></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc wait">待補考</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+          <span class="pt2">車門</span><span class="rc wait">待補考</span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal">還有一項補考沒考</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">劉貞泓　·　結業評比</div>
+  <h1 class="t"><em>兩項全過</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div class="ph" style="height:430px"><img src="images/stu-cd632278.jpg" alt=""></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">簡群　·　結業評比</div>
+  <h1 class="t">還有一項，<em>要再補一次</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div class="ph" style="height:430px"><img src="images/stu-fe487719.jpg" alt=""></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc wait">待補考</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc ok">通過<i>補</i></span>
+          <span class="pt2">車門</span><span class="rc wait">待補考</span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal">還有一項補考沒考</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">王宏偉　·　結業評比</div>
+  <h1 class="t"><em>兩項全過</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div class="ph" style="height:430px"><img src="images/stu-b5cc06b7.jpg" alt=""></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">簡志豪　·　結業評比</div>
+  <h1 class="t"><em>兩項全過</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div class="ph" style="height:430px"><img src="images/stu-6ca222e3.jpg" alt=""></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc ok">通過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc ok">通過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc done">第八堂已過・免補考</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc done">第八堂已過・免補考</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc ok">通過</span>
+          <span class="pt2">車門</span><span class="rc ok">通過</span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal silver">🥈　銀質獎狀</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">鍾丞凱　·　結業評比</div>
+  <h1 class="t">車門這一關，<em>我們再磨一次</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:26px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:14px"><div class="ph" style="height:276px"><img src="images/stu-d1a48114.jpg" alt=""></div><div class="card" style="padding:13px 17px;border-color:var(--gold);background:rgba(233,185,73,.06)"><div style="font-size:17px;line-height:1.62;color:#d6dde8"><b style="color:#fff">車門這一項，今天定案沒過。</b><br>但你今天帶走的不只是這個結果：<b style="color:var(--gold)">ABC 柱的補考照常考</b>，線上影片無限次回看，卡住的案子拍給我們看，想回來練就回來找我們。<br><b style="color:#fff">同一個部位多修幾顆，手就會記得。差的是次數，不是資格。</b></div></div></div>
+      <div>
+        <div class="cmplb"><span class="n">01</span><span class="t">第八堂 · 正式評比</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc no">未過</span><span class="sm2">膠拉修復</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span><span class="sm2">凹痕修復</span></div>
+        </div>
+        <div class="cmplb now" style="margin-top:16px"><span class="n">02</span><span class="t">今天 · 補考</span></div>
+        <div class="card" style="padding:4px 20px;margin-top:8px;border-color:var(--gold)">
+          <div class="rrow"><span class="pt">ABC 柱</span><span class="rc wait">待補考</span></div>
+          <div class="rrow"><span class="pt">車　門</span><span class="rc no">未過</span></div>
+        </div>
+        <div class="fin"><span class="fl">FINAL</span>
+          <span class="pt2">ABC 柱</span><span class="rc wait">待補考</span>
+          <span class="pt2">車門</span><span class="rc no">未過<i>補</i></span></div>
+        <div style="text-align:center;margin-top:6px"><div class="medal">還有一項補考沒考</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>差的是次數，不是資格 —— 這張門票沒有過期</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">01 / 公布</div></div>
+  <div class="kick">11 位學員 · 第八堂正式考 ＋ 今天補考</div>
+  <h1 class="t">全班<em>結業評比結果</em></h1>
+  <div class="body">
+    <p class="sub" style="margin:0 0 10px;font-size:19.5px">左 ABC 柱膠拉／右車門凹痕，<b style="color:#fff">不打分數，只看過或沒過</b>；標<b style="color:var(--gold)">「補」</b>的是補考補上來的 —— <b style="color:#fff">證書上完全一樣</b>。</p>
+    <div class="rost"><div class="r"><span class="nm">陳威錞</span><span class="rc ok">通過<i>補</i></span><span class="rc ok">通過</span></div><div class="r"><span class="nm">張竣凱</span><span class="rc ok">通過</span><span class="rc ok">通過</span></div><div class="r"><span class="nm">許凱堯</span><span class="rc ok">通過</span><span class="rc wait">待補考</span></div><div class="r"><span class="nm">余奕欣</span><span class="rc wait">待補考</span><span class="rc ok">通過</span></div><div class="r"><span class="nm">許書豪</span><span class="rc ok">通過<i>補</i></span><span class="rc wait">待補考</span></div><div class="r"><span class="nm">周聖凱</span><span class="rc ok">通過</span><span class="rc wait">待補考</span></div><div class="r"><span class="nm">劉貞泓</span><span class="rc ok">通過</span><span class="rc ok">通過</span></div><div class="r"><span class="nm">簡群</span><span class="rc ok">通過<i>補</i></span><span class="rc wait">待補考</span></div><div class="r"><span class="nm">王宏偉</span><span class="rc ok">通過</span><span class="rc ok">通過</span></div><div class="r"><span class="nm">簡志豪</span><span class="rc ok">通過</span><span class="rc ok">通過</span></div><div class="r"><span class="nm">鍾丞凱</span><span class="rc wait">待補考</span><span class="rc no">未過<i>補</i></span></div></div>
+    <div class="bigbox" style="margin-top:16px;text-align:left">
+      <div class="nt" style="font-size:21px;color:#fff;font-weight:900">
+        目前 <span style="color:#e8eef6">銀質 5 位</span>、<span style="color:#f0c69a">銅質 0 位</span>、<span style="color:var(--muted)">還有 6 位有一項等補考</span>。
+        <span style="color:var(--gold)">銅質不是沒學會，是基礎還要再磨 —— 進階班照樣收你。</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>不打分數，只有過／沒過 —— 標準全班一樣</span><span>01 / 公布</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">12 堂 · 84 小時</div>
+  <h1 class="t">你們，<em>走了多遠</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:24px">
+      <div>
+        <div class="ph" style="height:300px"><img src="images/d4-hands.jpg" alt=""></div>
+        <div class="cap" style="font-size:24px;color:#fff;font-weight:900;margin-top:10px">第一堂 —— 還在找點</div>
+        <div class="cap">工具怎麼拿、光怎麼看、力氣怎麼給，全部都要想。</div>
+      </div>
+      <div>
+        <div class="ph" style="height:300px"><img src="images/d8-work.jpg" alt=""></div>
+        <div class="cap" style="font-size:24px;color:var(--gold);font-weight:900;margin-top:10px">第八堂 —— 已經在修實車</div>
+        <div class="cap">同一雙手，七堂課之後，開始不用想就知道下一步。</div>
+      </div>
+    </div>
+    <div class="quotebig" style="margin-top:22px">你們自己可能沒感覺<small>但考試就是結果 —— 這就是「每天比昨天進步一點點」的證明</small></div>
+  </div>
+  <div class="foot"><span>第 2 期 · 凹痕職人初階養成班</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">陳威錞　·　ABC 柱　·　第八堂（10/30）　→　今天（11/13）</div>
+  <h1 class="t">同一雙手、同一個部位，<em>差在哪裡？</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-e212f38f-pillar.mp4" poster="images/poster-d8-stu-e212f38f-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">第八堂 10/30</div></div>
+      <div class="cmpvid now" style="height:346px;position:relative"><video src="video/retake-stu-e212f38f-pillar.mp4" poster="images/poster-retake-stu-e212f38f-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--gold);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:var(--gold)">今天 11/13</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:14px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc no">未過</span>
+      <span style="font-size:19px">車門</span><span class="rc ok">通過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">今天的結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>先不要看結果 —— 先看板面</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">張竣凱　·　第八堂（10/30）評比</div>
+  <h1 class="t">張竣凱的<em>兩個部位</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-bae3acb3-pillar.mp4" poster="images/poster-d8-stu-bae3acb3-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">ABC 柱 · 膠拉</div></div>
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-bae3acb3-door.mp4" poster="images/poster-d8-stu-bae3acb3-door.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">車門 · 凹痕</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:16px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc ok">通過</span>
+      <span style="font-size:19px">車門</span><span class="rc ok">通過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">最終結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>板面平不平、反射線順不順 —— 騙不了人</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">許凱堯　·　第八堂（10/30）評比</div>
+  <h1 class="t">許凱堯的<em>兩個部位</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-7634c58b-pillar.mp4" poster="images/poster-d8-stu-7634c58b-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">ABC 柱 · 膠拉</div></div>
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-7634c58b-door.mp4" poster="images/poster-d8-stu-7634c58b-door.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">車門 · 凹痕</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:16px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc ok">通過</span>
+      <span style="font-size:19px">車門</span><span class="rc no">未過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">最終結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>板面平不平、反射線順不順 —— 騙不了人</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">余奕欣　·　第八堂（10/30）評比</div>
+  <h1 class="t">余奕欣的<em>兩個部位</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-90600678-pillar.mp4" poster="images/poster-d8-stu-90600678-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">ABC 柱 · 膠拉</div></div>
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-90600678-door.mp4" poster="images/poster-d8-stu-90600678-door.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">車門 · 凹痕</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:16px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc no">未過</span>
+      <span style="font-size:19px">車門</span><span class="rc ok">通過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">最終結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>板面平不平、反射線順不順 —— 騙不了人</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">許書豪　·　ABC 柱　·　第八堂（10/30）　→　今天（11/13）</div>
+  <h1 class="t">同一雙手、同一個部位，<em>差在哪裡？</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-798f8deb-pillar.mp4" poster="images/poster-d8-stu-798f8deb-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">第八堂 10/30</div></div>
+      <div class="cmpvid now" style="height:346px;position:relative"><video src="video/retake-stu-798f8deb-pillar.mp4" poster="images/poster-retake-stu-798f8deb-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--gold);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:var(--gold)">今天 11/13</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:14px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc no">未過</span>
+      <span style="font-size:19px">車門</span><span class="rc no">未過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">今天的結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>先不要看結果 —— 先看板面</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">周聖凱　·　第八堂（10/30）評比</div>
+  <h1 class="t">周聖凱的<em>兩個部位</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-ae28dd65-pillar.mp4" poster="images/poster-d8-stu-ae28dd65-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">ABC 柱 · 膠拉</div></div>
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-ae28dd65-door.mp4" poster="images/poster-d8-stu-ae28dd65-door.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">車門 · 凹痕</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:16px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc ok">通過</span>
+      <span style="font-size:19px">車門</span><span class="rc no">未過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">最終結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>板面平不平、反射線順不順 —— 騙不了人</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">劉貞泓　·　第八堂（10/30）評比</div>
+  <h1 class="t">劉貞泓的<em>兩個部位</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-cd632278-pillar.mp4" poster="images/poster-d8-stu-cd632278-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">ABC 柱 · 膠拉</div></div>
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-cd632278-door.mp4" poster="images/poster-d8-stu-cd632278-door.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">車門 · 凹痕</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:16px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc ok">通過</span>
+      <span style="font-size:19px">車門</span><span class="rc ok">通過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">最終結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>板面平不平、反射線順不順 —— 騙不了人</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">簡群　·　ABC 柱　·　第八堂（10/30）　→　今天（11/13）</div>
+  <h1 class="t">同一雙手、同一個部位，<em>差在哪裡？</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-fe487719-pillar.mp4" poster="images/poster-d8-stu-fe487719-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">第八堂 10/30</div></div>
+      <div class="cmpvid now" style="height:346px;position:relative"><video src="video/retake-stu-fe487719-pillar.mp4" poster="images/poster-retake-stu-fe487719-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--gold);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:var(--gold)">今天 11/13</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:14px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc no">未過</span>
+      <span style="font-size:19px">車門</span><span class="rc no">未過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">今天的結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>先不要看結果 —— 先看板面</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">王宏偉　·　第八堂（10/30）評比</div>
+  <h1 class="t">王宏偉的<em>兩個部位</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-b5cc06b7-pillar.mp4" poster="images/poster-d8-stu-b5cc06b7-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">ABC 柱 · 膠拉</div></div>
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-b5cc06b7-door.mp4" poster="images/poster-d8-stu-b5cc06b7-door.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">車門 · 凹痕</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:16px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc ok">通過</span>
+      <span style="font-size:19px">車門</span><span class="rc ok">通過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">最終結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>板面平不平、反射線順不順 —— 騙不了人</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">簡志豪　·　第八堂（10/30）評比</div>
+  <h1 class="t">簡志豪的<em>兩個部位</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-6ca222e3-pillar.mp4" poster="images/poster-d8-stu-6ca222e3-pillar.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">ABC 柱 · 膠拉</div></div>
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-6ca222e3-door.mp4" poster="images/poster-d8-stu-6ca222e3-door.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">車門 · 凹痕</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:16px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc ok">通過</span>
+      <span style="font-size:19px">車門</span><span class="rc ok">通過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">最終結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>板面平不平、反射線順不順 —— 騙不了人</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">鍾丞凱　·　車門　·　第八堂（10/30）　→　今天（11/13）</div>
+  <h1 class="t">同一雙手、同一個部位，<em>差在哪裡？</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="cmpvid" style="height:346px;position:relative"><video src="video/d8-stu-d1a48114-door.mp4" poster="images/poster-d8-stu-d1a48114-door.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--line);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:#d6dde8">第八堂 10/30</div></div>
+      <div class="cmpvid now" style="height:346px;position:relative"><video src="video/retake-stu-d1a48114-door.mp4" poster="images/poster-retake-stu-d1a48114-door.jpg" controls loop preload="metadata" playsinline muted></video><div style="position:absolute;left:12px;top:10px;background:rgba(7,8,11,.8);border:1px solid var(--gold);border-radius:8px;padding:3px 13px;font-size:17px;font-weight:900;color:var(--gold)">今天 11/13</div></div>
+    </div>
+    <div class="card" style="padding:9px 20px;margin-top:14px;display:flex;align-items:center;gap:14px">
+      <span style="font-size:19px;color:var(--muted)">第八堂</span>
+      <span style="font-size:19px">ABC 柱</span><span class="rc no">未過</span>
+      <span style="font-size:19px">車門</span><span class="rc no">未過</span>
+      <span style="font-size:19px;color:var(--muted);margin-left:auto">今天的結果</span>
+      <span class="rc wait">等一下一起公布</span>
+    </div>
+  </div>
+  <div class="foot"><span>先不要看結果 —— 先看板面</span><span>02 / 進步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">02 / 進步</div></div>
+  <div class="kick">卓越給你的四個承諾</div>
+  <h1 class="t">我們<em>跟你站在一起</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:20px">
+      <div>
+        <div class="card" style="padding:17px 20px;border-left:4px solid var(--gold);margin-bottom:12px">
+          <div style="font-size:22px;font-weight:900;margin-bottom:4px">一、我們不會停止開發市場</div>
+          <div style="font-size:18.5px;color:var(--muted);line-height:1.6">卡加利只是開始。<b style="color:#fff">PDR 市場還是非常大</b> —— 你們專心把技術練起來。</div></div>
+        <div class="card" style="padding:17px 20px;border-left:4px solid var(--green);margin-bottom:12px">
+          <div style="font-size:22px;font-weight:900;margin-bottom:4px">二、你卡住的時候，我們在</div>
+          <div style="font-size:18.5px;color:var(--muted);line-height:1.6">影片、LINE、回店裡 —— 修不動的案子不要自己硬扛。</div></div>
+        <div class="card" style="padding:17px 20px;border-left:4px solid var(--blue);margin-bottom:12px">
+          <div style="font-size:22px;font-weight:900;margin-bottom:4px">三、你想往上走，路我們先鋪好</div>
+          <div style="font-size:18.5px;color:var(--muted);line-height:1.6">進階班、職級、海外 —— 你要走多遠，我們就鋪多遠。</div></div>
+        <div class="card" style="padding:17px 20px;border-left:4px solid var(--purple)">
+          <div style="font-size:22px;font-weight:900;margin-bottom:4px">四、你站穩了，回來教下一批</div>
+          <div style="font-size:18.5px;color:var(--muted);line-height:1.6">體系夠大，市場才穩，大家才都有飯吃。</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center">
+        <div class="bigbox" style="text-align:left;padding:26px 28px">
+          <div class="lb">我在跟加拿大談合作時，寫給對方的一句話</div>
+          <div style="font-size:26px;font-weight:900;color:#fff;line-height:1.65;margin-top:12px">
+            「我訓練學生，不只是開展市場，<br><span style="color:var(--gold)">我還會擔心他們未來的發展。</span>」</div>
+          <div style="font-size:19px;color:var(--muted);line-height:1.6;margin-top:16px">
+            這句話不是講給他們聽的 —— 是我真的這樣想。<br>今天你們結業，這句話就從紙上變成要做的事。</div>
+          <div style="text-align:right;margin-top:20px">
+            <div style="font-family:'Noto Serif TC',serif;font-size:21px;font-weight:700">馬成傑（小馬 Jay）</div>
+            <div style="font-size:16px;color:var(--muted);margin-top:3px">卓越凹痕修復中心 · 創辦人／技術長</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>你們不是上完課就走的學生 —— 這是我要顧一輩子的市場</span><span>02 / 進步</span></div>
+</section>
+<section class="slide cover">
+  <div class="bg"><img src="images/d8-work.jpg" alt=""></div>
+  <div class="grad"></div>
+  <div class="inner">
+    <h1>結業快樂，<em>路才剛開始</em></h1>
+    <div class="cs">給你一張地圖，路還是要你自己走。</div>
+    <div class="meta"><b>凹痕職人初階養成班 第 2 期</b>　｜　2026 / 11 / 13　｜　SUPERIOR PDR 卓越凹痕修復中心</div>
+  </div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">03 / 進階班</div></div>
+  <div class="body" style="justify-content:center">
+    <div class="secnum">03</div>
+  </div>
+  <div class="sectitle">
+    <div class="n">NEXT STEP</div>
+    <h2>誰要繼續往上走？</h2>
+    <p>初階班讓你會修「標準的傷」；進階班是讓你能接<b style="color:#fff">別人不敢接的傷</b>。<br>第 1 期 11/19 開課、4 個位子已經滿了 —— <b style="color:#fff">第 2 期 2/18（四）、2/19（五）開課，今天先登記。</b></p>
+  </div>
+  <div class="foot"><span>重點三</span><span>03 / 進階班</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">03 / 進階班</div></div>
+  <div class="kick">凹痕修復職人進階班 · 第 2 期</div>
+  <h1 class="t">開課資訊　<em>第 2 期 2/18 開課</em></h1>
+  <div class="body">
+    <div class="grid4" style="margin-top:6px">
+      <div class="bigbox"><div class="lb">第 1 期</div><div class="vl sm">11/19 開課</div><div class="nt">4 位已額滿</div></div>
+      <div class="bigbox"><div class="lb">第 2 期</div><div class="vl sm">2/18 開課</div><div class="nt">2/18（四）、2/19（五）起</div></div>
+      <div class="bigbox"><div class="lb">上課時間</div><div class="vl sm">9:00–17:00</div><div class="nt">與初階班同作息</div></div>
+      <div class="bigbox red"><div class="lb">名額</div><div class="vl">4</div><div class="nt">一班只收 4 人・1 對 4</div></div>
+    </div>
+    <div style="text-align:center">
+      <div class="quota"><b>4</b><span>人一班，想上第 2 期的今天先登記</span></div>
+    </div>
+    <ul class="bul sm" style="margin-top:16px">
+      <li><b>主講：小馬（Jay）親自帶</b>，一次只帶 4 個人，不換組。</li>
+      <li>總時數 <b>12 天 × 7hr ＝ 84 小時</b>；維持週四、週五上課，完整日期另行公布。</li>
+      <li><b>學費內含配發工具 15 項</b> —— 課堂上用的，就是你帶回去開工的那一套。</li>
+    </ul>
+  </div>
+  <div class="foot"><span>※ 第 2 期 2/18（四）、2/19（五）開課 —— 只有 4 個位子</span><span>03 / 進階班</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">03 / 進階班</div></div>
+  <div class="kick">12 天 · 84 小時</div>
+  <h1 class="t">進階班在練什麼</h1>
+  <div class="body">
+    <div class="stage4">
+      <div class="st4"><div class="dd">D1–D3</div><h4>基礎工具與技術建立</h4>
+        <p>冷、熱膠使用時機｜膠拉車頂、稜線、C柱 5cm｜稜線凹痕（前葉・車門・後葉子板）</p></div>
+      <div class="st4"><div class="dd">D4–D6</div><h4>特殊凹痕與精準修復</h4>
+        <p>拳頭大稜線凹痕｜引擎蓋維修孔小工具｜金屬頭精準練習（不敲）｜深酒窩（單點／球形）</p></div>
+      <div class="st4"><div class="dd">D7–D10</div><h4>複雜凹痕與材質應用</h4>
+        <p>深長條摺線凹痕｜大面積凹痕敲擊｜雙層鐵邊線｜<b style="color:#fff">鋁合金</b>平面／稜線／中面積</p></div>
+      <div class="st4"><div class="dd">D11–D12</div><h4>綜合技術與大面積</h4>
+        <p>橫向張力 LTT｜大面積凹痕 Ⅰ～Ⅲ｜綜合判斷與工具選擇</p></div>
+    </div>
+    <div class="grid4" style="margin-top:16px">
+      <div class="ph" style="height:196px"><img src="images/adv-d1d3.jpg" alt=""></div>
+      <div class="ph" style="height:196px"><img src="images/adv-keco.jpg" alt=""></div>
+      <div class="ph" style="height:196px"><img src="images/adv-hood.jpg" alt=""></div>
+      <div class="ph" style="height:196px"><img src="images/adv-gluepull.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="foot"><span>深酒窩、鋁合金、大面積 —— 就是市場上最難、也最貴的那些傷</span><span>03 / 進階班</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">03 / 進階班</div></div>
+  <div class="kick">報名資格</div>
+  <h1 class="t">你手上的獎狀，<em>就是入場券</em></h1>
+  <div class="body">
+    <div class="medal3">
+      <div class="md mbz"><img src="images/cert-bronze.jpg" alt="">
+        <div class="mt">🥉 銅質</div><div class="mm">過了一半。<b style="color:#fff">可以報進階班</b> —— 基礎還要再打，但路是通的。</div></div>
+      <div class="md msv"><img src="images/cert-silver.jpg" alt="">
+        <div class="mt">🥈 銀質</div><div class="mm">通過卓越的半技考試。<b style="color:#fff">享進階班優惠價</b> —— 基礎已經站穩了。</div></div>
+      <div class="md mau"><img src="images/cert-gold.jpg" alt="">
+        <div class="mt">🥇 金質</div><div class="mm"><b style="color:#fff">上完進階班學成才拿得到</b> —— 所以它不是報名資格，是你下一個目標。</div></div>
+    </div>
+    <ul class="bul sm" style="margin-top:12px">
+      <li><b>銅質、銀質都可以報</b>；金質是走完進階班之後的事。</li>
+      <li>等級在<b>第 12 堂之後</b>才確定 —— 也就是今天。</li>
+    </ul>
+  </div>
+  <div class="foot"><span>獎牌不是名次，是下一階段的入場資格</span><span>03 / 進階班</span></div>
+</section>
+<section class="slide fullvid">
+  <video src="video/website.mp4" poster="images/website-poster.jpg" controls loop preload="auto" playsinline muted></video>
+  <div class="topbar">
+    <div class="brand">SUPERIOR <b>PDR</b> · 教育部</div>
+    <div class="pn">03 / 進階班</div>
+  </div>
+  <div class="scrim"></div>
+  <div class="namecard">
+    <div class="who">你們會上卓越官網</div>
+    <div class="part"><span class="skill">官網證書查詢　·　目前 92 位認證學員</span></div>
+  </div>
+  <div class="exlab">CERTIFIED GRADUATES<s>結業之後，你的姓名與證書編號在 tar-tw.com 就查得到</s></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 市場</div></div>
+  <div class="body" style="justify-content:center">
+    <div class="secnum">04</div>
+  </div>
+  <div class="sectitle">
+    <div class="n">THE MARKET</div>
+    <h2>台灣 PDR 的未來市場</h2>
+    <p>技師會越來越多 —— 所以卓越要做的，不是搶現有的餅，是<b style="color:#fff">把餅做大</b>。</p>
+  </div>
+  <div class="foot"><span>重點四</span><span>04 / 市場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 市場</div></div>
+  <div class="kick">現況</div>
+  <h1 class="t">全台灣，大約 <em>150 位</em> PDR 技師</h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul sm">
+          <li>這個數字<b>只會越來越多</b> —— 包含我們自己教出來的人。</li>
+          <li>所以卓越的使命<b>不只要打開市場，也要保護市場</b>，更要<b>不斷創造市場、創造技術需求</b>。</li>
+          <li>客戶開始會問的是<b style="color:#fff">「這個能不能修」</b> —— 那就是<b>教育市場</b>的成果，也是我們要一直做下去的事。</li>
+          <li>市場夠大，大家才有飯吃；<b>體系夠大，價格才穩得住</b>。</li>
+          <li>我不怕教出競爭者 —— <b>親自教出來的是朋友，不是敵人</b>。</li>
+        </ul>
+        <div class="bigbox" style="margin-top:12px;text-align:left;padding:16px 22px">
+          <div class="lb">卓越的使命</div>
+          <div class="nt" style="font-size:23px;color:#fff;font-weight:700;margin-top:6px;line-height:1.6">
+            打開市場　→　保護市場　→　創造市場<br>
+            →　創造技術需求　→　<span style="color:var(--gold)">把技術留在台灣</span></div>
+        </div>
+      </div>
+      <div class="ph" style="height:430px"><img src="images/adv-super.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="foot"><span>40% 的車主還不知道凹痕可以這樣修 —— 那就是市場</span><span>04 / 市場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 市場</div></div>
+  <div class="kick">技術正在擴散</div>
+  <h1 class="t">GPR 正在走進<em>鈑金烤漆業</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div class="ph" style="height:430px"><img src="images/ph-glue.jpg" alt=""></div>
+      <div>
+        <ul class="bul">
+          <li>免烤漆之外，<b>膠拉（GPR）技術也慢慢進入傳統鈑烤廠</b> —— 不是取代，是他們也需要。</li>
+          <li>技術正在一點一點<b>深耕進客戶心裡</b>：修車不再只有「拆掉、補土、烤漆」一條路。</li>
+          <li><b>保留原板件</b>會越來越被重視 —— 原漆、原板件＝車子的保值核心。</li>
+          <li>客戶開始會問的不只是「修不修得好」，而是 <b>「修到什麼程度」</b>。</li>
+        </ul>
+        <div style="margin-top:14px">
+          <span class="tag g">不鑽洞</span><span class="tag g">不噴漆</span><span class="tag g">不切鈑金</span>
+          <span class="tag">保留原漆</span><span class="tag">保留原板件</span><span class="tag">不影響殘值</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>客戶要的不是技術名詞，是「我的車還值錢」</span><span>04 / 市場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 市場</div></div>
+  <div class="kick">四個正在發生的轉變</div>
+  <h1 class="t">市場正在<em>往我們這邊靠過來</em></h1>
+  <div class="body">
+    <div class="rc-trend">
+      <div class="rc-tr"><div class="no">TREND 01</div><h3>車越來越貴</h3>
+        <div class="big">36% <em>→</em> 53%</div>
+        <div class="nt">進口與豪華車占比（2015→2026）。車價越高，車主越在意原廠漆與原板件。特斯拉已經是卓越營收最高的品牌。</div></div>
+      <div class="rc-tr"><div class="no">TREND 02</div><h3>願意為技術付錢</h3>
+        <div class="big">2,697 <em>→</em> 8,391</div>
+        <div class="nt">平均客單價（元／單），11 年成長 3.1 倍。4,000 元以下小傷從 70% 降到 34%。</div></div>
+      <div class="rc-tr"><div class="no">TREND 03</div><h3>傳統鈑金缺工</h3>
+        <div class="big">省 30–60%</div>
+        <div class="nt">相較鈑金烤漆的維修費用。老師傅退休、新人不進來 —— PDR 是取代傳統鈑金的方向，不是附屬品。</div></div>
+      <div class="rc-tr"><div class="no">TREND 04</div><h3>還在教育期</h3>
+        <div class="big">約 4 成</div>
+        <div class="nt">估計還有四成車主不知道 PDR。全台 700 萬輛自用車，專業 PDR 店家仍然稀少 —— 還在卡位期。</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>數據來源：DENT FIXO 維修管理系統（板橋・士林・中和・台中，2015/04–2026/08）</span><span>04 / 市場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 市場</div></div>
+  <div class="kick">卓越官網 · 修復品質</div>
+  <h1 class="t">一道傷，<em>三種修復程度</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:24px">
+      <div class="lvl">
+        <div class="lv a"><div class="top"><div class="nm">大概修復<em>Rough Repair</em></div><div class="pc">50%</div></div>
+          <div class="track"><div class="fill"></div></div>
+          <p>前 50% 的還原程度，板金塑形最快、最簡單，外觀已大幅改善。</p></div>
+        <div class="lv b"><div class="top"><div class="nm">平整修復<em>Level Repair</em></div><div class="pc">80%</div></div>
+          <div class="track"><div class="fill"></div></div>
+          <p>再進一步的中間 30%，是讓板金真正「平」的關鍵；掉漆的凹痕會先修到這裡再烤漆。</p></div>
+        <div class="lv c"><div class="top"><div class="nm">精緻修復<em>Superior Standard</em></div><div class="pc">98%</div></div>
+          <div class="track"><div class="fill"></div></div>
+          <p>最後的 20% 最難、最花時間，也是多數技師跨不過的門檻 —— 卓越之所以為卓越。</p></div>
+      </div>
+      <div>
+        <div class="ph" style="height:300px"><img src="images/ph-fine.jpg" alt=""></div>
+        <ul class="bul sm" style="margin-top:14px">
+          <li>這三級<b>不是好壞，是選擇</b> —— 讓客戶依需求與預算決定。</li>
+          <li>但你要有本事<b>把最後那 20% 做出來</b>，才有資格談價格。</li>
+          <li>範例與影片：<b>tar-tw.com/quality</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>修到看不出來了，為什麼還要繼續修？—— 因為線板看得出來</span><span>04 / 市場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 市場</div></div>
+  <div class="kick">實際案例 · 同一道傷，修三次給你看</div>
+  <h1 class="t">這不是理論，<em>這是同一片板件</em></h1>
+  <div class="body">
+    <div style="display:grid;grid-template-columns:318px 1fr 1fr 1fr;gap:18px;align-items:start">
+      <div>
+        <div style="font-size:21px;font-weight:900;color:#fff;margin-bottom:7px">修復前</div>
+        <div class="ph" style="height:215px"><img src="images/case-before.jpg" alt=""></div>
+        <ul class="bul sm" style="margin-top:12px">
+          <li>同一道傷、同一片板件，<b style="color:#fff">三支影片是三個停手的時間點</b>。</li>
+          <li>光板掃過去，<b>差別就出來了</b>。</li>
+        </ul>
+      </div>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:9px;margin-bottom:7px">
+          <span style="font-size:21px;font-weight:900;color:#fff">大概修復</span>
+          <span style="font-family:'Bebas Neue';font-size:27px;letter-spacing:1px;color:var(--amber)">50%</span></div>
+        <div class="cmpvid" style="height:362px;border-color:var(--amber)">
+          <video src="video/case-rough.mp4" poster="images/poster-case-rough.jpg" controls loop
+                 preload="none" playsinline muted></video></div>
+      </div>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:9px;margin-bottom:7px">
+          <span style="font-size:21px;font-weight:900;color:#fff">平整修復</span>
+          <span style="font-family:'Bebas Neue';font-size:27px;letter-spacing:1px;color:var(--blue)">80%</span></div>
+        <div class="cmpvid" style="height:362px;border-color:var(--blue)">
+          <video src="video/case-level.mp4" poster="images/poster-case-level.jpg" controls loop
+                 preload="none" playsinline muted></video></div>
+      </div>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:9px;margin-bottom:7px">
+          <span style="font-size:21px;font-weight:900;color:#fff">精緻修復</span>
+          <span style="font-family:'Bebas Neue';font-size:27px;letter-spacing:1px;color:var(--gold)">98%</span></div>
+        <div class="cmpvid" style="height:362px;border-color:var(--gold)">
+          <video src="video/case-fine.mp4" poster="images/poster-case-fine.jpg" controls loop
+                 preload="none" playsinline muted></video></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>客戶看的是外觀，同行看的是反射線 —— 停在哪一級，是你決定的</span><span>04 / 市場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">04 / 市場</div></div>
+  <div class="kick">下一塊版圖</div>
+  <h1 class="t">海外市場，<em>是技師的高薪出口</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul">
+          <li>PDR 是<b>少數可以「一個人、一套工具」就出國工作</b>的技術。</li>
+          <li>語言不是最大門檻 —— <b>板件上的結果才是條件</b>。</li>
+          <li>卓越要做的是<b>帶隊走出國門</b>，<b style="color:#fff">替大家爭取與創造市場</b> —— 不是讓大家各自摸索。</li>
+          <li>技術是護照，<b>能修到什麼程度，決定你能站在哪個市場</b>。</li>
+        </ul>
+      </div>
+      <div class="grid2" style="gap:12px">
+        <div class="ph" style="height:200px"><img src="images/adv-4w.jpg" alt=""></div>
+        <div class="ph" style="height:200px"><img src="images/adv-group.jpg" alt=""></div>
+        <div class="ph" style="height:200px"><img src="images/adv-detail.jpg" alt=""></div>
+        <div class="ph" style="height:200px"><img src="images/adv-toolwall.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>隻身前往，也能在海外拿到高收入</span><span>04 / 市場</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 冰雹</div></div>
+  <div class="body" style="justify-content:center">
+    <div class="secnum">05</div>
+  </div>
+  <div class="sectitle">
+    <div class="n">GET READY</div>
+    <h2>練功，準備即將到來的市場</h2>
+    <p>不管初階還是進階，<b style="color:#fff">先把功練起來</b> —— 機會來的時候，不會等你準備。</p>
+  </div>
+  <div class="foot"><span>重點五</span><span>05 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 冰雹</div></div>
+  <div class="kick">加拿大亞伯達省 · 冰雹走廊 Hailstorm Alley</div>
+  <h1 class="t">那裡每年都在<em>下冰雹</em></h1>
+  <div class="body">
+    <div class="grid2" style="align-items:start">
+      <div style="margin-top:30px">
+        <div class="rc-chart"><div class="rc-plot" style="height:236px"><div class="gl" style="bottom:28.7%"><span>10</span></div><div class="gl" style="bottom:57.3%"><span>20</span></div><div class="gl" style="bottom:86.0%"><span>30</span></div><div class="rc-col" style="--d:0.00s"><b>12 億</b><i style="height:34.4%"></i></div><div class="rc-col" style="--d:0.04s"><b>32.9 億</b><i style="height:94.3%"></i></div><div class="rc-col" style="--d:0.09s"><b>1.64 億</b><i style="height:4.7%"></i></div><div class="rc-col" style="--d:0.14s"><b>2.3 億</b><i style="height:6.6%"></i></div></div><div class="rc-base"></div><div class="rc-xax"><span class="hi">2020/06<br>卡加利</span><span class="hi">2024/08<br>卡加利</span><span class="hi">2025/07<br>卡加利</span><span class="hi">2026/05<br>愛德蒙頓</span></div><div class="rc-cap">單場冰雹保險理賠（加幣）　·　資料來源：加拿大保險局 IBC</div></div>
+      </div>
+      <div>
+        <div class="rc-kpi" style="grid-template-columns:1fr 1fr">
+          <div class="rc-k"><div class="vl">13 萬＋</div><div class="lb">2024/08 那場的<br>保險索賠件數</div></div>
+          <div class="rc-k"><div class="vl">20 年</div><div class="lb">亞伯達省連續 20 年<br>每年至少一場重大冰雹</div></div>
+        </div>
+        <ul class="bul sm" style="margin-top:14px">
+          <li>加拿大史上損失最大的 10 場災害，<b style="color:#fff">有 5 場在亞伯達省</b>，全部發生在 2016 年之後。</li>
+          <li>大災之後，<b>當地技師人力嚴重不足</b> —— 這就是缺口。</li>
+        </ul>
+        <div class="rc-warn" style="margin-top:12px">
+          <b>這是有大小年的生意。</b>看左邊：2024 和 2025 差了 <b>20 倍</b>。
+          所以第一階段刻意壓低投入、先試做一季，不先成立公司。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>資料來源：加拿大保險局（IBC）· 卓越加拿大冰雹專案評估報告</span><span>05 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 冰雹</div></div>
+  <div class="kick">冰雹市場</div>
+  <h1 class="t">你考的那顆深酒窩，<em>就是冰雹</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="ph" style="height:430px"><img src="images/hail-1.jpg" alt=""></div>
+        <div class="ph" style="height:430px"><img src="images/hail-2.jpg" alt=""></div>
+      </div>
+      <div>
+        <ul class="bul">
+          <li>冰雹修復要處理的，就是<b>深的酒窩</b> —— <b style="color:#fff">大小與深度，跟你這次考試的題目一樣</b>。</li>
+          <li>所以考試不是為了發獎狀，是<b>先幫你對準未來的市場</b>。</li>
+          <li>冰雹季一來就是整批車、整片板 —— <b>量大、集中、講求速度與穩定度</b>。</li>
+          <li>能不能吃到這塊，看的是<b>你手上的穩定度</b>，不是運氣。</li>
+        </ul>
+        <div class="bigbox" style="margin-top:18px;text-align:left">
+          <div class="lb">考試題目＝市場需求</div>
+          <div class="nt" style="font-size:23px;color:#fff;font-weight:700;margin-top:6px">
+            車門 × 1　＋　ABC 柱 × 1　—— 深度與大小，對準的就是冰雹</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>冰雹要能修深酒窩 —— 這就是為什麼考題是這樣出的</span><span>05 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 冰雹</div></div>
+  <div class="kick">加拿大冰雹市場 · Jay 在現場問到的實際行情</div>
+  <h1 class="t">剛上完課的人，<em>一天就有 1,000 加幣</em></h1>
+  <div class="body">
+    <div class="grid3" style="margin-top:2px">
+      <div class="bigbox"><div class="lb">基礎水準（技術還不純熟）</div><div class="vl sm">1,000 加幣</div><div class="nt">／天　·　修基本凹痕就能達到</div></div>
+      <div class="bigbox"><div class="lb">一個月以 24 天計</div><div class="vl sm">約 24,000</div><div class="nt">加幣 / 月　·　約新台幣 55 萬</div></div>
+      <div class="bigbox red"><div class="lb">熟練技師（手要快）</div><div class="vl sm">5,000–6,000</div><div class="nt">加幣 / 天　·　差距就在速度</div></div>
+    </div>
+    <ul class="bul sm" style="margin-top:18px">
+      <li><b style="color:#fff">冰雹修復是論件計酬</b> —— 修得越快、修得越多，收入直接往上跳，所以技術與經驗的價差非常大。</li>
+      <li><b>1,000 跟 6,000 中間差的不是運氣，是手速跟穩定度</b> —— 而手速是練出來的，不是天生的。</li>
+      <li>這也是為什麼我們要辦<b style="color:#fff">出發前的冰雹集訓</b>：同樣的人，修得快與修得慢，收入可以差好幾倍。</li>
+      <li>卓越要做的是<b>帶隊走出國門</b> —— 一起去，不是一個人去碰運氣。</li>
+    </ul>
+    <div class="bigbox" style="margin-top:16px;text-align:left;padding:14px 22px">
+      <div class="nt" style="font-size:20px;color:#d6dde8;margin:0">
+        ※ 以上是<b style="color:#fff">技師端的產值</b>，不是入袋淨收 —— 實際還要扣機票、住宿、保險與當地成本。台幣以 1 加幣 ≈ 23 元估算。</div>
+    </div>
+  </div>
+  <div class="foot"><span>數字來源：Jay 2026/09 在加拿大現場向當地業者取得</span><span>05 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 冰雹</div></div>
+  <div class="kick">2026 年 9 月 · 加拿大卡加利</div>
+  <h1 class="t">這不是願景，<em>是已經談成的事</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <p class="sub" style="margin:0 0 14px">我剛從加拿大回來。這趟去，<b style="color:#fff">正式跟當地冰雹修復公司 Dented 取得共識</b> ——
+        台灣的技師，可以合法到加拿大做冰雹季。</p>
+        <ul class="bul sm">
+          <li><b>Dented 缺人</b>：冰雹季一來，當地熟練人手永遠不夠。</li>
+          <li><b>卓越有人、也有教室</b>：我們訓練得出技師，也能教大面積與高難度凹痕。</li>
+          <li><b style="color:#fff">一切合法</b>：沒有工作許可就不工作 —— 這是雙方第一條共識。</li>
+        </ul>
+      </div>
+      <div>
+        <div class="bigbox" style="text-align:left">
+          <div class="lb">雙向，不是單向輸出</div>
+          <div class="nt" style="font-size:21px;color:#fff;font-weight:700;margin-top:8px;line-height:1.7">
+            <span style="color:var(--gold)">［台灣］</span> 卓越 → Dented<br>
+            <span style="font-weight:400;color:#d6dde8">派受訓技師支援冰雹季、出發前冰雹集訓、一位英文隊長</span><br><br>
+            <span style="color:var(--gold)">［加拿大］</span> Dented → 卓越<br>
+            <span style="font-weight:400;color:#d6dde8">提供工作機會與雇主擔保、冰雹標準與現場督導；<b style="color:#fff">派他們的技師來台灣受訓</b></span></div>
+        </div>
+        <div class="ph" style="height:158px;margin-top:12px"><img src="images/adv-group.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>「冰雹來時，我們是你的人手；你要成長時，我們是你的教室。」</span><span>05 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 冰雹</div></div>
+  <div class="kick">第一階段 · 2027 試做季</div>
+  <h1 class="t">實際上<em>是怎麼運作的</em></h1>
+  <div class="body">
+    <div style="display:grid;grid-template-columns:1fr 290px;gap:22px;align-items:center;flex:1;min-height:0">
+      <div>
+        <div class="grid2" style="gap:12px">
+          <div class="bigbox" style="padding:16px 20px"><div class="lb">團隊人數（目標）</div><div class="vl sm">10 人以上</div><div class="nt">＋會英文的隊長帶隊</div></div>
+          <div class="bigbox" style="padding:16px 20px"><div class="lb">停留時間</div><div class="vl sm">1–4 個月</div><div class="nt">冰雹季約 6–9 月</div></div>
+          <div class="bigbox" style="padding:16px 20px"><div class="lb">地點</div><div class="vl sm">卡加利等</div><div class="nt">愛德蒙頓・Red Deer・Saskatoon</div></div>
+          <div class="bigbox red" style="padding:16px 20px"><div class="lb">前提</div><div class="vl sm">合法工作許可</div><div class="nt">沒下來就不出發</div></div>
+        </div>
+        <ul class="bul sm" style="margin-top:14px">
+          <li><b>冰雹不會等文件</b> —— 許可要在冰雹季前核准，卓越維持一份<b style="color:#fff">「簽證已辦好的待命名單」</b>，冰雹一下幾天內就能出發。</li>
+          <li><b>出發前有冰雹集訓</b>：依 Dented 的品質標準，在台灣用真正的冰雹受損板件練。</li>
+          <li><b style="color:#fff">這不是挑選誰，是把路先鋪好</b> —— 誰練得起來，誰就有機會站上去。</li>
+        </ul>
+      </div>
+      <div class="ph" style="height:470px;background:#000">
+        <video src="video/hail.mp4" poster="images/hail-1.jpg" loop muted playsinline
+               style="width:100%;height:100%;object-fit:cover;display:block"></video>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>冰雹一來就出發 —— 練得起來的人，位置就在那裡</span><span>05 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 冰雹</div></div>
+  <div class="kick">就在我去的那一天</div>
+  <h1 class="t">三個學生，<em>三個機會</em></h1>
+  <div class="body">
+    <p class="sub" style="margin:0 0 13px">三位在台灣上過課的華人學員，回加拿大後各自在不同階段。我這趟去，<b style="color:#fff">替他們三個完成了跟 Dented 的媒合</b> ——</p>
+    <div class="grid3">
+      <div class="card" style="padding:18px;border-top:3px solid var(--green)">
+        <div style="font-size:23px;font-weight:900;margin-bottom:3px">Leo</div>
+        <div style="font-size:18px;color:var(--muted);margin-bottom:9px">畢業一年</div>
+        <div style="font-size:19px;line-height:1.6;color:#e3e8ef">有正職工作，<b style="color:var(--green)">每個月還有 10,000 加幣的 PDR 收入</b>。<br>
+        現在開始<b>估冰雹</b>，也要幫 Dented 修車。</div></div>
+      <div class="card" style="padding:18px;border-top:3px solid var(--amber)">
+        <div style="font-size:23px;font-weight:900;margin-bottom:3px">Roy</div>
+        <div style="font-size:18px;color:var(--muted);margin-bottom:9px">畢業才一個月・剛回加拿大</div>
+        <div style="font-size:19px;line-height:1.6;color:#e3e8ef">下個月進 Dented，<b style="color:var(--amber)">專修車門酒窩</b>。<br>
+        而車門酒窩，正好是冰雹技師<b>最不會的那一塊</b>。</div></div>
+      <div class="card" style="padding:18px;border-top:3px solid var(--blue)">
+        <div style="font-size:23px;font-weight:900;margin-bottom:3px">Michael</div>
+        <div style="font-size:18px;color:var(--muted);margin-bottom:9px">本來就在修冰雹</div>
+        <div style="font-size:19px;line-height:1.6;color:#e3e8ef">技術原本就到位，跟 Dented 合作之後，<br>
+        <b style="color:#7fb4ff">客戶來源整個打開</b>。</div></div>
+    </div>
+    <div class="quotebig" style="margin-top:22px;font-size:29px">利用人脈，替他們打開更廣的道路</div>
+  </div>
+  <div class="foot"><span>Leo Wang ／ Roy（MOON DENT）／ Michael Tam</span><span>05 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 冰雹</div></div>
+  <div class="kick">為什麼一個畢業一個月的人，補得進冰雹公司</div>
+  <h1 class="t">車門酒窩，正好是冰雹技師的<em>罩門</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul sm">
+          <li><b>冰雹技師整天面對的是</b>：一台車上百個凹、整片板件 —— 要的是<b style="color:#fff">快、量大、標準化</b>。</li>
+          <li><b>但單獨一顆車門酒窩不一樣</b>：找點、讀光、施力、收尾，一顆就要做到看不出來。</li>
+          <li><b style="color:#fff">要拆門維修、找點位置不同、又是側面板金</b> —— 比平面酒窩難做得多。</li>
+          <li>這正好是<b style="color:#fff">很多冰雹技師最不擅長、也最不想接的那一塊</b>。</li>
+          <li>而這 12 堂，你們從第一天練到現在的，<b style="color:#fff">就是這個</b>。</li>
+        </ul>
+        <div class="bigbox red" style="margin-top:11px;text-align:left;padding:16px 22px">
+          <div class="lb">Roy 為什麼進得去</div>
+          <div class="nt" style="font-size:23px;color:#fff;font-weight:900;margin-top:6px;line-height:1.55">
+            他畢業才一個月、沒有冰雹經驗 ——<br>
+            靠的不是資歷，<span style="color:var(--gold)">是基本功剛好補在對方的缺口上。</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="ph" style="height:262px"><img src="images/ph-fine.jpg" alt=""></div>
+        <div class="quotebig" style="margin-top:20px;font-size:27px">你們現在覺得最基礎的那顆酒窩<small>在冰雹市場，反而是稀缺的</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>我在加拿大打通的路，台灣訓練出來的你們，一樣走得上去</span><span>05 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 冰雹</div></div>
+  <div class="kick">Dented 經營者在會議上說的</div>
+  <h1 class="t">五句話，<em>先抄起來</em></h1>
+  <div class="body">
+    <ul class="bul sm">
+      <li><b style="color:#fff">機會常常是臨時通知</b> —— 「下週有空嗎」「明天能不能來」。冰雹一來全員動員，計畫天天變。</li>
+      <li><b style="color:#fff">冰雹 vs 大凹，兩條路很難都要</b> —— 冰雹是集中幾個月、到處跑、保險客戶；大凹是客人當面謝你。</li>
+      <li><b style="color:#fff">加拿大保險理賠幾乎都導去車體廠</b> —— 所以在那邊，<b>大凹＋膠拉反而是機會</b>。</li>
+      <li><b style="color:#fff">「會用的人才有價值」</b> —— 有集團一次買了幾十套膠拉設備，卻沒人會用，工具放著積灰塵。</li>
+    </ul>
+    <div class="bigbox" style="margin-top:18px;text-align:left">
+      <div class="lb">還有一句，講給急著要機會的人聽</div>
+      <div class="nt" style="font-size:22px;color:#fff;font-weight:700;margin-top:6px">
+        他跟一位澳洲技師聊了<b style="color:var(--gold)">兩年</b>才真正合作 —— 關係先建立，時機到了才用得上。</div>
+    </div>
+  </div>
+  <div class="foot"><span>這些是別人用很多年換來的經驗，你們今天直接拿到</span><span>05 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">05 / 冰雹</div></div>
+  <div class="kick">為什麼要上進階班</div>
+  <h1 class="t">大傷、側邊、冰雹　<em>通吃</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul">
+          <li>初階班：你會修<b>標準的傷</b>。</li>
+          <li>進階班：<b>平常的大傷、側邊凹痕，加上冰雹凹痕，全部通吃</b>。</li>
+          <li>會的傷型越多，<b>你能站的位置就越多</b> —— 國內接大案、國外接冰雹。</li>
+          <li>一句話：<b style="color:#fff">到哪都可以賺錢。</b></li>
+        </ul>
+        <div class="quotebig" style="margin-top:26px">技術與基礎只是門票<small>門票拿到了，接下來看你走多遠</small></div>
+      </div>
+      <div class="grid2" style="gap:12px">
+        <div class="ph" style="height:200px"><img src="images/ph-large.jpg" alt=""></div>
+        <div class="ph" style="height:200px"><img src="images/adv-ridge.jpg" alt=""></div>
+        <div class="ph" style="height:200px"><img src="images/ph-check.jpg" alt=""></div>
+        <div class="ph" style="height:200px"><img src="images/adv-roof.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>會的傷型越多，市場越大</span><span>05 / 冰雹</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">06 / 我們</div></div>
+  <div class="body" style="justify-content:center">
+    <div class="secnum">06</div>
+  </div>
+  <div class="sectitle">
+    <div class="n">WE'VE GOT YOU</div>
+    <h2>畢業後，我們還在</h2>
+    <p>接下來這段路比較長，但<b style="color:#fff">你不會自己一個人走</b>。<br>這一段先講我們替你準備了什麼，再講你自己要顧好的事。</p>
+  </div>
+  <div class="foot"><span>重點六</span><span>06 / 我們</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">06 / 我們</div></div>
+  <div class="kick">先講最重要的一件事</div>
+  <h1 class="t">你不是畢業<em>就被放生</em></h1>
+  <div class="body">
+    <p class="sub" style="margin:0 0 14px">很多課是上完就結束了。我們不是 —— 這些是今天起就已經準備好、等你來用的：</p>
+    <div class="grid3" style="gap:14px">
+      <div class="card" style="padding:16px 18px;border-top:3px solid var(--gold)">
+        <div style="font-size:21px;font-weight:900;margin-bottom:5px">🎓 進階班</div>
+        <div style="font-size:17.5px;color:var(--muted);line-height:1.55">想接更難的傷，第 2 期 2/18 開課，我親自帶。</div></div>
+      <div class="card" style="padding:15px 17px;border-top:3px solid var(--green)">
+        <div style="font-size:21px;font-weight:900;margin-bottom:5px">🏅 官網認證名單</div>
+        <div style="font-size:17.5px;color:var(--muted);line-height:1.55">姓名與證書編號上卓越官網，客人查得到。</div></div>
+      <div class="card" style="padding:15px 17px;border-top:3px solid var(--blue)">
+        <div style="font-size:21px;font-weight:900;margin-bottom:5px">💻 線上平台</div>
+        <div style="font-size:17.5px;color:var(--muted);line-height:1.55">課程影片無限次回看，忘了就回去看。</div></div>
+      <div class="card" style="padding:15px 17px;border-top:3px solid var(--purple)">
+        <div style="font-size:21px;font-weight:900;margin-bottom:5px">📱 技術問到底</div>
+        <div style="font-size:17.5px;color:var(--muted);line-height:1.55">卡住的案子拍照錄影傳 LINE，我們回你怎麼判。</div></div>
+      <div class="card" style="padding:15px 17px;border-top:3px solid var(--red)">
+        <div style="font-size:21px;font-weight:900;margin-bottom:5px">🌏 海外機會</div>
+        <div style="font-size:17.5px;color:var(--muted);line-height:1.55">卡加利的門已經敲開，練得起來就有位置。</div></div>
+      <div class="card" style="padding:15px 17px;border-top:3px solid var(--gold)">
+        <div style="font-size:21px;font-weight:900;margin-bottom:5px">🤝 同學會</div>
+        <div style="font-size:17.5px;color:var(--muted);line-height:1.55">第 2 期這十一個人，以後互相接案、互相補位。</div></div>
+    </div>
+    <div class="bigbox" style="margin-top:18px;text-align:left">
+      <div class="nt" style="font-size:24px;color:#fff;font-weight:900">
+        這些不是「福利」—— <span style="color:var(--gold)">是我們認為自己該負的責任。</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>課可以上完，關係不會結束</span><span>06 / 我們</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">06 / 我們</div></div>
+  <div class="kick">客源怎麼來</div>
+  <h1 class="t">先有人給你修，<em>技術才長得出來</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul">
+          <li><b>一個 Google 地圖的地標</b>，就能開始有人找上門。</li>
+          <li><b>社群經營</b>：把每一顆修好的凹痕拍前後對比，那就是你的技術履歷。</li>
+          <li><b style="color:#fff">先找親朋好友練手</b> —— 不收錢也要修，手感比收入重要。</li>
+          <li><b>車業的各位</b>：你本來就有客源，直接拿來練兵。</li>
+          <li><b>非車業的</b>：發名片、主動創造需求，把自己的客群做出來。</li>
+        </ul>
+      </div>
+      <div>
+        <div class="bigbox red" style="text-align:left">
+          <div class="lb">最重要的一句</div>
+          <div class="nt" style="font-size:25px;color:#fff;font-weight:900;margin-top:8px;line-height:1.5">
+            這個階段，<span style="color:var(--gold)">要重視的是技術，不是收入</span>。</div>
+          <div class="nt" style="margin-top:9px">收入是技術的結果，不是目標。<br>倒過來追，兩個都拿不到。</div>
+        </div>
+        <div class="ph" style="height:236px;margin-top:16px"><img src="images/d4-hands.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>這條路我們都走過 —— 卡住的時候記得回頭找我們</span><span>06 / 我們</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">06 / 我們</div></div>
+  <div class="kick">接案第一關</div>
+  <h1 class="t">報價之前，<em>先學會估價</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul">
+          <li><b>用估價計算器，不要憑感覺喊價</b> —— 喊低了做白工，喊高了客人跑掉。</li>
+          <li><b>先講「修到什麼程度」，再講價格</b>：大概、平整、精緻，讓客人自己選。</li>
+          <li><b>評估一律免費</b> —— 這是卓越的做法，先看再談，不要先承諾。</li>
+          <li>掉漆、鈑件變形、需要拆的，<b>先判斷自己能不能做</b>；做不了就老實說。</li>
+        </ul>
+        <div class="bigbox" style="margin-top:18px;text-align:left">
+          <div class="lb">順序不要顛倒</div>
+          <div class="nt" style="font-size:24px;color:#fff;font-weight:900;margin-top:6px">
+            先看傷　→　講程度　→　才報價</div>
+        </div>
+      </div>
+      <div class="ph" style="height:430px"><img src="images/ph-check.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="foot"><span>不確定的傷，寧可說「需要現場看」</span><span>06 / 我們</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">06 / 我們</div></div>
+  <div class="kick">你的技術履歷</div>
+  <h1 class="t">每一顆，<em>都要拍前後對比</em></h1>
+  <div class="body">
+    <div class="grid3" style="margin-top:2px">
+      <div class="card" style="padding:20px"><div class="kick" style="font-size:20px">三同</div>
+        <div style="font-size:25px;font-weight:900;margin:4px 0 8px">同角度・同光源・同距離</div>
+        <div style="font-size:19.5px;color:var(--muted);line-height:1.6">
+          角度一換，再好的修復也看不出差別；拍歪了等於沒拍。</div></div>
+      <div class="card" style="padding:20px"><div class="kick" style="font-size:20px">用光板</div>
+        <div style="font-size:25px;font-weight:900;margin:4px 0 8px">拍反射線，不是拍板件</div>
+        <div style="font-size:19.5px;color:var(--muted);line-height:1.6">
+          反射線才看得出平不平 —— 客戶看不懂，但同行一看就知道你的程度。</div></div>
+      <div class="card" style="padding:20px"><div class="kick" style="font-size:20px">三張</div>
+        <div style="font-size:25px;font-weight:900;margin:4px 0 8px">修復前・修復中・修復後</div>
+        <div style="font-size:19.5px;color:var(--muted);line-height:1.6">
+          中間那張最有說服力，因為它證明了這是你修的。</div></div>
+    </div>
+    <ul class="bul sm" style="margin-top:20px">
+      <li>這是<b>技術履歷</b>，也是下一次<b>報價的依據</b> —— 客人問「你修過嗎」，你拿得出來。</li>
+      <li>社群的素材全部從這裡來，<b>不用另外找題材</b>。</li>
+      <li>做給客戶看，比講一百句都有用。</li>
+    </ul>
+  </div>
+  <div class="foot"><span>技術不會說謊 —— 但你要先把它拍下來</span><span>06 / 我們</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">06 / 我們</div></div>
+  <div class="kick">如果你想走進卓越體系</div>
+  <h1 class="t">技術跟管理，<em>兩條都能升</em></h1>
+  <div class="body">
+    <div class="grid2" style="gap:22px">
+      <div class="card" style="padding:22px;border-top:3px solid var(--gold)">
+        <div style="font-size:24px;font-weight:900;color:var(--gold);margin-bottom:12px">技術職 —— 把技術做到極致</div>
+        <div style="font-size:26px;font-weight:900;line-height:2">
+          技師　→　高等技師　→<br>資深技師　→　<span style="color:var(--gold)">全能技師</span></div>
+        <div style="font-size:19px;color:var(--muted);line-height:1.6;margin-top:12px">
+          升級看的是<b style="color:#fff">能接多難的傷、品質穩不穩</b>，能不能獨立完成高難度車款（Tesla、鋁合金、稜線大面積）。</div>
+      </div>
+      <div class="card" style="padding:22px;border-top:3px solid var(--blue)">
+        <div style="font-size:24px;font-weight:900;color:#7fb4ff;margin-bottom:12px">管理職 —— 把團隊帶起來</div>
+        <div style="font-size:26px;font-weight:900;line-height:2">
+          組長　→　副店長　→　店長　→<br>區域督導　→　<span style="color:#7fb4ff">部門總監</span></div>
+        <div style="font-size:19px;color:var(--muted);line-height:1.6;margin-top:12px">
+          升級看的是<b style="color:#fff">帶人、客戶經營與分店營運數字</b>。兩軌可互轉，技術職轉管理職<b style="color:#fff">不扣技術年資</b>。</div>
+      </div>
+    </div>
+    <ul class="bul sm" style="margin-top:18px">
+      <li>這兩軌不是卓越員工的專利 —— <b>你自己開業，一樣照這個順序往上長</b>。</li>
+    </ul>
+  </div>
+  <div class="foot"><span>在體系裡，你有車源、有前輩、有難傷可以練</span><span>06 / 我們</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">06 / 我們</div></div>
+  <div class="kick">怎麼練</div>
+  <h1 class="t">把教學，<em>練成肌肉記憶</em></h1>
+  <div class="body">
+    <div class="grid3">
+      <div class="card" style="padding:20px"><div class="kick" style="font-size:20px">01</div>
+        <div style="font-size:25px;font-weight:900;margin:4px 0 8px">手會記得</div>
+        <div style="font-size:19.5px;color:var(--muted);line-height:1.6">
+          同一顆酒窩反覆做，做到不用想就知道下一步 —— 那才叫會了。</div></div>
+      <div class="card" style="padding:20px"><div class="kick" style="font-size:20px">02</div>
+        <div style="font-size:25px;font-weight:900;margin:4px 0 8px">眼睛會變利</div>
+        <div style="font-size:19.5px;color:var(--muted);line-height:1.6">
+          練久了，<b style="color:#fff">線條的敏銳度</b>會自己長出來，一眼就知道哪裡還不平。</div></div>
+      <div class="card" style="padding:20px"><div class="kick" style="font-size:20px">03</div>
+        <div style="font-size:25px;font-weight:900;margin:4px 0 8px">成就感會回來</div>
+        <div style="font-size:19.5px;color:var(--muted);line-height:1.6">
+          一定會越來越有成就感 —— 這一行的動力，就是從這裡來的。</div></div>
+    </div>
+    <div class="quotebig" style="margin-top:30px">每天比昨天進步一點點<small>一年後，你會是不一樣的技師</small></div>
+  </div>
+  <div class="foot"><span>技術不會說謊 —— 你練了多少，板件上看得出來；練不出來的，拿來我們一起看</span><span>06 / 我們</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">07 / 卓越</div></div>
+  <div class="body" style="justify-content:center"><div class="secnum">07</div></div>
+  <div class="sectitle"><div class="n">GROWTH DATA</div><h2>卓越這十二年</h2><p>大部分品牌只會說「生意很好」。我們直接給你曲線 —— <b style="color:#fff">營收用成長倍數呈現，其他全部是實際數字</b>。</p></div>
+  <div class="foot"><span>重點七</span><span>07 / 卓越</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">07 / 卓越</div></div>
+  <div class="kick">成長曲線　·　以 2014 年為基準（＝1）</div>
+  <h1 class="t">12 年，<em>年營收成長 26 倍</em></h1>
+  <div class="body">
+    <div class="rc-chart"><div class="rc-plot" style="height:300px"><div class="gl" style="bottom:20.5%"><span>10</span></div><div class="gl" style="bottom:41.0%"><span>20</span></div><div class="gl" style="bottom:61.5%"><span>30</span></div><div class="gl" style="bottom:82.0%"><span>40</span></div><div class="rc-col" style="--d:0.00s"><b>×1</b><i style="height:2.1%"></i></div><div class="rc-col" style="--d:0.04s"><i style="height:2.9%"></i></div><div class="rc-col" style="--d:0.09s"><i style="height:6.6%"></i></div><div class="rc-col" style="--d:0.14s"><i style="height:6.8%"></i></div><div class="rc-col" style="--d:0.18s"><i style="height:15.6%"></i></div><div class="rc-col" style="--d:0.22s"><i style="height:22.6%"></i></div><div class="rc-col" style="--d:0.27s"><i style="height:28.7%"></i></div><div class="rc-col" style="--d:0.32s"><i style="height:26.7%"></i></div><div class="rc-col" style="--d:0.36s"><i style="height:30.8%"></i></div><div class="rc-col" style="--d:0.40s"><i style="height:39.0%"></i></div><div class="rc-col" style="--d:0.45s"><i style="height:49.2%"></i></div><div class="rc-col" style="--d:0.49s"><b>×26</b><i style="height:53.3%"></i></div><div class="rc-col est" style="--d:0.54s"><b>×46</b><i style="height:94.3%"></i></div></div><div class="rc-base"></div><div class="rc-xax"><span class="hi">2014</span><span class="">15</span><span class="">16</span><span class="">17</span><span class="">18</span><span class="">19</span><span class="">20</span><span class="">21</span><span class="">22</span><span class="">23</span><span class="">24</span><span class="hi">2025</span><span class="hi">2026 推估</span></div><div class="rc-cap">年營收倍數　·　最後一根為 2026 年依前五個月推估（斜線）</div></div>
+    <div class="grid2" style="margin-top:14px;align-items:start">
+      <div class="rc-note">這裡只給<b>倍數</b>，不放金額 —— 我要你看的是<b style="color:#fff">趨勢與速度</b>，
+        不是拿一個數字來說嘴。</div>
+      <div class="rc-note">2021 那一根是<b style="color:#fff">掉下來的</b> ——
+        做生意不會每年都往上，但方向要對。</div>
+    </div>
+  </div>
+  <div class="foot"><span>營收以倍數呈現，不揭露金額</span><span>07 / 卓越</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">07 / 卓越</div></div>
+  <div class="kick">今年還在加速</div>
+  <h1 class="t">十個月，<em>就超過去年一整年</em></h1>
+  <div class="body">
+    <div class="grid2" style="align-items:start">
+      <div>
+        <div class="cmplb"><b style="font-size:21px">全台修復台數</b></div>
+        <div class="rc-ba"><div class="rw was" style="--d:0s"><div class="yr">2025 全年</div><div class="tr"><i style="width:85.3%"></i></div><div class="vl">4,272 台</div></div><div class="rw now" style="--d:.18s"><div class="yr">2026 1–10月</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">5,006 台</div></div></div><div class="rc-cap" style="margin-top:6px">十個月就超越 2025 全年　·　月均 500 台以上</div>
+        <div class="cmplb" style="margin-top:22px"><b style="font-size:21px">到店評估次數</b></div>
+        <div class="rc-ba"><div class="rw was" style="--d:0s"><div class="yr">2020 全年</div><div class="tr"><i style="width:55.5%"></i></div><div class="vl">7,584 次</div></div><div class="rw now" style="--d:.18s"><div class="yr">2026 1–10月</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">13,673 次</div></div></div><div class="rc-cap" style="margin-top:6px">成長 +80%</div>
+        <div class="cmplb" style="margin-top:22px"><b style="font-size:21px">全台門市數</b></div>
+        <div class="rc-ba"><div class="rw was" style="--d:0s"><div class="yr">2014</div><div class="tr"><i style="width:12.5%"></i></div><div class="vl">1 間</div></div><div class="rw now" style="--d:.18s"><div class="yr">2026</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">8 間</div></div></div><div class="rc-cap" style="margin-top:6px">十二年開到 8 間　·　店長全部是自己教出來的人</div>
+      </div>
+      <div>
+        <div class="rc-kpi" style="grid-template-columns:1fr 1fr">
+          <div class="rc-k"><div class="vl" data-count="1099">1,099</div><div class="lb">單月 LINE 線上估價派單<br>2026 年 8 月</div></div>
+          <div class="rc-k"><div class="vl">× 3.9</div><div class="lb">官網每日訪客年增倍數<br>2026/10 平均每天 782 位</div></div>
+        </div>
+        <div class="rc-note" style="margin-top:16px">
+          全台 <b style="color:#fff">8 間門市</b> —— 板橋、士林、台中、中和、竹北、高雄、台北濱江、桃園。</div>
+        <div class="ph" style="height:196px;margin-top:16px"><img src="rc-images/d8-work.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>統計至 2026 年 10 月</span><span>07 / 卓越</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">07 / 卓越</div></div>
+  <div class="kick">品質實證</div>
+  <h1 class="t">客人不是因為<em>便宜</em>選我們</h1>
+  <div class="body">
+    <div class="grid2" style="align-items:start">
+      <div>
+        <div class="cmplb"><b style="font-size:21px">30 天內返修率</b></div>
+        <div class="rc-ba"><div class="rw was" style="--d:0s"><div class="yr">2015</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">2.9%</div></div><div class="rw now" style="--d:.18s"><div class="yr">2026</div><div class="tr"><i style="width:37.9%"></i></div><div class="vl">1.1%</div></div></div><div class="rc-cap" style="margin-top:6px">交車後 30 天內回來重修的比例</div>
+        <div class="cmplb" style="margin-top:20px"><b style="font-size:21px">修不成率</b></div>
+        <div class="rc-ba"><div class="rw was" style="--d:0s"><div class="yr">2015</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">5.8%</div></div><div class="rw now" style="--d:.18s"><div class="yr">2026</div><div class="tr"><i style="width:8.6%"></i></div><div class="vl">0.5%</div></div></div><div class="rc-cap" style="margin-top:6px">從每 17 台 1 台，降到每 200 台 1 台</div>
+        <div class="rc-note" style="margin-top:18px">
+          量變大、單價變高，<b style="color:#fff">這兩條線反而一路往下</b> —— 這才是真的做得起來。</div>
+      </div>
+      <div>
+        <div class="cmplb"><b style="font-size:21px">客人選擇卓越的原因</b>
+          <span style="font-size:15.5px;color:#8d96a5">累計填答次數</span></div>
+        <div class="rc-hbar"><div class="rc-hb" style="--d:0.00s"><div class="nm">技術品質</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">4,779</div></div><div class="rc-hb" style="--d:0.08s"><div class="nm">價格</div><div class="tr"><i style="width:1.1%"></i></div><div class="vl">54</div></div></div><div class="rc-cap" style="margin-top:7px">因為價格選卓越的，只有 54 次 —— 你不需要靠削價搶客</div>
+        <div class="quotebig" style="margin-top:62px;font-size:29px">
+          技術不會說謊<small>但你要有本事把最後那 20% 做出來</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>數據來源：DENT FIXO 維修管理系統 2015–2026</span><span>07 / 卓越</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">07 / 卓越</div></div>
+  <div class="kick">流量池</div>
+  <h1 class="t">開店第一天，<em>就接上 40 萬人的流量池</em></h1>
+  <div class="body">
+    <div class="grid2" style="align-items:center">
+      <div>
+        <div class="rc-hbar"><div class="rc-hb" style="--d:0.00s"><div class="nm">Facebook</div><div class="tr"><i style="width:100.0%"></i></div><div class="vl">127,766</div></div><div class="rc-hb" style="--d:0.08s"><div class="nm">Instagram</div><div class="tr"><i style="width:73.9%"></i></div><div class="vl">94,365</div></div><div class="rc-hb" style="--d:0.16s"><div class="nm">TikTok</div><div class="tr"><i style="width:53.1%"></i></div><div class="vl">67,900</div></div><div class="rc-hb" style="--d:0.24s"><div class="nm">LINE 官方帳號</div><div class="tr"><i style="width:48.0%"></i></div><div class="vl">61,337</div></div><div class="rc-hb" style="--d:0.32s"><div class="nm">YouTube</div><div class="tr"><i style="width:43.5%"></i></div><div class="vl">55,563</div></div></div><div class="rc-cap" style="margin-top:7px">五大平台追蹤數　·　2026 年 10–11 月各平台後台</div>
+        <div class="bigbox" style="margin-top:18px;padding:14px 20px">
+          <div class="lb">合計</div><div class="vl sm" data-count="406931" data-suf=" 人">406,931 人</div></div>
+      </div>
+      <div>
+        <ul class="bul sm">
+          <li>一個人開店最難的是「<b>客人從哪裡來</b>」—— 這是卓越花<b style="color:#fff">十二年</b>養出來的。</li>
+          <li>IG 28 天觸及 <b>42.8 萬</b>個帳號、YouTube 累計 <b>2,232 萬</b>次觀看、TikTok <b>50 萬＋</b>按讚。</li>
+          <li>LINE 好友 2026 Q3 單季新增 <b style="color:#fff">4,397</b>，創新高。</li>
+          <li>總部的<b>每一支影片、每一篇文章</b>都在幫門市導客。</li>
+          <li>詢問進來後，由 <b style="color:#fff">ECHO AI 依地區自動派單</b>到最近的門市。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>社群數據：2026 年 10–11 月各平台後台</span><span>07 / 卓越</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">08 / 加盟</div></div>
+  <div class="body" style="justify-content:center"><div class="secnum">08</div></div>
+  <div class="sectitle"><div class="n">WHY SUPERIOR</div><h2>拓展理念</h2><p>為什麼卓越<b style="color:#fff">只跟自己教出來的人</b>一起開店。</p></div>
+  <div class="foot"><span>重點八</span><span>08 / 加盟</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">08 / 加盟</div></div>
+  <div class="kick">一個原則</div>
+  <h1 class="t">只跟<em>自己教出來的人</em>一起開店</h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <ul class="bul">
+          <li>所有加盟主都必須<b>完成卓越培訓、通過結業評比、取得認證</b>。</li>
+          <li>這不是為了收學費 —— 是<b style="color:#fff">確保每一間掛卓越招牌的店，品質都一樣</b>。</li>
+          <li>我們寧可<b>篩選有共識、有熱忱的人</b>，也不靠收加盟金衝店數。</li>
+          <li><b style="color:var(--red)">品質是紅線</b> —— 一間店做壞，傷的是所有門市。</li>
+        </ul>
+        <div class="rc-note" style="margin-top:20px">
+          所以今天坐在這裡的你們，<b style="color:#fff">已經站在這條路的起點上</b>了。</div>
+      </div>
+      <div class="rc-road" style="grid-template-columns:1fr">
+        <div class="rc-r"><div class="tag">零基礎</div><h3>想創業的新手</h3>
+          <div class="path">體驗課 → 職人養成班 → 認證 → 儲備加盟實習 → 開店</div></div>
+        <div class="rc-r"><div class="tag">有底子</div><h3>現職鈑金・汽車美容</h3>
+          <div class="path">技術評估 → 職人班或進階班 → 認證 → 開店</div></div>
+        <div class="rc-r"><div class="tag">自己人</div><h3>卓越結業學員與員工</h3>
+          <div class="path">加盟評估 → 選址 → 開店陪跑<br><b style="color:#fff">優先取得加盟資格與開店區域</b></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>不論從哪裡出發，拿到的品牌、系統與支援都一樣</span><span>08 / 加盟</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">08 / 加盟</div></div>
+  <div class="kick">為什麼要一起做</div>
+  <h1 class="t">自己開店 <em>vs</em> 加盟卓越</h1>
+  <div class="body">
+    <table class="rc-cmp">
+      <tr><th style="width:118px">項目</th><th class="a">單打獨鬥</th><th class="b">加盟卓越</th></tr>
+      <tr><td class="k">客源</td><td class="a">自己買廣告、等口碑慢慢累積</td><td class="b">40 萬＋流量池，LINE 估價自動派單到你的門市</td></tr>
+      <tr><td class="k">估價</td><td class="a">憑感覺報價，怕報高跑單、報低虧錢</td><td class="b">3 萬多筆維修單累積的估價邏輯與定價標準</td></tr>
+      <tr><td class="k">客服</td><td class="a">一邊修車一邊回訊息，晚回就跑單</td><td class="b">ECHO AI 24 小時接待、判讀、預約，真人可隨時接手</td></tr>
+      <tr><td class="k">技術</td><td class="a">遇到難傷只能自己摸索</td><td class="b">總部技術支援、進階課程、國際研討會資源</td></tr>
+      <tr><td class="k">品牌信任</td><td class="a">客人不認識你，第一次很難成交</td><td class="b">12 年品牌、國際賽事與認證、3.4 萬台修復實績</td></tr>
+      <tr><td class="k">工具</td><td class="a">零散採購、價格高、踩雷成本大</td><td class="b">卓越工具部統一規劃開店工具與耗材</td></tr>
+      <tr><td class="k">管理</td><td class="a">報表、請款、人事全部自己來</td><td class="b">CRM、DENT FIXO 維修管理系統、行政管理中心一套到位</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>技術與基礎只是門票 —— 讓一間店活下去的是客源、定價、管理與品牌信任</span><span>08 / 加盟</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">08 / 加盟</div></div>
+  <div class="kick">HQ SUPPORT</div>
+  <h1 class="t">總部給你的<em>九大支援</em></h1>
+  <div class="body">
+    <div class="rc-sup">
+      <div class="rc-s"><b>品牌授權與店面形象</b><span>招牌與店面 CI、官網門市頁與 Google 商家建置，享區域經營保障</span></div>
+      <div class="rc-s"><b>ECHO AI 客服與派單</b><span>LINE／FB／IG 全接進 ECHO，依地區自動派單，店長 Telegram 即時通知</span></div>
+      <div class="rc-s"><b>CRM 與 DENT FIXO</b><span>DENT FIXO 維修管理系統：詢問到結案全程追蹤，維修單 QR 綁 LINE，交車自動送修復前後照片</span></div>
+      <div class="rc-s"><b>估價系統與定價標準</b><span>依傷況、深度、板件、材質給建議價格區間，新店也報得準</span></div>
+      <div class="rc-s"><b>技術培訓與認證</b><span>職人班、進階班、一對一；CAC 編號證書可線上查證</span></div>
+      <div class="rc-s"><b>工具與耗材供應</b><span>工具部協助規劃開店工具清單，代理品牌與團購資源</span></div>
+      <div class="rc-s"><b>行銷與內容</b><span>總部製作影片與文章，加盟店作品也能上品牌頻道曝光</span></div>
+      <div class="rc-s"><b>保險理賠通路</b><span>與產險公司、保代洽談理賠合作，案件依地區分流到合作門市</span></div>
+      <div class="rc-s"><b>行政與營運管理</b><span>線上申請簽核、出差里程系統、營運 SOP 與店長月度數據回饋</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>除了理賠通路仍在洽談擴大，其餘都是 8 間門市每天正在用的</span><span>08 / 加盟</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">08 / 加盟</div></div>
+  <div class="kick">SYSTEM IN ACTION</div>
+  <h1 class="t">這三套系統，<em>每天在 8 間門市跑</em></h1>
+  <div class="body">
+    <div class="rc-road">
+      <div class="rc-r"><div class="tag">ECHO</div><h3>線上接客</h3>
+        <p>LINE 官方帳號 24 小時自動回覆，問貴姓、車款、照片、分店，照片先用 AI 判斷修不修得了，再依地區自動派給最近的門市，店長 Telegram 即時收到。</p></div>
+      <div class="rc-r"><div class="tag">MOC</div><h3>店長操作中心</h3>
+        <p>店長在面板直接接手回話，真人一接手 ECHO 自動靜音 10 分鐘。一鍵開報價、轉分店，每一通的首次回覆時間都被記錄，月底變成 KPI。</p></div>
+      <div class="rc-r"><div class="tag">DENT FIXO</div><h3>門市管理系統</h3>
+        <p>車到店，客戶與車輛資料從 ECHO 直接帶過來開維修單。修復前後照片、進度、金額掛在同一張單底下，完工自動通知取車並送出前後對比。</p></div>
+    </div>
+    <div class="rc-note" style="margin-top:18px">
+      下一頁用 <b style="color:#fff">74 秒</b>把這條線從客人傳第一句話，一路跑到交車後的五星評價 ——
+      <b style="color:#fff">加盟卓越，這整套開店第一天就能用</b>。</div>
+  </div>
+  <div class="foot"><span>ECHO 導入後：同一批人力，每月接住的客人從 1,113 成長到 1,539（+38%）</span><span>08 / 加盟</span></div>
+</section>
+<section class="slide vidfull">
+  <div class="rc-vid">
+    <video id="vsys" src="media/dentfixo-74s.mp4" poster="media/dentfixo-poster.jpg"
+           data-short="media/dentfixo-74s.mp4" data-full="media/dentfixo-full.mp4"
+           muted playsinline preload="auto" controls controlslist="nodownload"
+           data-autoplay></video>
+  </div>
+  <div class="rc-vhint">翻到這頁自動播放　·　按影片可暫停</div>
+  <button class="rc-vbtn" id="vsysbtn" type="button">看完整版 2:27</button>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">09 / 下一步</div></div>
+  <div class="body" style="justify-content:center"><div class="secnum">09</div></div>
+  <div class="sectitle"><div class="n">YOUR NEXT STEP</div><h2>你的下一步</h2><p>三條路，<b style="color:#fff">你可以選哪一條</b> —— 也可以一條一條走。</p></div>
+  <div class="foot"><span>重點九</span><span>09 / 下一步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">09 / 下一步</div></div>
+  <div class="kick">三條路</div>
+  <h1 class="t">從今天起，<em>你可以往這三個方向走</em></h1>
+  <div class="body">
+    <div class="rc-road">
+      <div class="rc-r"><div class="tag">ROUTE 01</div><h3>繼續把技術練深</h3>
+        <p>進階班、一對一課程、國際研討會。先把手練穩，後面每一條路才打得開。</p>
+        <div class="path">初階結業 → 進階班 → 國際認證</div></div>
+      <div class="rc-r"><div class="tag">ROUTE 02</div><h3>進門市，走到開店</h3>
+        <p>儲備加盟實習：進卓越門市實戰接待、估價、修復、交車，熟悉 ECHO 與門市 SOP。</p>
+        <div class="path">儲備實習 → 區域評估 → 簽約 → 開店陪跑<br><b style="color:#fff">零基礎約 6–12 個月</b></div></div>
+      <div class="rc-r"><div class="tag">ROUTE 03</div><h3>跟隊伍出國</h3>
+        <p>加拿大冰雹季。技術夠穩、簽證辦得下來，就有機會被排進待命名單。</p>
+        <div class="path">冰雹集訓 → 工作許可 → 跟隊出發<br><b style="color:#fff">2027 年第一季名額很少</b></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>三條路不互斥 —— 練技術是所有路的共同起點</span><span>09 / 下一步</span></div>
+</section>
+<section class="slide">
+  <div class="sh"><div class="brand">SUPERIOR <b>PDR</b> · 教育部</div><div class="pn">09 / 下一步</div></div>
+  <div class="kick">INCOME REFERENCE</div>
+  <h1 class="t">技術走到哪，<em>收入就到哪</em></h1>
+  <div class="body">
+    <div class="grid2">
+      <div>
+        <div class="bigbox"><div class="lb">LEVEL 01　技術員</div><div class="vl sm">5–8 萬 / 月</div>
+          <div class="nt">完成職人班、能獨立處理一般小凹痕，在門市累積實車經驗</div></div>
+        <div class="bigbox" style="margin-top:14px"><div class="lb">LEVEL 02　資深技師</div><div class="vl sm">10–18 萬 / 月</div>
+          <div class="nt">能處理大面積、稜線、鋁合金等高單價案件，取得國際認證</div></div>
+        <div class="rc-warn" style="margin-top:14px">
+          ※ 以上為卓越體系內技師的<b>參考區間</b>，實際收入依個人技術、所在區域、營業時間與經營狀況而異，
+          <b style="color:#fff">不構成任何收入保證</b>。</div>
+      </div>
+      <div>
+        <div class="quotebig" style="font-size:30px">PDR 是看手藝吃飯的行業<small>沒有人能幫你修那最後 20%</small></div>
+        <div class="ph" style="height:290px;margin-top:20px"><img src="rc-images/ph-fine.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>收入區間取自卓越體系內實際狀況</span><span>09 / 下一步</span></div>
+</section>
+<section class="slide cover">
+  <div class="bg"><img src="rc-images/fr-cta.jpg" alt=""></div>
+  <div class="grad"></div>
+  <div class="inner">
+    <h1>下一間卓越，<em>也許就在你的城市</em></h1>
+    <div class="cs">我不怕教出競爭者 —— 體系夠大，市場才會穩</div>
+    <div class="meta">想走哪一條路，<b>今天課後直接跟我說</b>　｜　馬成傑 Jay Ma</div>
+  </div>
+</section>
+</div>
+<div class="navzone l" id="pz"></div>
+<div class="navzone r" id="nz"></div>
+<div id="bartrack"><div id="bar"></div></div>
+<div id="hud"><b id="cur">01</b> / <span id="tot">00</span></div>
+<div id="hint"><span>←</span><span>→</span> 翻頁　<span>F</span> 全螢幕</div>
+<script>
+
+  const stage=document.getElementById('stage');
+  const slides=[...document.querySelectorAll('.slide')];
+  const bar=document.getElementById('bar'), cur=document.getElementById('cur');
+  document.getElementById('tot').textContent=String(slides.length).padStart(2,'0');
+  let i=0;
+  function fit(){
+    const s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    stage.style.setProperty('--s', s);
+  }
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,x)=>s.classList.toggle('on',x===i));
+    // 影片：切到該頁自動從頭循環播放，離開就暫停歸零（不佔資源、下次回來重播）
+    slides.forEach((s,x)=>s.querySelectorAll('video').forEach((v)=>{
+      if(x===i){ v.currentTime=0; const p=v.play(); if(p&&p.catch) p.catch(()=>{}); }
+      else { v.pause(); v.currentTime=0; }
+    }));
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    cur.textContent=String(i+1).padStart(2,'0');
+    location.hash=(i+1);
+  }
+  const next=()=>show(i+1), prev=()=>show(i-1);
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' ','PageDown','Enter'].includes(e.key)){e.preventDefault();next()}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev()}
+    else if(e.key==='Home'){e.preventDefault();show(0)}
+    else if(e.key==='End'){e.preventDefault();show(slides.length-1)}
+    else if(e.key==='f'||e.key==='F'){
+      if(document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    }
+  });
+  document.getElementById('nz').onclick=next;
+  document.getElementById('pz').onclick=prev;
+  // 觸控滑動
+  let tx=null;
+  addEventListener('touchstart',e=>{tx=e.changedTouches[0].clientX},{passive:true});
+  addEventListener('touchend',e=>{
+    if(tx===null)return; const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>50){dx<0?next():prev()} tx=null;
+  },{passive:true});
+  addEventListener('resize',fit);
+  fit();
+  show(Math.max(0,(parseInt(location.hash.slice(1))||1)-1));
+
+</script>
+<script>
+
+// ===== 進場動畫 =====
+// 原本的播放器只負責切 .on。這裡再掛一層：切到某頁時，重跑那頁的長條動畫，
+// 並把帶 data-count 的數字從 0 跑上去。離開那頁就重設，下次翻回來會再跑一次。
+(function(){
+  const ease = t => 1 - Math.pow(1 - t, 3);
+
+  function countUp(el){
+    const to = parseFloat(el.dataset.count);
+    const dec = parseInt(el.dataset.dec || 0);
+    const pre = el.dataset.pre || '', suf = el.dataset.suf || '';
+    const dur = 900, t0 = performance.now();
+    (function step(now){
+      const k = Math.min(1, (now - t0) / dur);
+      const v = to * ease(k);
+      el.textContent = pre + v.toLocaleString('en-US',
+        {minimumFractionDigits: dec, maximumFractionDigits: dec}) + suf;
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+
+  function play(s){
+    s.classList.remove('anim');
+    void s.offsetWidth;                 // 強制重排，動畫才會重跑
+    // 卡片依序淡入：只設延遲，實際動畫在 CSS（JS 掛了也不會影響靜止版面）
+    s.querySelectorAll('.rc-tr,.rc-k,.rc-s,.rc-r,.rc-t').forEach((el, i) => {
+      el.style.setProperty('--d', (i * 0.06).toFixed(2) + 's');
+    });
+    s.classList.add('anim');
+    s.querySelectorAll('[data-count]').forEach(el => {
+      el.textContent = (el.dataset.pre || '') + '0' + (el.dataset.suf || '');
+      setTimeout(() => countUp(el), 120);
+    });
+  }
+
+  // ⚠️ 不要用 MutationObserver 監看 class：play() 本身會改 class，
+  //    等於自己觸發自己，會變成無限迴圈（踩過一次，Chrome 直接卡死）。
+  //    播放器每次換頁都會寫 location.hash，所以聽 hashchange 就好。
+  // 截圖／匯 PDF 用：網址加 ?still=1 就完全不跑動畫，直接呈現最終狀態。
+  // （headless 截圖會在動畫跑到一半時按下快門，長條只長一半、數字只數到一半。）
+  const STILL = /(^|[?&])still=1/.test(location.search);
+
+  // 影片頁：翻到就從頭播、翻走就停。muted 是必要的 ——
+  // 瀏覽器只允許靜音影片自動播放（這幾支本來就沒有聲音軌）。
+  // ⚠️ 只有標了 data-autoplay 的會自己播。合併版裡還有學員的前後對比影片，
+  //    那些是「老師自己按播放、邊講邊看」的，不能跟著自動跑。
+  function syncVideo(){
+    document.querySelectorAll('video').forEach(v => {
+      const on = v.closest('.slide').classList.contains('on');
+      if (!on) { v.pause(); return; }
+      if (v.hasAttribute('data-autoplay') && !STILL) {
+        try { v.currentTime = 0; } catch(e) {}
+        v.play().catch(() => {});
+      }
+    });
+  }
+
+  // 短版／完整版切換（給 Q&A 用，平常不會按到）
+  (function(){
+    const v = document.getElementById('vsys'), b = document.getElementById('vsysbtn');
+    if (!v || !b) return;
+    let full = false;
+    b.addEventListener('click', e => {
+      e.stopPropagation();
+      full = !full;
+      v.src = full ? v.dataset.full : v.dataset.short;
+      b.textContent = full ? '回到短版 1:14' : '看完整版 2:27';
+      v.play().catch(() => {});
+    });
+    // 點影片本身＝暫停／繼續（翻頁熱區在左右兩側，中間是影片）
+    v.addEventListener('click', () => { v.paused ? v.play() : v.pause(); });
+  })();
+
+  function run(){
+    syncVideo();
+    if (STILL) return;
+    document.querySelectorAll('.slide.anim').forEach(x => x.classList.remove('anim'));
+    const s = document.querySelector('.slide.on');
+    if (s) play(s);
+  }
+  addEventListener('hashchange', run);
+  // 播放器可能在 load 時才決定第一頁，所以 load 再跑一次（run 本身冪等）
+  addEventListener('load', run);
+  run();
+})();
+
+</script>
+</body>
+</html>
